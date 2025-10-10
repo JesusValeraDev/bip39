@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+html {
+  background: var(--background, #1a1a1a);
+}
+
 :root {
   --btc-orange: #f7931a;
   --btc-orange-hover: #e58715;
@@ -112,12 +116,12 @@ body {
 }
 
 .container {
-  max-width: 1024px;
+  max-width: 980px;
   width: 100%;
   background: var(--surface);
   border-radius: 24px;
-  padding: 3rem;
-  box-shadow: 0 20px 60px var(--shadow);
+  padding: 3rem 2rem;
+  box-shadow: 0 0 10px var(--shadow);
   border: 1px solid var(--border);
   transition: all 0.3s ease;
   min-height: 600px;
@@ -263,24 +267,19 @@ h1 {
   margin-bottom: 2.5rem;
   padding: 1rem 0;
   width: 100%;
-  display: flex;
-  justify-content: center;
   min-height: 80px;
-  overflow-x: auto;
 }
 
 .grid {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
   gap: 0.75rem;
-  justify-content: center;
-  flex-wrap: nowrap;
-  min-width: min-content;
+  width: 100%;
 }
 
 .box {
-  width: 60px;
-  height: 60px;
-  min-width: 60px;
+  aspect-ratio: 1;
+  min-height: 50px;
   background: var(--surface-light);
   border: 2px solid var(--border);
   border-radius: 12px;
@@ -438,14 +437,8 @@ h1 {
     padding: 2.5rem 2rem;
   }
   
-  .box {
-    width: 55px;
-    height: 55px;
-    min-width: 55px;
-  }
-  
   .grid {
-    gap: 0.65rem;
+    grid-template-columns: repeat(6, 1fr);
   }
 }
 
@@ -479,24 +472,14 @@ h1 {
     font-size: 0.9rem;
   }
   
-  .box {
-    width: 52px;
-    height: 52px;
-    min-width: 52px;
-  }
-  
   .bit-label {
-    font-size: 0.6rem;
+    font-size: 0.65rem;
   }
   
   .word {
     font-size: 2rem;
     height: 3.5rem;
     min-height: 3.5rem;
-  }
-  
-  .grid {
-    gap: 0.5rem;
   }
   
   .theme-toggle {
@@ -534,18 +517,8 @@ h1 {
     padding: 1.5rem 1rem;
   }
   
-  .box {
-    width: 48px;
-    height: 48px;
-    min-width: 48px;
-  }
-  
   .bit-label {
-    font-size: 0.58rem;
-  }
-  
-  .grid {
-    gap: 0.45rem;
+    font-size: 0.62rem;
   }
   
   .word {
@@ -591,19 +564,9 @@ h1 {
     margin-bottom: 1rem;
   }
   
-  .box {
-    width: 44px;
-    height: 44px;
-    min-width: 44px;
-  }
-  
   .bit-label {
-    font-size: 0.55rem;
+    font-size: 0.6rem;
     bottom: 3px;
-  }
-  
-  .grid {
-    gap: 0.4rem;
   }
   
   .word {
@@ -647,19 +610,15 @@ h1 {
   }
 }
 
-@media (max-width: 380px) {
-  .box {
-    width: 40px;
-    height: 40px;
-    min-width: 40px;
-  }
-  
-  .bit-label {
-    font-size: 0.52rem;
-  }
-  
+@media (max-width: 430px) {
   .grid {
-    gap: 0.35rem;
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 380px) {
+  .bit-label {
+    font-size: 0.58rem;
   }
 }
 
