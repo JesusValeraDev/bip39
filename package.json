@@ -12,7 +12,10 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "deploy": "vite build && gh-pages -d dist"
+    "deploy": "vite build && gh-pages -d dist",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:ui": "vitest --ui"
   },
   "keywords": [
     "bip39",
@@ -22,22 +25,17 @@
     "mnemonic",
     "seed-phrase",
     "wordlist",
-    "converter",
-    "binary",
-    "blockchain",
-    "crypto-wallet",
-    "hd-wallet",
-    "hierarchical-deterministic",
-    "web-tool",
-    "privacy",
-    "multi-language"
+    "converter"
   ],
   "author": "JesusValeraDev (https://jesusvalera.dev)",
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^20.10.0",
+    "@vitest/ui": "^3.2.4",
     "gh-pages": "^6.3.0",
+    "jsdom": "^27.0.0",
     "typescript": "^5.3.0",
-    "vite": "^5.0.0"
+    "vite": "^5.0.0",
+    "vitest": "^3.2.4"
   }
 }

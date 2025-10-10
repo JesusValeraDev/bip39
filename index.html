@@ -3,23 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- SEO Meta Tags -->
+
   <title>BIP39 Word Selector - Bitcoin Mnemonic Converter Tool</title>
   <meta name="description" content="Interactive BIP39 word selector and Bitcoin mnemonic converter. Select binary patterns to find BIP39 words. Supports multiple languages including English, Spanish, French, Chinese, Japanese, Korean and more. Privacy-focused, runs entirely in your browser.">
   <meta name="keywords" content="BIP39, Bitcoin, BTC, cryptocurrency, mnemonic, seed phrase, word list, converter, binary, blockchain, crypto wallet, HD wallet, hierarchical deterministic, BIP39 tool, Bitcoin tool, crypto converter, mnemonic generator">
   <meta name="author" content="JesusValeraDev">
   <meta name="theme-color" content="#f7931a">
   <link rel="canonical" href="https://bip39.jesusvalera.dev/">
-  
-  <!-- Open Graph / Facebook -->
+
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://bip39.jesusvalera.dev/">
   <meta property="og:title" content="BIP39 Word Selector - Bitcoin Mnemonic Converter Tool">
   <meta property="og:description" content="Interactive BIP39 word selector and Bitcoin mnemonic converter. Privacy-focused tool that runs entirely in your browser. Supports multiple languages.">
   <meta property="og:image" content="https://bip39.jesusvalera.dev/favicon.svg">
-  
-  <!-- Twitter -->
+
   <meta property="twitter:card" content="summary">
   <meta property="twitter:url" content="https://bip39.jesusvalera.dev/">
   <meta property="twitter:title" content="BIP39 Word Selector - Bitcoin Mnemonic Converter Tool">
@@ -34,8 +31,7 @@
   </script>
   <link rel="stylesheet" href="/src/styles/style.css">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  
-  <!-- Structured Data (JSON-LD) -->
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -47,15 +43,14 @@
     "operatingSystem": "Any",
     "offers": {
       "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
+      "priceCurrency": "BTC"
     },
     "author": {
       "@type": "Person",
       "name": "JesusValeraDev",
       "url": "https://jesusvalera.dev/"
     },
-    "keywords": "BIP39, Bitcoin, BTC, cryptocurrency, mnemonic, seed phrase, converter, blockchain, crypto wallet",
+    "keywords": "BIP39, Bitcoin, BTC, cryptocurrency, mnemonic, seed phrase, converter",
     "inLanguage": ["en", "es", "fr", "it", "pt", "zh", "ja", "ko", "cs"],
     "browserRequirements": "Requires JavaScript. Supports all modern browsers."
   }
@@ -92,7 +87,7 @@
       </div>
     </div>
     <p id="subtitle" class="subtitle">Click the boxes to select a word from the BIP39 wordlist</p>
-    
+  
     <div class="language-selector">
       <label id="wordlist-label" for="language">Language:</label>
       <select id="language" class="language-dropdown">
@@ -108,17 +103,17 @@
         <option value="chinese_traditional">中文 (繁體)</option>
       </select>
     </div>
-    
+  
     <div class="grid-container">
       <div id="grid" class="grid"></div>
     </div>
-    
+  
     <div class="word-display">
       <div id="word-label" class="word-label">Selected Word:</div>
       <div id="word" class="word">Pick a pattern</div>
       <div class="word-index">Index: <span id="index">-</span> / 2048</div>
     </div>
-    
+  
     <div class="controls">
       <button id="reset" class="reset-button">Reset</button>
     </div>
@@ -128,11 +123,11 @@
       <p id="info-text">Each box represents a bit. The 12 boxes create a number from 0-4095, which maps to one of the 2048 BIP39 words.</p>
     </div>
   </div>
-  
+
   <footer class="footer">
     <p>© 2025 <a href="https://jesusvalera.dev" target="_blank" rel="noopener noreferrer">JesusValeraDev</a> · <a href="https://github.com/JesusValeraDev/bip39" target="_blank" rel="noopener noreferrer">GitHub</a></p>
   </footer>
-  
+
   <script type="module" src="/src/main.ts"></script>
 </body>
 </html>
