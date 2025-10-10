@@ -2,24 +2,9 @@
 
 An interactive web application for exploring the BIP39 wordlist through a visual binary pattern selector.
 
-## Features
-
-- 🎯 **12-Box Grid**: Click boxes to create binary patterns
-- 🔢 **Binary to Word Mapping**: Each pattern maps to a specific BIP39 word
-- 🌍 **Multi-Language UI**: Interface available in 9 languages (English, Spanish, French, German, Italian, Portuguese, Chinese, Japanese, Korean)
-- 📝 **Multi-Language Wordlists**: Choose from 10 different BIP39 wordlists
-- 🎨 **Modern UI**: Beautiful, responsive design with smooth animations
-- 🌓 **Dark/Light Mode**: Toggle between dark and light themes with preference persistence
-- 🔄 **Reset Function**: Quickly clear all selections
-- 📊 **Real-time Display**: See the binary pattern, word index, and selected word
-
 ## How It Works
 
-The application displays 12 clickable boxes arranged in a grid. Each box represents a bit (0 or 1):
-- **Unselected box** = 0 (off)
-- **Selected box** = 1 (on)
-
-The 12 boxes create a binary number from `000000000000` to `111111111111` (0-4095 in decimal), which maps to one of the 2048 words in the BIP39 wordlist (using modulo 2048).
+The application displays 12 clickable boxes arranged in a grid. Each box represents a bit (0 or 1).
 
 ## Getting Started
 
