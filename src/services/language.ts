@@ -1,7 +1,7 @@
-import { getTranslation, wordlistToUILang, type Translations } from './i18n';
-import { elements } from './dom';
+import { getTranslation, wordlistToUILang, type Translations } from '../i18n';
+import { elements } from '../core/dom';
 import { loadWordlist } from './wordlist';
-import { updateDisplay } from './display';
+import { updateDisplay } from '../components/display';
 
 export let currentTranslations: Translations = getTranslation('en');
 

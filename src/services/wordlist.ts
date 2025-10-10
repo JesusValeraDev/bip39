@@ -1,4 +1,4 @@
-import { state } from './state';
+import { state } from '../core/state';
 
 export async function loadWordlist(language: string = 'english'): Promise<void> {
   try {

@@ -1,5 +1,5 @@
-import { toggleBox } from './state';
-import { elements } from './dom';
+import { toggleBox } from '../core/state';
+import { elements } from '../core/dom';
 import { updateDisplay } from './display';
 
 export function createGrid(): void {

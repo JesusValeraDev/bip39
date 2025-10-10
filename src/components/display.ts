@@ -1,7 +1,7 @@
-import { state, calculateBinaryValue, getBinaryString } from './state';
-import { elements } from './dom';
-import { currentTranslations } from './language';
-import { getWord } from './wordlist';
+import { state, calculateBinaryValue, getBinaryString } from '../core/state';
+import { elements } from '../core/dom';
+import { currentTranslations } from '../services/language';
+import { getWord } from '../services/wordlist';
 
 export function updateDisplay(): void {
   const boxElements = elements.grid.querySelectorAll('.box');
