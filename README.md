@@ -4,12 +4,6 @@
 
 An interactive, privacy-focused web application for exploring the BIP39 wordlist through a visual binary pattern selector. Perfect for understanding how Bitcoin seed phrases work.
 
-**🔗 Live Demo:** [bip39.jesusvalera.dev](https://bip39.jesusvalera.dev/)
-
-## 🏷️ Keywords
-
-`BIP39` `Bitcoin` `BTC` `Cryptocurrency` `Mnemonic` `Seed Phrase` `Converter` `Binary` `Blockchain` `Crypto Wallet` `HD Wallet` `Web Tool` `Privacy` `Open Source`
-
 ## How It Works
 
 The application displays 12 clickable boxes arranged in a grid. Each box represents a bit (0 or 1).
@@ -49,14 +43,14 @@ npm run preview
 This project includes the official BIP39 wordlists in multiple languages:
 
 - English
-- Chinese (Simplified & Traditional)
-- Czech
+- Spanish
 - French
+- Czech
 - Italian
+- Portuguese
 - Japanese
 - Korean
-- Portuguese
-- Spanish
+- Chinese (Simplified & Traditional)
 
 You can switch between languages using the dropdown selector in the app. Your language preference is automatically saved.
 
@@ -66,7 +60,3 @@ You can switch between languages using the dropdown selector in the app. Your la
 - **Vite**: Fast build tool and dev server
 - **Vanilla CSS**: Modern, responsive styling
 - **BIP39**: Standard for mnemonic code generation
-
-## License
-
-MIT
