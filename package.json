@@ -1,8 +1,13 @@
 {
   "name": "bip39",
   "version": "1.0.0",
-  "description": "BIP39 mnemonic code implementation in TypeScript",
+  "description": "Interactive BIP39 word selector and Bitcoin mnemonic converter tool. Privacy-focused web application for exploring BIP39 wordlists.",
   "type": "module",
+  "homepage": "https://bip39.jesusvalera.dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JesusValeraDev/bip39.git"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -11,11 +16,23 @@
   },
   "keywords": [
     "bip39",
-    "mnemonic",
     "bitcoin",
-    "crypto"
+    "btc",
+    "cryptocurrency",
+    "mnemonic",
+    "seed-phrase",
+    "wordlist",
+    "converter",
+    "binary",
+    "blockchain",
+    "crypto-wallet",
+    "hd-wallet",
+    "hierarchical-deterministic",
+    "web-tool",
+    "privacy",
+    "multi-language"
   ],
-  "author": "",
+  "author": "JesusValeraDev (https://jesusvalera.dev)",
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^20.10.0",

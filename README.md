@@ -1,6 +1,14 @@
-# BIP39 Word Selector
+# BIP39 Word Selector 🔐
 
-An interactive web application for exploring the BIP39 wordlist through a visual binary pattern selector.
+> Interactive Bitcoin BIP39 mnemonic word selector and converter tool
+
+An interactive, privacy-focused web application for exploring the BIP39 wordlist through a visual binary pattern selector. Perfect for understanding how Bitcoin seed phrases work.
+
+**🔗 Live Demo:** [bip39.jesusvalera.dev](https://bip39.jesusvalera.dev/)
+
+## 🏷️ Keywords
+
+`BIP39` `Bitcoin` `BTC` `Cryptocurrency` `Mnemonic` `Seed Phrase` `Converter` `Binary` `Blockchain` `Crypto Wallet` `HD Wallet` `Web Tool` `Privacy` `Open Source`
 
 ## How It Works
 
