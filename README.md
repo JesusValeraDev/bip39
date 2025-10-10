@@ -1,4 +1,4 @@
-# BIP39 Word Selector 🔐
+# BIP39 Word Selector
 
 > Interactive Bitcoin BIP39 mnemonic word selector and converter tool
 
@@ -53,10 +53,3 @@ This project includes the official BIP39 wordlists in multiple languages:
 - Chinese (Simplified & Traditional)
 
 You can switch between languages using the dropdown selector in the app. Your language preference is automatically saved.
-
-## Tech Stack
-
-- **TypeScript**: Type-safe JavaScript
-- **Vite**: Fast build tool and dev server
-- **Vanilla CSS**: Modern, responsive styling
-- **BIP39**: Standard for mnemonic code generation

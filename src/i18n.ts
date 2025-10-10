@@ -140,4 +140,3 @@ export const translations: Record<string, Translations> = {
 export function getTranslation(lang: string): Translations {
   return translations[lang] || translations.en;
 }
-
