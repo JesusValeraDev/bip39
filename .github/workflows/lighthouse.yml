@@ -27,65 +27,31 @@ jobs:
       - name: Build project
         run: npm run build
         
+      - name: Start preview server
+        run: npm run preview &
+        
+      - name: Wait for server to be ready
+        run: npx wait-on http://localhost:4173 --timeout 30000
+        
       - name: Run Lighthouse CI
         run: npm run lighthouse
-        env:
-          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
-          
-      - name: Upload Lighthouse results
-        uses: actions/upload-artifact@v4
+        
+      - name: Display Lighthouse scores
         if: always()
-        with:
-          name: lighthouse-results
-          path: .lighthouseci
-          retention-days: 30
-          
-      - name: Comment PR with Lighthouse results
-        if: github.event_name == 'pull_request'
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const fs = require('fs');
-            const path = require('path');
-            
-            // Read manifest to find the latest report
-            const manifestPath = '.lighthouseci/manifest.json';
-            if (!fs.existsSync(manifestPath)) {
-              console.log('No Lighthouse manifest found');
-              return;
-            }
-            
-            const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
-            const results = manifest[0];
-            
-            if (!results || !results.summary) {
-              console.log('No summary found in manifest');
-              return;
-            }
-            
-            const { performance, accessibility, 'best-practices': bestPractices, seo } = results.summary;
-            
-            const formatScore = (score) => {
-              const percentage = Math.round(score * 100);
-              const emoji = percentage >= 90 ? '🟢' : percentage >= 50 ? '🟡' : '🔴';
-              return `${emoji} ${percentage}`;
-            };
-            
-            const comment = `## 🔦 Lighthouse CI Results
-            
-            | Category | Score |
-            |----------|-------|
-            | 🎯 Performance | ${formatScore(performance)} |
-            | ♿ Accessibility | ${formatScore(accessibility)} |
-            | ✅ Best Practices | ${formatScore(bestPractices)} |
-            | 🔍 SEO | ${formatScore(seo)} |
-            
-            [View detailed report](${results.url || 'Report URL not available'})
-            `;
-            
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: comment
-            });
+        run: |
+          if [ -d .lighthouseci ]; then
+            echo "📊 Lighthouse CI Results:"
+            LATEST_REPORT=$(ls -t .lighthouseci/lhr-*.json | head -1)
+            if [ -f "$LATEST_REPORT" ]; then
+              node -e "
+                const data = JSON.parse(require('fs').readFileSync('$LATEST_REPORT', 'utf8'));
+                const cats = data.categories;
+                console.log('⚡ Performance:', Math.round(cats.performance.score * 100) + '%');
+                console.log('♿ Accessibility:', Math.round(cats.accessibility.score * 100) + '%');
+                console.log('✅ Best Practices:', Math.round(cats['best-practices'].score * 100) + '%');
+                console.log('🔍 SEO:', Math.round(cats.seo.score * 100) + '%');
+              "
+            fi
+          else
+            echo "⚠️ No Lighthouse results found"
+          fi

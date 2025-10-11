@@ -36,8 +36,17 @@ jobs:
       - name: Run all tests with coverage
         run: npm run test:coverage
         
+      - name: Build project
+        run: npm run build
+        
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
+        
+      - name: Start preview server
+        run: npm run preview &
+        
+      - name: Wait for server to be ready
+        run: npx wait-on http://localhost:4173 --timeout 30000
         
       - name: Run E2E tests
         run: npm run test:e2e
@@ -49,9 +58,6 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 7
-        
-      - name: Build project
-        run: npm run build
         
       - name: Upload coverage reports
         uses: actions/upload-artifact@v4
