@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -57,7 +57,7 @@
   </script>
 </head>
 <body>
-  <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+  <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" aria-pressed="false" title="Toggle dark/light mode">
     <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <circle cx="12" cy="12" r="5"></circle>
       <line x1="12" y1="1" x2="12" y2="3"></line>
@@ -74,23 +74,23 @@
     </svg>
   </button>
 
-  <div class="container">
-    <div class="title-container">
+  <main id="main-content" class="container" role="main" aria-label="BIP39 Word Selector">
+    <header class="title-container">
       <h1 id="title">BIP39 Word Selector</h1>
-      <div class="privacy-info">
-        <svg class="info-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <div class="privacy-info" role="tooltip" aria-describedby="privacy-tooltip">
+        <svg class="info-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="12" cy="12" r="10"></circle>
           <line x1="12" y1="16" x2="12" y2="12"></line>
           <line x1="12" y1="8" x2="12.01" y2="8"></line>
         </svg>
-        <div id="privacy-tooltip" class="privacy-tooltip">Your privacy is protected: This application runs entirely in your browser. No data is transmitted, stored, or tracked. Everything stays on your device.</div>
+        <div id="privacy-tooltip" class="privacy-tooltip" role="status">Your privacy is protected: This application runs entirely in your browser. No data is transmitted, stored, or tracked. Everything stays on your device.</div>
       </div>
-    </div>
+    </header>
     <p id="subtitle" class="subtitle">Click the boxes to select a word from the BIP39 wordlist</p>
-  
-    <div class="language-selector">
+
+    <div class="language-selector" role="form" aria-label="Language selection">
       <label id="wordlist-label" for="language">Language:</label>
-      <select id="language" class="language-dropdown">
+      <select id="language" class="language-dropdown" aria-label="Select BIP39 wordlist language">
         <option value="english">English</option>
         <option value="spanish">Español</option>
         <option value="french">Français</option>
@@ -103,26 +103,28 @@
         <option value="chinese_traditional">中文 (繁體)</option>
       </select>
     </div>
-  
-    <div class="grid-container">
-      <div id="grid" class="grid"></div>
-    </div>
-  
-    <div class="word-display">
+
+    <section class="grid-container" role="group" aria-label="Binary pattern selector">
+      <div id="grid" class="grid" role="group" aria-label="Clickable binary boxes"></div>
+    </section>
+
+    <section class="word-display" role="region" aria-live="polite" aria-atomic="true">
       <div id="word-label" class="word-label">Selected Word:</div>
-      <div id="word" class="word">Pick a pattern</div>
-      <div class="word-index">Index: <span id="index">-</span> / 2048</div>
-    </div>
-  
+      <div id="word" class="word" aria-label="Current selected word">Pick a pattern</div>
+      <div class="word-index" aria-label="Word index">Index: <span id="index">-</span> / 2048</div>
+    </section>
+
     <div class="controls">
-      <button id="reset" class="reset-button">Reset</button>
+      <button id="reset" class="reset-button" aria-label="Reset all selected boxes">Reset</button>
     </div>
-    
-    <div class="info">
-      <p><span id="binary-label">Binary pattern:</span> <code id="binary">000000000000</code></p>
+
+    <section class="info" role="complementary" aria-label="Additional information">
+      <p><span id="binary-label">Binary pattern:</span> <code id="binary" aria-label="Current binary pattern">000000000000</code></p>
       <p id="info-text">Each box represents a bit. The 12 boxes create a number from 0-4095, which maps to one of the 2048 BIP39 words.</p>
-    </div>
-  </div>
+    </section>
+
+    <div id="sr-announcements" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+  </main>
 
   <footer class="footer">
     <p>© 2025 <a href="https://jesusvalera.dev" target="_blank" rel="noopener noreferrer">JesusValeraDev</a> · <a href="https://github.com/JesusValeraDev/bip39" target="_blank" rel="noopener noreferrer">GitHub</a></p>

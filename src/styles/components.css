@@ -234,6 +234,11 @@ h1 {
   box-shadow: 0 4px 12px rgba(247, 147, 26, 0.3);
 }
 
+.box:focus-visible {
+  outline: 3px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
 .box.active {
   background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-active) 100%);
   border-color: var(--primary-color);
