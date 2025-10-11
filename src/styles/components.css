@@ -279,7 +279,6 @@
 .box.disabled {
   opacity: 0.4;
   cursor: not-allowed;
-  pointer-events: none;
 }
 
 .box.disabled:hover {
@@ -893,4 +892,31 @@
 .bip39-link a:active {
   transform: scale(0.95);
   box-shadow: 0 2px 6px rgba(247, 147, 26, 0.2);
+}
+
+/* Toast Notification */
+.toast {
+  position: fixed;
+  bottom: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--surface);
+  color: var(--text-primary);
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  border: 2px solid var(--primary-color);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  font-size: 0.95rem;
+  font-weight: 600;
+  z-index: 10000;
+  opacity: 0;
+  transition: all 0.3s ease;
+  max-width: 600px;
+  width: 90%;
+  text-align: center;
+}
+
+.toast.show {
+  bottom: 2rem;
+  opacity: 1;
 }

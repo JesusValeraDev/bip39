@@ -51,11 +51,11 @@ function updateBoxDisabledState(
   }
 
   if (shouldDisable) {
-    box.disabled = true;
+    box.dataset.isDisabled = 'true';
     box.classList.add('disabled');
     box.setAttribute('aria-disabled', 'true');
   } else {
-    box.disabled = false;
+    box.dataset.isDisabled = 'false';
     box.classList.remove('disabled');
     box.setAttribute('aria-disabled', 'false');
   }

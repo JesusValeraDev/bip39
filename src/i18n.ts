@@ -12,6 +12,7 @@ export interface Translations {
   privacyTitle: string;
   privacyTooltip: string;
   toggleTheme: string;
+  disabledBoxMessage: string;
   // Modal translations
   modalTitle: string;
   modalStep1Title: string;
@@ -65,6 +66,7 @@ export const translations: Record<string, Translations> = {
     privacyTitle: 'Privacy Protected',
     privacyTooltip: 'This application runs entirely in your browser. No data is transmitted, stored, or tracked.',
     toggleTheme: 'Toggle dark/light mode',
+    disabledBoxMessage: 'Cannot select this number with the current pattern - it would exceed 2048',
     // Modal translations
     modalTitle: 'What is BIP39?',
     modalStep1Title: '12 Words = Seed Phrase',
@@ -102,6 +104,7 @@ export const translations: Record<string, Translations> = {
     privacyTitle: 'Privacidad Protegida',
     privacyTooltip: 'Esta aplicación se ejecuta completamente en tu navegador. No se transmite, almacena ni rastrea ningún dato.',
     toggleTheme: 'Cambiar modo oscuro/claro',
+    disabledBoxMessage: 'No se puede seleccionar este número con el patrón actual - excedería 2048',
     // Modal translations
     modalTitle: '¿Qué es BIP39?',
     modalStep1Title: '12 Palabras = Frase Semilla',
@@ -139,6 +142,7 @@ export const translations: Record<string, Translations> = {
     privacyTitle: 'Confidentialité Protégée',
     privacyTooltip: 'Cette application s\'exécute entièrement dans votre navigateur. Aucune donnée n\'est transmise, stockée ou suivie.',
     toggleTheme: 'Basculer le mode sombre/clair',
+    disabledBoxMessage: 'Impossible de sélectionner ce nombre avec le motif actuel - il dépasserait 2048',
     // Modal translations
     modalTitle: 'Qu\'est-ce que BIP39?',
     modalStep1Title: '12 Mots = Phrase de Récupération',
@@ -176,6 +180,7 @@ export const translations: Record<string, Translations> = {
     privacyTitle: 'Soukromí Chráněno',
     privacyTooltip: 'Tato aplikace běží zcela ve vašem prohlížeči. Žádná data nejsou přenášena, ukládána ani sledována.',
     toggleTheme: 'Přepnout tmavý/světlý režim',
+    disabledBoxMessage: 'Nelze vybrat toto číslo s aktuálním vzorem - překročilo by 2048',
     // Modal translations
     modalTitle: 'Co je BIP39?',
     modalStep1Title: '12 Slov = Seed Fráze',
@@ -213,6 +218,7 @@ export const translations: Record<string, Translations> = {
     privacyTitle: 'Privacy Protetta',
     privacyTooltip: 'Questa applicazione viene eseguita interamente nel tuo browser. Nessun dato viene trasmesso, memorizzato o tracciato.',
     toggleTheme: 'Attiva/disattiva modalità scura/chiara',
+    disabledBoxMessage: 'Impossibile selezionare questo numero con il pattern corrente - supererebbe 2048',
     // Modal translations
     modalTitle: 'Cos\'è BIP39?',
     modalStep1Title: '12 Parole = Frase Seed',
@@ -250,6 +256,7 @@ export const translations: Record<string, Translations> = {
     privacyTitle: 'Privacidade Protegida',
     privacyTooltip: 'Este aplicativo é executado inteiramente no seu navegador. Nenhum dado é transmitido, armazenado ou rastreado.',
     toggleTheme: 'Alternar modo escuro/claro',
+    disabledBoxMessage: 'Não é possível selecionar este número com o padrão atual - excederia 2048',
     // Modal translations
     modalTitle: 'O que é BIP39?',
     modalStep1Title: '12 Palavras = Frase Semente',
@@ -287,6 +294,7 @@ export const translations: Record<string, Translations> = {
     privacyTitle: 'プライバシー保護',
     privacyTooltip: 'このアプリケーションはブラウザ内で完全に動作します。データの送信、保存、追跡は一切行われません。',
     toggleTheme: 'ダークモード/ライトモードを切り替え',
+    disabledBoxMessage: '現在のパターンではこの数値を選択できません - 2048を超えます',
     // Modal translations
     modalTitle: 'BIP39とは？',
     modalStep1Title: '12単語 = シードフレーズ',
@@ -324,6 +332,7 @@ export const translations: Record<string, Translations> = {
     privacyTitle: '개인정보 보호',
     privacyTooltip: '이 애플리케이션은 브라우저에서 완전히 실행됩니다. 데이터 전송, 저장 또는 추적이 없습니다.',
     toggleTheme: '다크 모드/라이트 모드 전환',
+    disabledBoxMessage: '현재 패턴에서는 이 숫자를 선택할 수 없습니다 - 2048을 초과합니다',
     // Modal translations
     modalTitle: 'BIP39란 무엇인가요?',
     modalStep1Title: '12단어 = 시드 구문',
@@ -361,6 +370,7 @@ export const translations: Record<string, Translations> = {
     privacyTitle: '隐私保护',
     privacyTooltip: '此应用程序完全在您的浏览器中运行。不会传输、存储或跟踪任何数据。',
     toggleTheme: '切换深色/浅色模式',
+    disabledBoxMessage: '无法选择此数字与当前模式 - 会超过2048',
     // Modal translations
     modalTitle: '什么是BIP39？',
     modalStep1Title: '12个词 = 助记词',
@@ -398,6 +408,7 @@ export const translations: Record<string, Translations> = {
     privacyTitle: '隱私保護',
     privacyTooltip: '此應用程序完全在您的瀏覽器中運行。不會傳輸、存儲或跟蹤任何數據。',
     toggleTheme: '切換深色/淺色模式',
+    disabledBoxMessage: '無法選擇此數字與當前模式 - 會超過2048',
     // Modal translations
     modalTitle: '什麼是BIP39？',
     modalStep1Title: '12個詞 = 助記詞',

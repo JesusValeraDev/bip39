@@ -1,6 +1,7 @@
 import { toggleBox } from '../core/state';
 import { elements } from '../core/dom';
 import { updateDisplay } from './display';
+import { showDisabledBoxToast } from './toast';
 
 export function createGrid(): void {
   elements.grid.innerHTML = '';
@@ -22,6 +23,10 @@ export function createGrid(): void {
     box.appendChild(label);
 
     box.addEventListener('click', () => {
+      if (box.dataset.isDisabled === 'true') {
+        showDisabledBoxToast();
+        return;
+      }
       toggleBox(i);
       updateDisplay();
     });
