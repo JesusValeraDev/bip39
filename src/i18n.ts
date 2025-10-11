@@ -8,7 +8,6 @@ export interface Translations {
   resetButton: string;
   pickPattern: string;
   outOfRange: string;
-  binaryPattern: string;
   infoText: string;
   privacyTooltip: string;
   toggleTheme: string;
@@ -38,7 +37,6 @@ export const translations: Record<string, Translations> = {
     resetButton: 'Reset',
     pickPattern: 'Pick a pattern',
     outOfRange: 'Out of range (max 2048)',
-    binaryPattern: 'Binary pattern:',
     infoText: 'Each box represents a bit. The 12 boxes create a number from 0-4095, which maps to one of the 2048 BIP39 words.',
     privacyTooltip: 'Your privacy is protected: This application runs entirely in your browser. No data is transmitted, stored, or tracked.',
     toggleTheme: 'Toggle dark/light mode',
@@ -52,7 +50,6 @@ export const translations: Record<string, Translations> = {
     resetButton: 'Reiniciar',
     pickPattern: 'Elige un patrón',
     outOfRange: 'Fuera de rango (máx 2048)',
-    binaryPattern: 'Patrón binario:',
     infoText: 'Cada casilla representa un bit. Las 12 casillas crean un número de 0-4095, que corresponde a una de las 2048 palabras BIP39.',
     privacyTooltip: 'Tu privacidad está protegida: Esta aplicación se ejecuta completamente en tu navegador. No se transmite, almacena ni rastrea ningún dato.',
     toggleTheme: 'Cambiar modo oscuro/claro',
@@ -66,7 +63,6 @@ export const translations: Record<string, Translations> = {
     resetButton: 'Réinitialiser',
     pickPattern: 'Choisissez un motif',
     outOfRange: 'Hors limites (max 2048)',
-    binaryPattern: 'Motif binaire:',
     infoText: 'Chaque case représente un bit. Les 12 cases créent un nombre de 0-4095, qui correspond à l\'un des 2048 mots BIP39.',
     privacyTooltip: 'Votre confidentialité est protégée : Cette application s\'exécute entièrement dans votre navigateur. Aucune donnée n\'est transmise, stockée ou suivie.',
     toggleTheme: 'Basculer le mode sombre/clair',
@@ -80,7 +76,6 @@ export const translations: Record<string, Translations> = {
     resetButton: 'Resetovat',
     pickPattern: 'Vyberte vzor',
     outOfRange: 'Mimo rozsah (max 2048)',
-    binaryPattern: 'Binární vzor:',
     infoText: 'Každé pole představuje jeden bit. 12 polí vytvoří číslo od 0 do 4095, které odpovídá jednomu z 2048 slov BIP39.',
     privacyTooltip: 'Vaše soukromí je chráněno: Tato aplikace běží zcela ve vašem prohlížeči. Žádná data nejsou přenášena, ukládána ani sledována.',
     toggleTheme: 'Přepnout tmavý/světlý režim',
@@ -94,7 +89,6 @@ export const translations: Record<string, Translations> = {
     resetButton: 'Ripristina',
     pickPattern: 'Scegli un pattern',
     outOfRange: 'Fuori intervallo (max 2048)',
-    binaryPattern: 'Pattern binario:',
     infoText: 'Ogni casella rappresenta un bit. Le 12 caselle creano un numero da 0-4095, che corrisponde a una delle 2048 parole BIP39.',
     privacyTooltip: 'La tua privacy è protetta: Questa applicazione viene eseguita interamente nel tuo browser. Nessun dato viene trasmesso, memorizzato o tracciato.',
     toggleTheme: 'Attiva/disattiva modalità scura/chiara',
@@ -108,7 +102,6 @@ export const translations: Record<string, Translations> = {
     resetButton: 'Reiniciar',
     pickPattern: 'Escolha um padrão',
     outOfRange: 'Fora do alcance (máx 2048)',
-    binaryPattern: 'Padrão binário:',
     infoText: 'Cada caixa representa um bit. As 12 caixas criam um número de 0-4095, que mapeia para uma das 2048 palavras BIP39.',
     privacyTooltip: 'Sua privacidade está protegida: Este aplicativo é executado inteiramente no seu navegador. Nenhum dado é transmitido, armazenado ou rastreado.',
     toggleTheme: 'Alternar modo escuro/claro',
@@ -122,7 +115,6 @@ export const translations: Record<string, Translations> = {
     resetButton: 'リセット',
     pickPattern: 'パターンを選択',
     outOfRange: '範囲外（最大 2048）',
-    binaryPattern: 'バイナリパターン：',
     infoText: '各ボックスは1ビットを表します。12個のボックスは0-4095の数値を作成し、2048個のBIP39単語の1つにマッピングされます。',
     privacyTooltip: 'プライバシーは保護されています：このアプリケーションはブラウザ内で完全に動作します。データの送信、保存、追跡は一切行われません。',
     toggleTheme: 'ダークモード/ライトモードを切り替え',
@@ -136,7 +128,6 @@ export const translations: Record<string, Translations> = {
     resetButton: '재설정',
     pickPattern: '패턴 선택',
     outOfRange: '범위 초과 (최대 2048)',
-    binaryPattern: '이진 패턴:',
     infoText: '각 상자는 비트를 나타냅니다. 12개의 상자는 0-4095 범위의 숫자를 만들며, 2048개의 BIP39 단어 중 하나에 매핑됩니다.',
     privacyTooltip: '개인정보가 보호됩니다: 이 애플리케이션은 브라우저에서 완전히 실행됩니다. 데이터 전송, 저장 또는 추적이 없습니다.',
     toggleTheme: '다크 모드/라이트 모드 전환',
@@ -150,7 +141,6 @@ export const translations: Record<string, Translations> = {
     resetButton: '重置',
     pickPattern: '选择一个模式',
     outOfRange: '超出范围（最大 2048）',
-    binaryPattern: '二进制模式：',
     infoText: '每个方框代表一个位。12 个方框创建一个从 0-4095 的数字，对应 2048 个 BIP39 单词之一。',
     privacyTooltip: '您的隐私受到保护：此应用程序完全在您的浏览器中运行。不会传输、存储或跟踪任何数据。',
     toggleTheme: '切换深色/浅色模式',
@@ -164,7 +154,6 @@ export const translations: Record<string, Translations> = {
     resetButton: '重置',
     pickPattern: '選擇一個模式',
     outOfRange: '超出範圍（最大 2048）',
-    binaryPattern: '二進制模式：',
     infoText: '每個方框代表一個位。12 個方框創建一個從 0-4095 的數字，對應 2048 個 BIP39 單詞之一。',
     privacyTooltip: '您的隱私受到保護：此應用程序完全在您的瀏覽器中運行。不會傳輸、存儲或跟蹤任何數據。',
     toggleTheme: '切換深色/淺色模式',

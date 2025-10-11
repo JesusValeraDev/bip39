@@ -6,15 +6,15 @@ export const elements = {
   binary: document.getElementById('binary') as HTMLElement,
   resetButton: document.getElementById('reset') as HTMLButtonElement,
   themeToggle: document.getElementById('theme-toggle') as HTMLButtonElement,
-  languageSelect: document.getElementById('language') as HTMLSelectElement,
+  languageToggle: document.getElementById('language-toggle') as HTMLButtonElement,
+  languageDropdown: document.getElementById('language-dropdown') as HTMLDivElement,
+  currentFlag: document.getElementById('current-flag') as HTMLElement,
 
   // Translation elements
   title: document.getElementById('title') as HTMLHeadingElement,
   subtitle: document.getElementById('subtitle') as HTMLParagraphElement,
-  wordlistLabel: document.getElementById('wordlist-label') as HTMLLabelElement,
   wordLabel: document.getElementById('word-label') as HTMLDivElement,
   indexLabel: document.getElementById('index-label') as HTMLSpanElement,
-  binaryLabel: document.getElementById('binary-label') as HTMLSpanElement,
   infoText: document.getElementById('info-text') as HTMLParagraphElement,
   privacyTooltip: document.getElementById('privacy-tooltip') as HTMLDivElement,
 };

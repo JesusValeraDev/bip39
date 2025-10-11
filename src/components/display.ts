@@ -62,8 +62,7 @@ function updateBoxDisabledState(
 }
 
 function updateBinaryDisplay(): void {
-  const binaryString = getBinaryString();
-  elements.binary.textContent = binaryString;
+  elements.binary.textContent = getBinaryString();
 }
 
 function updateWordDisplay(): void {

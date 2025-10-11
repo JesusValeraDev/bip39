@@ -2,7 +2,7 @@ import { getTranslation, wordlistToUILang } from './i18n';
 import { resetBoxes } from './core/state';
 import { loadWordlist } from './services/wordlist';
 import { initTheme, toggleTheme } from './services/theme';
-import { initLanguage, changeLanguage, setTranslations, updateUITranslations } from './services/language';
+import { initLanguage, setupLanguageToggle, setTranslations, updateUITranslations } from './services/language';
 import { createGrid } from './components/grid';
 import { updateDisplay } from './components/display';
 import { elements } from './core/dom';
@@ -31,17 +31,28 @@ async function init(): Promise<void> {
  
   elements.resetButton.addEventListener('click', handleReset);
   elements.themeToggle.addEventListener('click', toggleTheme);
-  elements.languageSelect.addEventListener('change', changeLanguage);
+  setupLanguageToggle();
 
   // Keyboard shortcuts
   document.addEventListener('keydown', (e) => {
     const target = e.target as HTMLElement;
-    const isInSelect = target.tagName === 'SELECT';
 
-    // Press 'R' to reset
-    if (!isInSelect && (e.key === 'r' || e.key === 'R')) {
+    // Press 'R' to reset (but not when dropdown is open or in input fields)
+    if (e.key === 'r' || e.key === 'R') {
+      const isDropdownOpen = elements.languageDropdown.classList.contains('open');
+      if (!isDropdownOpen) {
+        e.preventDefault();
+        handleReset();
+        return;
+      }
+    }
+
+    // Close language dropdown with Escape key
+    if (e.key === 'Escape' && elements.languageDropdown.classList.contains('open')) {
       e.preventDefault();
-      handleReset();
+      elements.languageDropdown.classList.remove('open');
+      elements.languageToggle.setAttribute('aria-expanded', 'false');
+      elements.languageToggle.focus();
       return;
     }
 

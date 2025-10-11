@@ -15,65 +15,69 @@
     padding: 2rem 1.5rem;
     min-height: 500px;
   }
-  
+
+  .title-section {
+    width: 100%;
+  }
+
+  .controls-right {
+    align-self: flex-end;
+  }
+
   .title-container {
     gap: 0.5rem;
   }
-  
+
   h1 {
     font-size: 2rem;
-    min-height: 2.5rem;
+    min-height: auto;
   }
-  
+
   .info-icon {
     width: 18px;
     height: 18px;
   }
-  
+
   .privacy-tooltip {
     width: 280px;
     font-size: 0.8rem;
     padding: 0.875rem 1rem;
   }
-  
+
   .subtitle {
     font-size: 0.9rem;
   }
-  
+
   .bit-label {
     font-size: 0.65rem;
   }
-  
+
   .word {
     font-size: 2rem;
     height: 3.5rem;
     min-height: 3.5rem;
   }
-  
+
   .theme-toggle {
     top: 1rem;
     right: 1rem;
     width: 44px;
     height: 44px;
   }
-  
+
   .language-selector {
     flex-direction: column;
     gap: 0.5rem;
   }
-  
-  .language-dropdown {
-    min-width: 100%;
-  }
-  
+
   .word-display {
     padding: 1.5rem;
   }
-  
+
   .controls {
     margin-bottom: 1.5rem;
   }
-  
+
   .reset-button {
     padding: 0.75rem 2rem;
     font-size: 0.9rem;
@@ -85,13 +89,23 @@
   .container {
     padding: 1.5rem 1rem;
   }
-  
+
+  .top-controls {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
   .bit-label {
     font-size: 0.62rem;
   }
-  
+
   .word {
     font-size: 1.75rem;
+  }
+
+  .binary-display code {
+    font-size: 1rem;
   }
 }
 
@@ -100,27 +114,27 @@
   body {
     padding: 1rem;
   }
-  
+
   .container {
     padding: 1.5rem 1rem;
     min-height: 450px;
   }
-  
+
   .title-container {
     flex-direction: column;
     gap: 0.25rem;
   }
-  
+
   h1 {
     font-size: 1.75rem;
-    min-height: 2rem;
+    min-height: auto;
   }
-  
+
   .info-icon {
     width: 16px;
     height: 16px;
   }
-  
+
   .privacy-tooltip {
     width: 240px;
     font-size: 0.75rem;
@@ -128,52 +142,56 @@
     left: 50%;
     right: auto;
   }
-  
+
   .subtitle {
     font-size: 0.85rem;
     margin-bottom: 1rem;
   }
-  
+
   .bit-label {
     font-size: 0.6rem;
     bottom: 3px;
   }
-  
+
   .word {
     font-size: 1.5rem;
     height: 3rem;
     min-height: 3rem;
   }
-  
+
   .word-display {
     padding: 1.25rem;
   }
-  
+
   .word-label {
     font-size: 0.75rem;
   }
-  
+
   .word-index {
     font-size: 0.85rem;
   }
-  
+
   .reset-button {
     padding: 0.65rem 1.75rem;
     font-size: 0.85rem;
   }
-  
+
   .info {
     padding: 1rem;
   }
-  
+
   .info p {
     font-size: 0.8rem;
   }
-  
+
   .info code {
     font-size: 0.75rem;
   }
-  
+
+  .binary-display code {
+    font-size: 0.75rem;
+  }
+
   .footer {
     font-size: 0.75rem;
     margin-top: 1.5rem;
