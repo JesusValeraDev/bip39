@@ -22,6 +22,19 @@ export function showDisabledBoxToast(): void {
   }
 }
 
+// Exported for testing
+export function resetToastState(): void {
+  clickCount = 0;
+  if (clickResetTimeout) {
+    clearTimeout(clickResetTimeout);
+    clickResetTimeout = null;
+  }
+  if (toastTimeout) {
+    clearTimeout(toastTimeout);
+    toastTimeout = null;
+  }
+}
+
 function showToast(message: string): void {
   // Remove existing toast if any
   const existingToast = document.getElementById('toast-notification');
@@ -44,9 +57,10 @@ function showToast(message: string): void {
 
   document.body.appendChild(toast);
 
-  requestAnimationFrame(() => {
+  // Use setTimeout instead of requestAnimationFrame for better testability
+  setTimeout(() => {
     toast.classList.add('show');
-  });
+  }, 0);
 
   toastTimeout = setTimeout(() => {
     toast.classList.remove('show');
