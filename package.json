@@ -14,6 +14,7 @@
     "preview": "vite preview",
     "deploy": "vite build && gh-pages -d dist",
     "test": "vitest run",
+    "test:all": "npm run test && npm run test:e2e",
     "test:watch": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest run --coverage",
