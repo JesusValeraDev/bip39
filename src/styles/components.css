@@ -268,6 +268,17 @@ h1 {
   box-shadow: 0 6px 20px rgba(247, 147, 26, 0.5);
 }
 
+.box.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.box.disabled:hover {
+  border-color: var(--border);
+  box-shadow: none;
+}
+
 .bit-label {
   font-size: 0.625rem;
   font-weight: 600;

@@ -22,7 +22,7 @@ test.describe('BIP39 Word Selector', () => {
   });
 
   test('should toggle box when clicked', async ({ page }) => {
-    const firstBox = page.locator('.box').first();
+    const firstBox = page.locator('.box').first(); // 2048
 
     await expect(firstBox).not.toHaveClass(/active/);
 
@@ -33,24 +33,8 @@ test.describe('BIP39 Word Selector', () => {
     await expect(firstBox).not.toHaveClass(/active/);
   });
 
-  test('should show error state for out of range values', async ({ page }) => {
-    // Select boxes that exceed 2048
-    await page.locator('.box').nth(0).click(); // 2048
-    await page.locator('.box').nth(11).click(); // 1
-
-    const binary = page.locator('#binary');
-    await expect(binary).toHaveText('100000000001');
-
-    const word = page.locator('#word');
-    await expect(word).toHaveClass(/error/);
-
-    const index = page.locator('#index');
-    await expect(index).toHaveText('2049');
-  });
-
-  test('should display correct word for valid index', async ({ page }) => {
-    // Click the last box (index 1 = "abandon")
-    await page.locator('.box').nth(11).click();
+  test('should display a word', async ({ page }) => {
+    await page.locator('.box').last().click(); // 1
 
     const binary = page.locator('#binary');
     await expect(binary).toHaveText('000000000001');
@@ -63,11 +47,27 @@ test.describe('BIP39 Word Selector', () => {
     await expect(index).toHaveText('1');
   });
 
+  test('should prevent out of range values with disabled boxes', async ({ page }) => {
+    await page.locator('.box').first().click(); // 2048
+    
+    // Now try to click box 11 (value 1) - should be disabled
+    const box1 = page.locator('.box').nth(11);
+    await expect(box1).toBeDisabled();
+    
+    const binary = page.locator('#binary');
+    await expect(binary).toHaveText('100000000000');
+    
+    const word = page.locator('#word');
+    await expect(word).not.toHaveClass(/error/);
+    
+    const index = page.locator('#index');
+    await expect(index).toHaveText('2048');
+  });
+
   test('should reset all boxes when reset button is clicked', async ({ page }) => {
-    // Click some boxes
-    await page.locator('.box').nth(0).click();
-    await page.locator('.box').nth(5).click();
-    await page.locator('.box').nth(11).click();
+    await page.locator('.box').nth(1).click(); // 1024
+    await page.locator('.box').nth(5).click(); // 64
+    await page.locator('.box').nth(11).click(); // 1
 
     await expect(page.locator('.box.active')).toHaveCount(3);
   

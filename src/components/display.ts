@@ -4,15 +4,51 @@ import { currentTranslations } from '../services/language';
 import { getWord } from '../services/wordlist';
 
 export function updateDisplay(): void {
+
   const boxElements = elements.grid.querySelectorAll('.box');
+
+  // Check if the first box (2048) is active
+  const is2048Active = state.boxes[0];
+
+  // Check if any other box is active
+  const isAnyOtherBoxActive = state.boxes.slice(1).some(box => box);
+
   boxElements.forEach((box, index) => {
     const isActive = state.boxes[index];
+    const htmlBox = box as HTMLButtonElement;
+
+    // Update active state
     if (isActive) {
-      box.classList.add('active');
-      box.setAttribute('aria-pressed', 'true');
+      htmlBox.classList.add('active');
+      htmlBox.setAttribute('aria-pressed', 'true');
     } else {
-      box.classList.remove('active');
-      box.setAttribute('aria-pressed', 'false');
+      htmlBox.classList.remove('active');
+      htmlBox.setAttribute('aria-pressed', 'false');
+    }
+
+    // Disable/enable logic
+    if (index === 0) {
+      // First box (2048): disable if any other box is active
+      if (isAnyOtherBoxActive && !isActive) {
+        htmlBox.disabled = true;
+        htmlBox.classList.add('disabled');
+        htmlBox.setAttribute('aria-disabled', 'true');
+      } else {
+        htmlBox.disabled = false;
+        htmlBox.classList.remove('disabled');
+        htmlBox.setAttribute('aria-disabled', 'false');
+      }
+    } else {
+      // Other boxes: disable if 2048 is active
+      if (is2048Active && !isActive) {
+        htmlBox.disabled = true;
+        htmlBox.classList.add('disabled');
+        htmlBox.setAttribute('aria-disabled', 'true');
+      } else {
+        htmlBox.disabled = false;
+        htmlBox.classList.remove('disabled');
+        htmlBox.setAttribute('aria-disabled', 'false');
+      }
     }
   });
 
