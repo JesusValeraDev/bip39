@@ -13,6 +13,7 @@ export const elements = {
   subtitle: document.getElementById('subtitle') as HTMLParagraphElement,
   wordlistLabel: document.getElementById('wordlist-label') as HTMLLabelElement,
   wordLabel: document.getElementById('word-label') as HTMLDivElement,
+  indexLabel: document.getElementById('index-label') as HTMLSpanElement,
   binaryLabel: document.getElementById('binary-label') as HTMLSpanElement,
   infoText: document.getElementById('info-text') as HTMLParagraphElement,
   privacyTooltip: document.getElementById('privacy-tooltip') as HTMLDivElement,

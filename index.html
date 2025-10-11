@@ -57,7 +57,7 @@
   </script>
 </head>
 <body>
-  <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" aria-pressed="false" title="Toggle dark/light mode">
+  <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" aria-pressed="false">
     <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <circle cx="12" cy="12" r="5"></circle>
       <line x1="12" y1="1" x2="12" y2="3"></line>
@@ -111,7 +111,7 @@
     <section class="word-display" role="region" aria-live="polite" aria-atomic="true">
       <div id="word-label" class="word-label">Selected Word:</div>
       <div id="word" class="word" aria-label="Current selected word">Pick a pattern</div>
-      <div class="word-index" aria-label="Word index">Index: <span id="index">-</span> / 2048</div>
+      <div class="word-index" aria-label="Word index"><span id="index-label">Index:</span> <span id="index">-</span> / 2048</div>
     </section>
 
     <div class="controls">

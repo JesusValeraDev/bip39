@@ -35,7 +35,7 @@ export function toggleTheme(): void {
   updateThemeButtonState(newTheme);
 }
 
-function updateThemeButtonState(theme: string): void {
+export function updateThemeButtonState(theme: string): void {
   const themeButton = document.getElementById('theme-toggle');
   if (themeButton) {
     themeButton.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
