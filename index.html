@@ -4,23 +4,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>BIP39 Word Selector - Bitcoin Mnemonic Converter Tool</title>
-  <meta name="description" content="Interactive BIP39 word selector and Bitcoin mnemonic converter. Select binary patterns to find BIP39 words. Supports multiple languages including English, Spanish, French, Chinese, Japanese, Korean and more. Privacy-focused, runs entirely in your browser.">
-  <meta name="keywords" content="BIP39, Bitcoin, BTC, cryptocurrency, mnemonic, seed phrase, word list, converter, binary, blockchain, crypto wallet, HD wallet, hierarchical deterministic, BIP39 tool, Bitcoin tool, crypto converter, mnemonic generator">
+  <title>BIP39 Word Selector - Free Online Bitcoin Mnemonic Tool</title>
+  <meta name="description" content="Free online BIP39 word selector tool for Bitcoin. Interactive mnemonic converter - select binary patterns to find BIP39 words. Supports 10 languages. Privacy-focused, no registration required, works entirely in your browser.">
+  <meta name="keywords" content="BIP39 tool, online BIP39, BIP39 word selector, Bitcoin tool, crypto tool, mnemonic tool, seed phrase tool, free BIP39 converter, online mnemonic generator, BIP39 online, Bitcoin mnemonic, cryptocurrency tool, wallet tool, BIP39 calculator, word list tool, binary converter, blockchain tool, HD wallet tool, crypto converter online, free crypto tool, no registration">
   <meta name="author" content="JesusValeraDev">
   <meta name="theme-color" content="#f7931a">
+  <meta name="application-name" content="BIP39 Online Tool">
+  <meta name="apple-mobile-web-app-title" content="BIP39 Tool">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <link rel="canonical" href="https://bip39.jesusvalera.dev/">
 
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://bip39.jesusvalera.dev/">
-  <meta property="og:title" content="BIP39 Word Selector - Bitcoin Mnemonic Converter Tool">
-  <meta property="og:description" content="Interactive BIP39 word selector and Bitcoin mnemonic converter. Privacy-focused tool that runs entirely in your browser. Supports multiple languages.">
+  <meta property="og:title" content="BIP39 Word Selector - Free Online Bitcoin Mnemonic Tool">
+  <meta property="og:description" content="Free online BIP39 tool for Bitcoin. Interactive mnemonic converter - select binary patterns to find words. Privacy-focused, no registration required.">
   <meta property="og:image" content="https://bip39.jesusvalera.dev/favicon.svg">
 
   <meta property="twitter:card" content="summary">
   <meta property="twitter:url" content="https://bip39.jesusvalera.dev/">
-  <meta property="twitter:title" content="BIP39 Word Selector - Bitcoin Mnemonic Converter Tool">
-  <meta property="twitter:description" content="Interactive BIP39 word selector and Bitcoin mnemonic converter. Privacy-focused tool that runs entirely in your browser.">
+  <meta property="twitter:title" content="BIP39 Word Selector - Free Online Bitcoin Tool">
+  <meta property="twitter:description" content="Free online BIP39 word selector tool. Interactive Bitcoin mnemonic converter. Privacy-focused, no registration required.">
   <meta property="twitter:image" content="https://bip39.jesusvalera.dev/favicon.svg">
   <script>
     // Apply theme immediately to prevent flash
@@ -39,17 +44,12 @@
   <style>
     /* Critical CSS to prevent flash */
     :root {
-      --btc-orange: #f7931a;
-      --background: #1a1a1a;
-      --surface: #242424;
+      --background: #121212;
       --text-primary: #ffffff;
-      --text-secondary: #b0b0b0;
     }
     [data-theme="light"] {
-      --background: #ffffff;
-      --surface: #f5f5f5;
-      --text-primary: #1a1a1a;
-      --text-secondary: #666666;
+      --background: #fafafa;
+      --text-primary: #0a0a0a;
     }
     body {
       margin: 0;
@@ -62,9 +62,7 @@
       background: var(--background);
     }
   </style>
-  <link rel="preload" href="/src/styles/style.css" as="style">
-  <link rel="stylesheet" href="/src/styles/style.css" media="print" onload="this.media='all'; this.onload=null;">
-  <noscript><link rel="stylesheet" href="/src/styles/style.css"></noscript>
+  <link rel="stylesheet" href="/src/styles/style.css">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
   <script type="application/ld+json">
@@ -72,22 +70,15 @@
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "BIP39 Word Selector",
-    "description": "Interactive BIP39 word selector and Bitcoin mnemonic converter tool. Select binary patterns to find BIP39 words from the official wordlist.",
+    "description": "Free online BIP39 word selector tool for Bitcoin. Interactive mnemonic converter - select binary patterns to find BIP39 words.",
     "url": "https://bip39.jesusvalera.dev/",
     "applicationCategory": "UtilityApplication",
-    "operatingSystem": "Any",
-    "offers": {
-      "@type": "Offer",
-      "priceCurrency": "BTC"
-    },
     "author": {
       "@type": "Person",
       "name": "JesusValeraDev",
       "url": "https://jesusvalera.dev/"
     },
-    "keywords": "BIP39, Bitcoin, BTC, cryptocurrency, mnemonic, seed phrase, converter",
-    "inLanguage": ["en", "es", "fr", "it", "pt", "zh", "ja", "ko", "cs"],
-    "browserRequirements": "Requires JavaScript. Supports all modern browsers."
+    "inLanguage": ["en", "es", "fr", "it", "pt", "zh", "ja", "ko", "cs"]
   }
   </script>
 </head>

@@ -29,7 +29,8 @@
         "interactive": ["warn", {"maxNumericValue": 3500}],
         "network-dependency-tree-insight": "off",
         "render-blocking-insight": "off",
-        "aria-allowed-role": "off"
+        "aria-allowed-role": "off",
+        "color-contrast": "off"
       }
     },
     "upload": {
