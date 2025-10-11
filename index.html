@@ -83,71 +83,203 @@
   </script>
 </head>
 <body>
-  <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" aria-pressed="false">
-    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="12" r="5"></circle>
-      <line x1="12" y1="1" x2="12" y2="3"></line>
-      <line x1="12" y1="21" x2="12" y2="23"></line>
-      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-      <line x1="1" y1="12" x2="3" y2="12"></line>
-      <line x1="21" y1="12" x2="23" y2="12"></line>
-      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-    </svg>
-    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-    </svg>
-  </button>
-
   <main id="main-content" class="container" aria-label="BIP39 Word Selector">
-    <header class="title-container">
-      <h1 id="title">BIP39 Word Selector</h1>
-      <div class="privacy-info" aria-describedby="privacy-tooltip">
-        <button class="info-button" type="button" aria-label="Privacy information">
-          <svg class="info-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="12" cy="12" r="10"></circle>
-            <line x1="12" y1="16" x2="12" y2="12"></line>
-            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+    <div class="top-controls">
+      <div class="title-section">
+        <header class="title-container">
+          <h1 id="title">BIP39 Word Selector</h1>
+          <div class="privacy-info" aria-describedby="privacy-tooltip">
+            <button class="info-button" type="button" aria-label="Privacy information">
+              <svg class="info-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+            </button>
+            <div id="privacy-tooltip" class="privacy-tooltip" role="tooltip" aria-label="Privacy information tooltip">Your privacy is protected: This application runs entirely in your browser. No data is transmitted, stored, or tracked. Everything stays on your device.</div>
+          </div>
+        </header>
+        <p id="subtitle" class="subtitle">Click the boxes to select a word from the BIP39 wordlist</p>
+      </div>
+      
+      <div class="controls-right">
+        <button id="language-toggle" class="language-toggle" aria-label="Select language" aria-expanded="false">
+          <svg id="current-flag" class="flag-icon" width="28" height="28" viewBox="0 0 28 28">
+            <!-- UK Flag - Default -->
+            <defs>
+              <clipPath id="uk-circle"><circle cx="14" cy="14" r="14"/></clipPath>
+            </defs>
+            <g clip-path="url(#uk-circle)">
+              <rect width="28" height="28" fill="#012169"/>
+              <path d="M 0 0 L 28 28 M 28 0 L 0 28" stroke="#FFF" stroke-width="5.6"/>
+              <path d="M 0 0 L 28 28 M 28 0 L 0 28" stroke="#C8102E" stroke-width="3.36"/>
+              <path d="M 14 0 V 28 M 0 14 H 28" stroke="#FFF" stroke-width="9.33"/>
+              <path d="M 14 0 V 28 M 0 14 H 28" stroke="#C8102E" stroke-width="5.6"/>
+            </g>
           </svg>
         </button>
-        <div id="privacy-tooltip" class="privacy-tooltip" role="tooltip" aria-label="Privacy information tooltip">Your privacy is protected: This application runs entirely in your browser. No data is transmitted, stored, or tracked. Everything stays on your device.</div>
+        
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" aria-pressed="false">
+          <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
       </div>
-    </header>
-    <p id="subtitle" class="subtitle">Click the boxes to select a word from the BIP39 wordlist</p>
-
-    <form class="language-selector" aria-label="Language selection">
-      <label id="wordlist-label" for="language">Language:</label>
-      <select id="language" class="language-dropdown" aria-label="Select BIP39 wordlist language">
-        <option value="english">English</option>
-        <option value="spanish">Español</option>
-        <option value="french">Français</option>
-        <option value="czech">Čeština</option>
-        <option value="italian">Italiano</option>
-        <option value="portuguese">Português</option>
-        <option value="japanese">日本語</option>
-        <option value="korean">한국어</option>
-        <option value="chinese_simplified">中文 (简体)</option>
-        <option value="chinese_traditional">中文 (繁體)</option>
-      </select>
-    </form>
+      
+      <div id="language-dropdown" class="language-dropdown" role="menu" aria-label="Language selection">
+        <button class="language-option" data-lang="english" role="menuitem" aria-label="English">
+          <svg class="flag-icon" width="32" height="32" viewBox="0 0 32 32">
+            <defs><clipPath id="gb-circle"><circle cx="16" cy="16" r="16"/></clipPath></defs>
+            <g clip-path="url(#gb-circle)">
+              <rect width="32" height="32" fill="#012169"/>
+              <path d="M 0 0 L 32 32 M 32 0 L 0 32" stroke="#FFF" stroke-width="6.4"/>
+              <path d="M 0 0 L 32 32 M 32 0 L 0 32" stroke="#C8102E" stroke-width="3.84"/>
+              <path d="M 16 0 V 32 M 0 16 H 32" stroke="#FFF" stroke-width="10.67"/>
+              <path d="M 16 0 V 32 M 0 16 H 32" stroke="#C8102E" stroke-width="6.4"/>
+            </g>
+          </svg>
+        </button>
+        <button class="language-option" data-lang="spanish" role="menuitem" aria-label="Español">
+          <svg class="flag-icon" width="32" height="32" viewBox="0 0 32 32">
+            <defs><clipPath id="es-circle"><circle cx="16" cy="16" r="16"/></clipPath></defs>
+            <g clip-path="url(#es-circle)">
+              <rect width="32" height="8" fill="#AA151B"/>
+              <rect y="8" width="32" height="16" fill="#F1BF00"/>
+              <rect y="24" width="32" height="8" fill="#AA151B"/>
+            </g>
+          </svg>
+        </button>
+        <button class="language-option" data-lang="french" role="menuitem" aria-label="Français">
+          <svg class="flag-icon" width="32" height="32" viewBox="0 0 32 32">
+            <defs><clipPath id="fr-circle"><circle cx="16" cy="16" r="16"/></clipPath></defs>
+            <g clip-path="url(#fr-circle)">
+              <rect width="10.67" height="32" fill="#002395"/>
+              <rect x="10.67" width="10.67" height="32" fill="#FFF"/>
+              <rect x="21.33" width="10.67" height="32" fill="#ED2939"/>
+            </g>
+          </svg>
+        </button>
+        <button class="language-option" data-lang="italian" role="menuitem" aria-label="Italiano">
+          <svg class="flag-icon" width="32" height="32" viewBox="0 0 32 32">
+            <defs><clipPath id="it-circle"><circle cx="16" cy="16" r="16"/></clipPath></defs>
+            <g clip-path="url(#it-circle)">
+              <rect width="10.67" height="32" fill="#009246"/>
+              <rect x="10.67" width="10.67" height="32" fill="#FFF"/>
+              <rect x="21.33" width="10.67" height="32" fill="#CE2B37"/>
+            </g>
+          </svg>
+        </button>
+        <button class="language-option" data-lang="portuguese" role="menuitem" aria-label="Português">
+          <svg class="flag-icon" width="32" height="32" viewBox="0 0 32 32">
+            <defs><clipPath id="pt-circle"><circle cx="16" cy="16" r="16"/></clipPath></defs>
+            <g clip-path="url(#pt-circle)">
+              <rect width="12.8" height="32" fill="#006600"/>
+              <rect x="12.8" width="19.2" height="32" fill="#FF0000"/>
+              <circle cx="12.8" cy="16" r="5.33" fill="#FFFF00"/>
+              <circle cx="12.8" cy="16" r="3.5" fill="#FF0000"/>
+              <circle cx="12.8" cy="16" r="2.2" fill="#FFF"/>
+            </g>
+          </svg>
+        </button>
+        <button class="language-option" data-lang="czech" role="menuitem" aria-label="Čeština">
+          <svg class="flag-icon" width="32" height="32" viewBox="0 0 32 32">
+            <defs><clipPath id="cz-circle"><circle cx="16" cy="16" r="16"/></clipPath></defs>
+            <g clip-path="url(#cz-circle)">
+              <rect width="32" height="16" fill="#FFF"/>
+              <rect y="16" width="32" height="16" fill="#D7141A"/>
+              <path d="M 0 0 L 16 16 L 0 32 Z" fill="#11457E"/>
+            </g>
+          </svg>
+        </button>
+        <button class="language-option" data-lang="japanese" role="menuitem" aria-label="日本語">
+          <svg class="flag-icon" width="32" height="32" viewBox="0 0 32 32">
+            <defs><clipPath id="jp-circle"><circle cx="16" cy="16" r="16"/></clipPath></defs>
+            <g clip-path="url(#jp-circle)">
+              <rect width="32" height="32" fill="#FFF"/>
+              <circle cx="16" cy="16" r="6.4" fill="#BC002D"/>
+            </g>
+          </svg>
+        </button>
+        <button class="language-option" data-lang="korean" role="menuitem" aria-label="한국어">
+          <svg class="flag-icon" width="32" height="32" viewBox="0 0 32 32">
+            <defs><clipPath id="kr-circle"><circle cx="16" cy="16" r="16"/></clipPath></defs>
+            <g clip-path="url(#kr-circle)">
+              <rect width="32" height="32" fill="#FFF"/>
+              <path d="M 10.67 16 A 5.33 5.33 0 0 1 21.33 16 Z" fill="#C60C30"/>
+              <path d="M 21.33 16 A 5.33 5.33 0 0 1 10.67 16 Z" fill="#003478"/>
+              <g stroke="#000" stroke-width="1.3" stroke-linecap="round">
+                <!-- Superior derecha -->
+                <line x1="21" y1="8" x2="25" y2="12"/>
+                <line x1="22.2" y1="6.8" x2="26.2" y2="10.8"/>
+                <line x1="19.8" y1="9.2" x2="23.8" y2="13.2"/>
+                <!-- Inferior derecha -->
+                <line x1="21" y1="24" x2="25" y2="20"/>
+                <line x1="22.2" y1="25.2" x2="26.2" y2="21.2"/>
+                <line x1="19.8" y1="22.8" x2="23.8" y2="18.8"/>
+                <!-- Inferior izquierda -->
+                <line x1="11" y1="24" x2="7" y2="20"/>
+                <line x1="9.8" y1="25.2" x2="5.8" y2="21.2"/>
+                <line x1="12.2" y1="22.8" x2="8.2" y2="18.8"/>
+                <!-- Superior izquierda -->
+                <line x1="11" y1="8" x2="7" y2="12"/>
+                <line x1="9.8" y1="6.8" x2="5.8" y2="10.8"/>
+                <line x1="12.2" y1="9.2" x2="8.2" y2="13.2"/>
+              </g>
+            </g>
+          </svg>
+        </button>
+        <button class="language-option" data-lang="chinese_simplified" role="menuitem" aria-label="中文 (简体)">
+          <svg class="flag-icon" width="32" height="32" viewBox="0 0 32 32">
+            <defs><clipPath id="cn-circle"><circle cx="16" cy="16" r="16"/></clipPath></defs>
+            <g clip-path="url(#cn-circle)">
+              <rect width="32" height="32" fill="#DE2910"/>
+              <polygon points="6.4,5.6 7.8,9.4 11.8,9.4 8.6,11.6 10,15.4 6.4,13.2 2.8,15.4 4.2,11.6 1,9.4 5,9.4" fill="#FFDE00"/>
+            </g>
+          </svg>
+        </button>
+        <button class="language-option" data-lang="chinese_traditional" role="menuitem" aria-label="中文 (繁體)">
+          <svg class="flag-icon" width="32" height="32" viewBox="0 0 32 32">
+            <defs><clipPath id="tw-circle"><circle cx="16" cy="16" r="16"/></clipPath></defs>
+            <g clip-path="url(#tw-circle)">
+              <rect width="32" height="32" fill="#FE0000"/>
+              <rect width="16" height="16" fill="#000095"/>
+              <polygon points="8,3.2 9.2,6.8 13,6.8 10,9 11.2,12.6 8,10.4 4.8,12.6 6,9 3,6.8 6.8,6.8" fill="#FFF"/>
+            </g>
+          </svg>
+        </button>
+      </div>
+    </div>
 
     <section class="grid-container" role="group" aria-label="Binary pattern selector">
       <div id="grid" class="grid" role="group" aria-label="Clickable binary boxes"></div>
+      <div class="binary-display">
+        <code id="binary" aria-label="Current binary pattern">0 0 0 0 0 0 0 0 0 0 0 0</code>
+      </div>
     </section>
 
     <section class="word-display" role="region" aria-live="polite" aria-atomic="true">
-      <div id="word-label" class="word-label">Selected Word:</div>
-      <div id="word" class="word" aria-label="Current selected word">Pick a pattern</div>
-      <div class="word-index" aria-label="Word index"><span id="index-label">Index:</span> <span id="index">-</span> / 2048</div>
+      <div class="word-display-content">
+        <div>
+          <div id="word-label" class="word-label">Selected Word:</div>
+          <div id="word" class="word" aria-label="Current selected word">Pick a pattern</div>
+          <div class="word-index" aria-label="Word index"><span id="index-label">Index:</span> <span id="index">-</span> / 2048</div>
+        </div>
+        <button id="reset" class="reset-button" aria-label="Reset all selected boxes">Reset</button>
+      </div>
     </section>
 
-    <div class="controls">
-      <button id="reset" class="reset-button" aria-label="Reset all selected boxes">Reset</button>
-    </div>
-
     <section class="info" role="complementary" aria-label="Additional information">
-      <p><span id="binary-label">Binary pattern:</span> <code id="binary" aria-label="Current binary pattern">000000000000</code></p>
       <p id="info-text">Each box represents a bit. The 12 boxes create a number from 0-4095, which maps to one of the 2048 BIP39 words.</p>
     </section>
 

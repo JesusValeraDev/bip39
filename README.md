@@ -42,18 +42,20 @@ npm run build
 npm run preview
 ```
 
-## BIP39 Wordlist
+### Testing
 
-This project includes the official BIP39 wordlists in multiple languages:
+The project includes comprehensive test coverage with unit, integration, and end-to-end tests.
 
-- English
-- Spanish
-- French
-- Czech
-- Italian
-- Portuguese
-- Japanese
-- Korean
-- Chinese (Simplified & Traditional)
+```bash
+# Run Unit
+npm run test:unit
 
-You can switch between languages using the dropdown selector in the app. Your language preference is automatically saved.
+# Run Integration
+npm run test:integration
+
+# Run E2E
+npm run test:e2e
+
+# Run all Tests (Unit + Integration + E2E)
+npm run test:all
+```
