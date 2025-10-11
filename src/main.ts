@@ -22,6 +22,12 @@ async function init(): Promise<void> {
   await loadWordlist(savedLanguage);
   createGrid();
   updateUITranslations();
+  
+  // Inject git commit hash into footer
+  const gitHashElement = document.getElementById('git-hash');
+  if (gitHashElement) {
+    gitHashElement.textContent = import.meta.env.VITE_GIT_HASH || 'dev';
+  }
  
   elements.resetButton.addEventListener('click', handleReset);
   elements.themeToggle.addEventListener('click', toggleTheme);
