@@ -1,9 +1,9 @@
-/* Tablets and Small Desktops (≤1024px) */
-@media (max-width: 1024px) {
+/* Tablets and Small Desktops (≤960px) */
+@media (max-width: 960px) {
   .container {
     padding: 2.5rem 2rem;
   }
-  
+
   .grid {
     grid-template-columns: repeat(6, 1fr);
   }
@@ -180,8 +180,8 @@
   }
 }
 
-/* Small Mobile (≤430px) - Grid Layout Change */
-@media (max-width: 430px) {
+/* Small Mobile (≤425px) - Grid Layout Change */
+@media (max-width: 425px) {
   .grid {
     grid-template-columns: repeat(4, 1fr);
   }
