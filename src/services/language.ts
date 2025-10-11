@@ -252,13 +252,37 @@ export function setTranslations(translations: Translations): void {
 
 export function updateUITranslations(): void {
   elements.title.textContent = currentTranslations.title;
-  elements.subtitle.textContent = currentTranslations.subtitle;
   elements.wordLabel.textContent = currentTranslations.selectedWord;
   elements.indexLabel.textContent = currentTranslations.index;
   elements.resetButton.textContent = currentTranslations.resetButton;
   elements.infoText.textContent = currentTranslations.infoText;
-  elements.privacyTooltip.textContent = currentTranslations.privacyTooltip;
+  elements.privacyTitle.textContent = currentTranslations.privacyTitle;
+  elements.privacyText.textContent = currentTranslations.privacyTooltip;
   elements.themeToggle.title = currentTranslations.toggleTheme;
   elements.languageToggle.title = currentTranslations.languageLabel;
+  
+  // Update modal translations
+  elements.modalTitle.textContent = currentTranslations.modalTitle;
+  elements.modalStep1Title.textContent = currentTranslations.modalStep1Title;
+  elements.modalStep1Text.textContent = currentTranslations.modalStep1Text;
+  elements.modalStep2Title.textContent = currentTranslations.modalStep2Title;
+  elements.modalStep2Text.textContent = currentTranslations.modalStep2Text;
+  elements.modalStep2Entropy.textContent = currentTranslations.modalStep2Entropy;
+  elements.modalStep3Title.textContent = currentTranslations.modalStep3Title;
+  elements.modalStep3Text.textContent = currentTranslations.modalStep3Text;
+  elements.modalStep4Title.textContent = currentTranslations.modalStep4Title;
+  elements.modalStep4Text.textContent = currentTranslations.modalStep4Text;
+  elements.modalStep4PrivateKey.textContent = currentTranslations.modalStep4PrivateKey;
+  elements.modalStep4PublicKey.textContent = currentTranslations.modalStep4PublicKey;
+  elements.modalStep4Address.textContent = currentTranslations.modalStep4Address;
+  elements.modalWarningTitle.textContent = currentTranslations.modalWarningTitle;
+  elements.modalWarningText.textContent = currentTranslations.modalWarningText;
+  elements.modalWarningItem1.textContent = currentTranslations.modalWarningItem1;
+  elements.modalWarningItem2.textContent = currentTranslations.modalWarningItem2;
+  elements.modalWarningItem3.textContent = currentTranslations.modalWarningItem3;
+  elements.modalWarningItem4.textContent = currentTranslations.modalWarningItem4;
+  elements.modalWhyTitle.textContent = currentTranslations.modalWhyBIP39Title;
+  elements.modalWhyText.textContent = currentTranslations.modalWhyBIP39Text;
+  
   updateDisplay();
 }

@@ -86,23 +86,17 @@
   <main id="main-content" class="container" aria-label="BIP39 Word Selector">
     <div class="top-controls">
       <div class="title-section">
-        <header class="title-container">
-          <h1 id="title">BIP39 Word Selector</h1>
-          <div class="privacy-info" aria-describedby="privacy-tooltip">
-            <button class="info-button" type="button" aria-label="Privacy information">
-              <svg class="info-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="12" y1="16" x2="12" y2="12"></line>
-                <line x1="12" y1="8" x2="12.01" y2="8"></line>
-              </svg>
-            </button>
-            <div id="privacy-tooltip" class="privacy-tooltip" role="tooltip" aria-label="Privacy information tooltip">Your privacy is protected: This application runs entirely in your browser. No data is transmitted, stored, or tracked. Everything stays on your device.</div>
-          </div>
-        </header>
-        <p id="subtitle" class="subtitle">Click the boxes to select a word from the BIP39 wordlist</p>
+        <h1 id="title">BIP39 Word Selector</h1>
       </div>
       
       <div class="controls-right">
+        <button id="learn-more-btn" class="learn-more-btn" aria-label="Learn about BIP39" type="button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+          </svg>
+        </button>
+        
         <button id="language-toggle" class="language-toggle" aria-label="Select language" aria-expanded="false">
           <svg id="current-flag" class="flag-icon" width="28" height="28" viewBox="0 0 28 28">
             <!-- UK Flag - Default -->
@@ -261,6 +255,8 @@
       </div>
     </div>
 
+    <p id="info-text" class="info-description">Each box represents a bit. Select boxes to create a number from 1-2048, matching one of the 2048 BIP39 words.</p>
+
     <section class="grid-container" role="group" aria-label="Binary pattern selector">
       <div id="grid" class="grid" role="group" aria-label="Clickable binary boxes"></div>
       <div class="binary-display">
@@ -269,18 +265,19 @@
     </section>
 
     <section class="word-display" role="region" aria-live="polite" aria-atomic="true">
-      <div class="word-display-content">
-        <div>
-          <div id="word-label" class="word-label">Selected Word:</div>
-          <div id="word" class="word" aria-label="Current selected word">Pick a pattern</div>
-          <div class="word-index" aria-label="Word index"><span id="index-label">Index:</span> <span id="index">-</span> / 2048</div>
-        </div>
-        <button id="reset" class="reset-button" aria-label="Reset all selected boxes">Reset</button>
-      </div>
+      <div id="word-label" class="word-label">Selected Word:</div>
+      <div id="word" class="word" aria-label="Current selected word">Pick a pattern</div>
+      <div class="word-index" aria-label="Word index"><span id="index-label">Index:</span> <span id="index">-</span> / 2048</div>
     </section>
 
-    <section class="info" role="complementary" aria-label="Additional information">
-      <p id="info-text">Each box represents a bit. The 12 boxes create a number from 0-4095, which maps to one of the 2048 BIP39 words.</p>
+    <button id="reset" class="reset-button" aria-label="Reset all selected boxes">Reset</button>
+
+    <section class="privacy-warning" role="complementary" aria-label="Privacy information">
+      <div class="warning-icon">🔒</div>
+      <div class="warning-content">
+        <strong class="warning-title">Privacy Protected</strong>
+        <p id="privacy-text">This application runs entirely in your browser. No data is transmitted, stored, or tracked.</p>
+      </div>
     </section>
 
     <div id="sr-announcements" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
@@ -289,6 +286,170 @@
   <footer class="footer">
     <p>© 2025 <a href="https://jesusvalera.dev" target="_blank" rel="noopener noreferrer">JesusValeraDev</a> · <a href="https://github.com/JesusValeraDev/bip39" target="_blank" rel="noopener noreferrer">GitHub</a> (<span id="git-hash">loading...</span>)</p>
   </footer>
+
+  <!-- Learn More Modal -->
+  <div id="learn-modal" class="modal" role="dialog" aria-labelledby="modal-title" aria-modal="true" hidden>
+    <div class="modal-overlay" aria-hidden="true"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modal-title">What is BIP39?</h2>
+        <button id="modal-close" class="modal-close" aria-label="Close modal" type="button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      
+      <div class="modal-body">
+        <div class="modal-section">
+          <div class="modal-step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h3 id="modal-step1-title">12 Words = Seed Phrase</h3>
+              <p id="modal-step1-text">A typical Bitcoin wallet uses 12 words from the BIP39 wordlist (2048 words total). These 12 words form your seed phrase or mnemonic.</p>
+              <div class="visual-example">
+                <div class="word-grid-example">
+                  <span class="word-example">abandon</span>
+                  <span class="word-example">ability</span>
+                  <span class="word-example">able</span>
+                  <span class="word-example">about</span>
+                  <span class="word-example">above</span>
+                  <span class="word-example">absent</span>
+                  <span class="word-example">absorb</span>
+                  <span class="word-example">abstract</span>
+                  <span class="word-example">absurd</span>
+                  <span class="word-example">abuse</span>
+                  <span class="word-example">access</span>
+                  <span class="word-example">accident</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-arrow">↓</div>
+
+        <div class="modal-section">
+          <div class="modal-step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h3 id="modal-step2-title">Words → Binary → Big Number</h3>
+              <p id="modal-step2-text">Each word represents 11 bits of entropy. The 12 words combine to create a 128-bit number (plus 4-bit checksum = 132 bits total).</p>
+              <div class="visual-example">
+                <div class="binary-conversion">
+                  <div class="conversion-item">
+                    <span class="word-label">abandon</span>
+                    <span class="arrow">→</span>
+                    <span class="binary-value">00000000000</span>
+                  </div>
+                  <div class="conversion-item">
+                    <span class="word-label">ability</span>
+                    <span class="arrow">→</span>
+                    <span class="binary-value">00000000001</span>
+                  </div>
+                  <div class="conversion-dots">...</div>
+                  <div class="big-number">
+                    <code id="modal-step2-entropy">128-bit entropy = Very large cryptographic number</code>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-arrow">↓</div>
+
+        <div class="modal-section">
+          <div class="modal-step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h3 id="modal-step3-title">Seed → Private Keys</h3>
+              <p id="modal-step3-text">The seed is processed through PBKDF2 (a key derivation function) to generate a master seed. From this master seed, your wallet derives private keys using HD (Hierarchical Deterministic) derivation.</p>
+              <div class="visual-example">
+                <div class="key-derivation">
+                  <div class="derivation-box">
+                    <div class="box-title">Master Seed</div>
+                    <div class="box-content">512-bit value</div>
+                  </div>
+                  <div class="derivation-arrow">→</div>
+                  <div class="derivation-box">
+                    <div class="box-title">Private Key #1</div>
+                    <div class="box-content">256 bits</div>
+                  </div>
+                  <div class="derivation-box">
+                    <div class="box-title">Private Key #2</div>
+                    <div class="box-content">256 bits</div>
+                  </div>
+                  <div class="derivation-box">
+                    <div class="box-title">Private Key #3</div>
+                    <div class="box-content">256 bits</div>
+                  </div>
+                  <div class="derivation-dots">...</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-arrow">↓</div>
+
+        <div class="modal-section">
+          <div class="modal-step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              <h3 id="modal-step4-title">Private Keys → Bitcoin Addresses</h3>
+              <p id="modal-step4-text">Each private key can generate a public key through elliptic curve cryptography (secp256k1). The public key is then hashed to create your Bitcoin address where you receive funds.</p>
+              <div class="visual-example">
+                <div class="address-generation">
+                  <div class="address-flow">
+                    <div class="flow-item">
+                      <div class="flow-icon">🔑</div>
+                      <div id="modal-step4-private-key" class="flow-label">Private Key</div>
+                    </div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-item">
+                      <div class="flow-icon">🔓</div>
+                      <div id="modal-step4-public-key" class="flow-label">Public Key</div>
+                    </div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-item">
+                      <div class="flow-icon">📫</div>
+                      <div id="modal-step4-address" class="flow-label">Bitcoin Address</div>
+                    </div>
+                  </div>
+                  <div class="address-example">
+                    <code>bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh</code>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-section highlight">
+          <div class="modal-step">
+            <div class="step-icon">⚠️</div>
+            <div class="step-content">
+              <h3 id="modal-warning-title">Security Warning</h3>
+              <p id="modal-warning-text">Never share your 12-word seed phrase with anyone! Anyone with access to these words can control all your Bitcoin. Store them safely offline, preferably on paper or metal backup.</p>
+              <ul>
+                <li id="modal-warning-item1">✅ Write down on paper and store in a safe place</li>
+                <li id="modal-warning-item2">✅ Use a hardware wallet for maximum security</li>
+                <li id="modal-warning-item3">❌ Never store digitally (photos, cloud, email)</li>
+                <li id="modal-warning-item4">❌ Never share with anyone (not even "support")</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-section info-box">
+          <h3 id="modal-why-title">Why BIP39?</h3>
+          <p id="modal-why-text">BIP39 (Bitcoin Improvement Proposal 39) was created to make private keys more human-friendly. Instead of backing up a long hexadecimal number, you back up 12 easy-to-write words. It's the standard used by most Bitcoin wallets today.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script type="module" src="/src/main.ts"></script>
 </body>
