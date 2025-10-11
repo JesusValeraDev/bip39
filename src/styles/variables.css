@@ -20,6 +20,7 @@
   --border: #4d4d4d;
   --success: #329239;
   --accent: #0d579b;
+  --error: #dc3545;
   --shadow: rgba(0, 0, 0, 0.4);
   --info-bg: rgba(0, 0, 0, 0.3);
   --info-border: rgba(77, 77, 77, 0.3);
@@ -40,6 +41,7 @@
   --border: #d0d0d0;
   --success: #329239;
   --accent: #0d579b;
+  --error: #ec4454;
   --shadow: rgba(0, 0, 0, 0.15);
   --info-bg: rgba(77, 77, 77, 0.05);
   --info-border: rgba(77, 77, 77, 0.15);

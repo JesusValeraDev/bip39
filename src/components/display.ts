@@ -24,15 +24,18 @@ export function updateDisplay(): void {
     // No boxes selected
     elements.word.textContent = currentTranslations.pickPattern;
     elements.index.textContent = '-';
+    elements.word.classList.remove('error');
   } else if (binaryValue > 2048) {
     // Out of range
     elements.word.textContent = currentTranslations.outOfRange;
     elements.index.textContent = `${binaryValue}`;
+    elements.word.classList.add('error');
   } else {
     // Valid range: 1-2048
     const arrayIndex = binaryValue - 1; // Convert to 0-indexed array
     const displayIndex = binaryValue;
     elements.word.textContent = getWord(arrayIndex);
     elements.index.textContent = displayIndex.toString();
+    elements.word.classList.remove('error');
   }
 }
