@@ -26,6 +26,40 @@ async function init(): Promise<void> {
   elements.resetButton.addEventListener('click', handleReset);
   elements.themeToggle.addEventListener('click', toggleTheme);
   elements.languageSelect.addEventListener('change', changeLanguage);
+
+  // Keyboard shortcuts
+  document.addEventListener('keydown', (e) => {
+    const target = e.target as HTMLElement;
+    const isInSelect = target.tagName === 'SELECT';
+
+    // Press 'R' to reset
+    if (!isInSelect && (e.key === 'r' || e.key === 'R')) {
+      e.preventDefault();
+      handleReset();
+      return;
+    }
+
+    // Arrow key navigation between grid boxes
+    if (target.classList.contains('box') && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) {
+      e.preventDefault();
+      const currentIndex = parseInt(target.dataset.index || '0');
+      let nextIndex: number;
+
+      if (e.key === 'ArrowLeft') {
+        nextIndex = currentIndex - 1;
+        if (nextIndex < 0) nextIndex = 11; // Wrap to last box
+      } else {
+        nextIndex = currentIndex + 1;
+        if (nextIndex > 11) nextIndex = 0; // Wrap to first box
+      }
+
+      const boxes = elements.grid.querySelectorAll('.box');
+      const nextBox = boxes[nextIndex] as HTMLElement;
+      if (nextBox) {
+        nextBox.focus();
+      }
+    }
+  });
 }
 
 init();
