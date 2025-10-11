@@ -12,10 +12,8 @@ export function createGrid(): void {
     box.type = 'button';
 
     const bitValue = Math.pow(2, 11 - i);
-    box.setAttribute('role', 'switch');
-    box.setAttribute('aria-checked', 'false');
+    box.setAttribute('aria-pressed', 'false');
     box.setAttribute('aria-label', `Bit ${i + 1}, value ${bitValue}`);
-    box.setAttribute('tabindex', '0');
 
     const label = document.createElement('span');
     label.className = 'bit-label';

@@ -9,10 +9,10 @@ export function updateDisplay(): void {
     const isActive = state.boxes[index];
     if (isActive) {
       box.classList.add('active');
-      box.setAttribute('aria-checked', 'true');
+      box.setAttribute('aria-pressed', 'true');
     } else {
       box.classList.remove('active');
-      box.setAttribute('aria-checked', 'false');
+      box.setAttribute('aria-pressed', 'false');
     }
   });
 
