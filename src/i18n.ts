@@ -34,6 +34,7 @@ export interface Translations {
   modalWarningItem4: string;
   modalWhyBIP39Title: string;
   modalWhyBIP39Text: string;
+  modalWhyBIP39Link: string;
 }
 
 // Map wordlist language codes to UI language codes
@@ -86,6 +87,7 @@ export const translations: Record<string, Translations> = {
     modalWarningItem4: 'Never share with anyone (not even "support")',
     modalWhyBIP39Title: 'Why BIP39?',
     modalWhyBIP39Text: 'BIP39 (Bitcoin Improvement Proposal 39) was created to make private keys more human-friendly. Instead of backing up a long hexadecimal number, you back up 12 easy-to-write words. It\'s the standard used by most Bitcoin wallets today.',
+    modalWhyBIP39Link: '📖 Read the official BIP39 specification',
   },
   es: {
     title: 'Selector de Palabras BIP39',
@@ -122,6 +124,7 @@ export const translations: Record<string, Translations> = {
     modalWarningItem4: 'Nunca las compartas con nadie (ni siquiera "soporte")',
     modalWhyBIP39Title: '¿Por qué BIP39?',
     modalWhyBIP39Text: 'BIP39 (Propuesta de Mejora de Bitcoin 39) fue creada para hacer las claves privadas más amigables para los humanos. En lugar de respaldar un largo número hexadecimal, respaldas 12 palabras fáciles de escribir. Es el estándar usado por la mayoría de billeteras Bitcoin hoy en día.',
+    modalWhyBIP39Link: '📖 Lee la especificación oficial de BIP39',
   },
   fr: {
     title: 'Sélecteur de Mots BIP39',
@@ -158,6 +161,7 @@ export const translations: Record<string, Translations> = {
     modalWarningItem4: 'Ne jamais partager avec qui que ce soit (même pas le "support")',
     modalWhyBIP39Title: 'Pourquoi BIP39?',
     modalWhyBIP39Text: 'BIP39 (Proposition d\'Amélioration Bitcoin 39) a été créé pour rendre les clés privées plus conviviales. Au lieu de sauvegarder un long nombre hexadécimal, vous sauvegardez 12 mots faciles à écrire. C\'est la norme utilisée par la plupart des portefeuilles Bitcoin aujourd\'hui.',
+    modalWhyBIP39Link: '📖 Lire la spécification officielle BIP39',
   },
   cs: {
     title: 'BIP39 Výběr Slov',
@@ -194,6 +198,7 @@ export const translations: Record<string, Translations> = {
     modalWarningItem4: 'Nikdy nesdílejte s nikým (ani ne "podporou")',
     modalWhyBIP39Title: 'Proč BIP39?',
     modalWhyBIP39Text: 'BIP39 (Bitcoin Improvement Proposal 39) byl vytvořen, aby učinil soukromé klíče přívětivějšími pro lidi. Místo zálohování dlouhého hexadecimálního čísla zálohujete 12 snadno psatelných slov. Je to standard používaný většinou Bitcoin peněženek dnes.',
+    modalWhyBIP39Link: '📖 Přečtěte si oficiální specifikaci BIP39',
   },
   it: {
     title: 'Selettore di Parole BIP39',
@@ -230,6 +235,7 @@ export const translations: Record<string, Translations> = {
     modalWarningItem4: 'Non condividere mai con nessuno (nemmeno "supporto")',
     modalWhyBIP39Title: 'Perché BIP39?',
     modalWhyBIP39Text: 'BIP39 (Bitcoin Improvement Proposal 39) è stato creato per rendere le chiavi private più user-friendly. Invece di fare il backup di un lungo numero esadecimale, fai il backup di 12 parole facili da scrivere. È lo standard utilizzato dalla maggior parte dei portafogli Bitcoin oggi.',
+    modalWhyBIP39Link: '📖 Leggi la specifica ufficiale BIP39',
   },
   pt: {
     title: 'Seletor de Palavras BIP39',
@@ -266,6 +272,7 @@ export const translations: Record<string, Translations> = {
     modalWarningItem4: 'Nunca compartilhe com ninguém (nem mesmo "suporte")',
     modalWhyBIP39Title: 'Por que BIP39?',
     modalWhyBIP39Text: 'BIP39 (Bitcoin Improvement Proposal 39) foi criado para tornar as chaves privadas mais amigáveis ao usuário. Em vez de fazer backup de um longo número hexadecimal, você faz backup de 12 palavras fáceis de escrever. É o padrão usado pela maioria das carteiras Bitcoin hoje.',
+    modalWhyBIP39Link: '📖 Leia a especificação oficial BIP39',
   },
   ja: {
     title: 'BIP39 ワードセレクター',
@@ -302,6 +309,7 @@ export const translations: Record<string, Translations> = {
     modalWarningItem4: '誰とも共有しない（「サポート」でも）',
     modalWhyBIP39Title: 'なぜBIP39？',
     modalWhyBIP39Text: 'BIP39（Bitcoin Improvement Proposal 39）は、秘密鍵をより人間に優しくするために作成されました。長い16進数をバックアップする代わりに、書きやすい12単語をバックアップします。これは今日のほとんどのBitcoinウォレットで使用される標準です。',
+    modalWhyBIP39Link: '📖 BIP39の公式仕様を読む',
   },
   ko: {
     title: 'BIP39 단어 선택기',
@@ -338,6 +346,7 @@ export const translations: Record<string, Translations> = {
     modalWarningItem4: '누구와도 공유 금지("지원팀"조차도)',
     modalWhyBIP39Title: '왜 BIP39인가요?',
     modalWhyBIP39Text: 'BIP39(비트코인 개선 제안 39)는 개인키를 더 사용자 친화적으로 만들기 위해 만들어졌습니다. 긴 16진수를 백업하는 대신 쉽게 쓸 수 있는 12단어를 백업합니다. 오늘날 대부분의 비트코인 지갑에서 사용되는 표준입니다.',
+    modalWhyBIP39Link: '📖 BIP39 공식 사양 읽기',
   },
   'zh-Hans': {
     title: 'BIP39 单词选择器',
@@ -374,6 +383,7 @@ export const translations: Record<string, Translations> = {
     modalWarningItem4: '切勿与任何人分享（即使是"支持人员"）',
     modalWhyBIP39Title: '为什么选择BIP39？',
     modalWhyBIP39Text: 'BIP39（比特币改进提案39）的创建是为了使私钥更加用户友好。您无需备份长的十六进制数字，只需备份12个易于书写的单词。这是当今大多数比特币钱包使用的标准。',
+    modalWhyBIP39Link: '📖 阅读BIP39官方规范',
   },
   'zh-Hant': {
     title: 'BIP39 單詞選擇器',
@@ -410,6 +420,7 @@ export const translations: Record<string, Translations> = {
     modalWarningItem4: '切勿與任何人分享（即使是「支持人員」）',
     modalWhyBIP39Title: '為什麼選擇BIP39？',
     modalWhyBIP39Text: 'BIP39（比特幣改進提案39）的創建是為了使私鑰更加用戶友好。您無需備份長的十六進制數字，只需備份12個易於書寫的單詞。這是當今大多數比特幣錢包使用的標準。',
+    modalWhyBIP39Link: '📖 閱讀BIP39官方規範',
   },
 };
 

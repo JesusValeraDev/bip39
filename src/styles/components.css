@@ -219,14 +219,13 @@
 
 .binary-display code {
   font-family: 'Courier New', monospace;
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1.25rem;
+  font-weight: 800;
   color: var(--primary-color);
   letter-spacing: 0.6em;
-  padding: 1rem 0.6rem 1rem calc(0.6rem + 0.6em);
+  padding: 0.6rem 0.3rem 0.6rem calc(0.3rem + 0.6em);
   background: var(--surface-light);
-  border-radius: 24px;
-  border: 2px solid var(--border);
+  border-radius: 16px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
 }
@@ -858,4 +857,40 @@
   margin: 0;
   color: var(--text-secondary);
   line-height: 1.6;
+}
+
+.bip39-link {
+  margin-top: 2rem !important;
+  text-align: center;
+}
+
+.bip39-link a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--surface-light);
+  color: var(--text-primary);
+  text-decoration: none;
+  border: 2px solid var(--border);
+  padding: 0.875rem 3rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease, background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.bip39-link a:hover {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  color: var(--btc-white);
+  box-shadow: 0 4px 12px rgba(247, 147, 26, 0.3);
+}
+
+.bip39-link a:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 6px rgba(247, 147, 26, 0.2);
 }

@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="format-detection" content="telephone=no, date=no, address=no, email=no">
 
   <title>BIP39 Word Selector - Free Online Bitcoin Mnemonic Tool</title>
   <meta name="description" content="Free online BIP39 word selector tool for Bitcoin. Interactive mnemonic converter - select binary patterns to find BIP39 words. Supports 10 languages. Privacy-focused, no registration required, works entirely in your browser.">
@@ -341,12 +342,12 @@
                   <div class="conversion-item">
                     <span class="word-label">abandon</span>
                     <span class="arrow">→</span>
-                    <span class="binary-value">00000000000</span>
+                    <span class="binary-value" x-apple-data-detectors="false">00000000000</span>
                   </div>
                   <div class="conversion-item">
                     <span class="word-label">ability</span>
                     <span class="arrow">→</span>
-                    <span class="binary-value">00000000001</span>
+                    <span class="binary-value" x-apple-data-detectors="false">00000000001</span>
                   </div>
                   <div class="conversion-dots">...</div>
                   <div class="big-number">
@@ -446,6 +447,11 @@
         <div class="modal-section info-box">
           <h3 id="modal-why-title">Why BIP39?</h3>
           <p id="modal-why-text">BIP39 (Bitcoin Improvement Proposal 39) was created to make private keys more human-friendly. Instead of backing up a long hexadecimal number, you back up 12 easy-to-write words. It's the standard used by most Bitcoin wallets today.</p>
+          <p class="bip39-link">
+            <a id="modal-why-link" href="https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki" target="_blank" rel="noopener noreferrer">
+              📖 Read the official BIP39 specification
+            </a>
+          </p>
         </div>
       </div>
     </div>

@@ -283,6 +283,7 @@ export function updateUITranslations(): void {
   elements.modalWarningItem4.textContent = currentTranslations.modalWarningItem4;
   elements.modalWhyTitle.textContent = currentTranslations.modalWhyBIP39Title;
   elements.modalWhyText.textContent = currentTranslations.modalWhyBIP39Text;
+  elements.modalWhyLink.textContent = currentTranslations.modalWhyBIP39Link;
   
   updateDisplay();
 }

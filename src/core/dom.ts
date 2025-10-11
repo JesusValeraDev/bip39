@@ -40,4 +40,5 @@ export const elements = {
   modalWarningItem4: document.getElementById('modal-warning-item4') as HTMLLIElement,
   modalWhyTitle: document.getElementById('modal-why-title') as HTMLHeadingElement,
   modalWhyText: document.getElementById('modal-why-text') as HTMLParagraphElement,
+  modalWhyLink: document.getElementById('modal-why-link') as HTMLAnchorElement,
 };
