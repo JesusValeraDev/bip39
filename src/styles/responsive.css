@@ -66,6 +66,22 @@
     padding: 0.75rem 2rem;
     font-size: 0.9rem;
   }
+
+  .privacy-warning {
+    padding: 1.25rem;
+  }
+
+  .warning-icon {
+    font-size: 2rem;
+  }
+
+  .warning-title {
+    font-size: 1rem;
+  }
+
+  .warning-content p {
+    font-size: 0.85rem;
+  }
 }
 
 /* Mobile Landscape (≤640px) */
@@ -96,6 +112,10 @@
     font-size: 1.1rem;
     padding: 0.75rem 1rem 0.75rem calc(1rem + 0.5em);
     letter-spacing: 0.5em;
+  }
+
+  .privacy-warning {
+    gap: 1rem;
   }
 }
 
@@ -167,6 +187,25 @@
   .footer {
     font-size: 0.75rem;
     margin-top: 1.5rem;
+  }
+
+  .privacy-warning {
+    padding: 1rem;
+    gap: 0.85rem;
+    margin-bottom: 1rem;
+  }
+
+  .warning-icon {
+    font-size: 1.75rem;
+  }
+
+  .warning-title {
+    font-size: 0.9rem;
+  }
+
+  .warning-content p {
+    font-size: 0.8rem;
+    line-height: 1.5;
   }
 }
 

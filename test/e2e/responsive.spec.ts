@@ -55,4 +55,20 @@ test.describe('Responsive Design', () => {
 
     expect(gridDisplay).toBe('grid');
   });
+
+  test('should display privacy warning on mobile', async ({ page }) => {
+    // iPhone SE dimensions
+    await page.setViewportSize({ width: 375, height: 667 });
+    await page.goto('/');
+    
+    const privacyWarning = page.locator('.privacy-warning');
+    await expect(privacyWarning).toBeVisible();
+    
+    // Check privacy warning content is visible
+    const warningTitle = page.locator('.warning-title');
+    await expect(warningTitle).toContainText('Privacy Protected');
+    
+    const privacyText = page.locator('#privacy-text');
+    await expect(privacyText).toBeVisible();
+  });
 });
