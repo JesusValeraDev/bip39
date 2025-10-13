@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Toast Notification Integration', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('http://localhost:4173/');
+    await page.goto('/');
   });
 
   test('should show toast when clicking disabled box twice', async ({ page }) => {

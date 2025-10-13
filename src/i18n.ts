@@ -1,18 +1,18 @@
 // Translations for the UI
 export interface Translations {
   title: string;
-  subtitle: string;
   languageLabel: string;
-  selectedWord: string;
   index: string;
   resetButton: string;
-  pickPattern: string;
-  outOfRange: string;
   infoText: string;
   privacyTitle: string;
   privacyTooltip: string;
   toggleTheme: string;
   disabledBoxMessage: string;
+  invalidWordMessage: string;
+  // Word input translations
+  wordInputLabel: string;
+  wordInputPlaceholder: string;
   // Modal translations
   modalTitle: string;
   modalStep1Title: string;
@@ -55,18 +55,18 @@ export const wordlistToUILang: Record<string, string> = {
 export const translations: Record<string, Translations> = {
   en: {
     title: 'BIP39 Word Selector',
-    subtitle: 'Click the boxes to select a word from the BIP39 wordlist',
-    languageLabel: 'Language:',
-    selectedWord: 'Selected Word:',
+    languageLabel: 'Language',
     index: 'Index:',
     resetButton: 'Reset',
-    pickPattern: 'Pick a pattern',
-    outOfRange: 'Out of range (max 2048)',
-    infoText: 'Each box represents a bit. Select boxes to create a number from 1-2048, matching one of the 2048 BIP39 words.',
+    infoText: 'Choose a BIP39 word by typing it or by clicking numbers (1-2048).',
     privacyTitle: 'Privacy Protected',
     privacyTooltip: 'This application runs entirely in your browser. No data is transmitted, stored, or tracked.',
     toggleTheme: 'Toggle dark/light mode',
     disabledBoxMessage: 'Cannot select this number with the current pattern - it would exceed 2048',
+    invalidWordMessage: 'This word is not in the BIP39 wordlist',
+    // Word input translations
+    wordInputLabel: 'Type a word or click numbers',
+    wordInputPlaceholder: 'abandon',
     // Modal translations
     modalTitle: 'What is BIP39?',
     modalStep1Title: '12 Words = Seed Phrase',
@@ -93,18 +93,18 @@ export const translations: Record<string, Translations> = {
   },
   es: {
     title: 'Selector de Palabras BIP39',
-    subtitle: 'Haz clic en las casillas para seleccionar una palabra de la lista BIP39',
-    languageLabel: 'Idioma:',
-    selectedWord: 'Palabra Seleccionada:',
+    languageLabel: 'Idioma',
     index: 'Índice:',
     resetButton: 'Reiniciar',
-    pickPattern: 'Elige un patrón',
-    outOfRange: 'Fuera de rango (máx 2048)',
-    infoText: 'Cada casilla representa un bit. Selecciona casillas para crear un número de 1-2048, correspondiente a una de las 2048 palabras BIP39.',
+    infoText: 'Elige una palabra BIP39 escribiéndola o haciendo clic en números (1-2048).',
     privacyTitle: 'Privacidad Protegida',
     privacyTooltip: 'Esta aplicación se ejecuta completamente en tu navegador. No se transmite, almacena ni rastrea ningún dato.',
     toggleTheme: 'Cambiar modo oscuro/claro',
     disabledBoxMessage: 'No se puede seleccionar este número con el patrón actual - excedería 2048',
+    invalidWordMessage: 'Esta palabra no está en la lista BIP39',
+    // Word input translations
+    wordInputLabel: 'Escribe una palabra o haz clic en números',
+    wordInputPlaceholder: 'ábaco',
     // Modal translations
     modalTitle: '¿Qué es BIP39?',
     modalStep1Title: '12 Palabras = Frase Semilla',
@@ -131,18 +131,18 @@ export const translations: Record<string, Translations> = {
   },
   fr: {
     title: 'Sélecteur de Mots BIP39',
-    subtitle: 'Cliquez sur les cases pour sélectionner un mot de la liste BIP39',
-    languageLabel: 'Langue:',
-    selectedWord: 'Mot Sélectionné:',
+    languageLabel: 'Langue',
     index: 'Indice:',
     resetButton: 'Réinitialiser',
-    pickPattern: 'Choisissez un motif',
-    outOfRange: 'Hors limites (max 2048)',
-    infoText: 'Chaque case représente un bit. Sélectionnez des cases pour créer un nombre de 1-2048, correspondant à l\'un des 2048 mots BIP39.',
+    infoText: 'Choisissez un mot BIP39 en le tapant ou en cliquant sur des numéros (1-2048).',
     privacyTitle: 'Confidentialité Protégée',
     privacyTooltip: 'Cette application s\'exécute entièrement dans votre navigateur. Aucune donnée n\'est transmise, stockée ou suivie.',
     toggleTheme: 'Basculer le mode sombre/clair',
     disabledBoxMessage: 'Impossible de sélectionner ce nombre avec le motif actuel - il dépasserait 2048',
+    invalidWordMessage: 'Ce mot n\'est pas dans la liste BIP39',
+    // Word input translations
+    wordInputLabel: 'Tapez un mot ou cliquez sur des numéros',
+    wordInputPlaceholder: 'abaisser',
     // Modal translations
     modalTitle: 'Qu\'est-ce que BIP39?',
     modalStep1Title: '12 Mots = Phrase de Récupération',
@@ -169,18 +169,18 @@ export const translations: Record<string, Translations> = {
   },
   cs: {
     title: 'BIP39 Výběr Slov',
-    subtitle: 'Klikněte na pole pro výběr slova ze seznamu BIP39',
-    languageLabel: 'Jazyk:',
-    selectedWord: 'Vybrané slovo:',
+    languageLabel: 'Jazyk',
     index: 'Index:',
     resetButton: 'Resetovat',
-    pickPattern: 'Vyberte vzor',
-    outOfRange: 'Mimo rozsah (max 2048)',
-    infoText: 'Každé pole představuje jeden bit. Vyberte pole pro vytvoření čísla od 1 do 2048, odpovídajícího jednomu z 2048 slov BIP39.',
+    infoText: 'Vyberte slovo BIP39 jeho napsáním nebo kliknutím na čísla (1-2048).',
     privacyTitle: 'Soukromí Chráněno',
     privacyTooltip: 'Tato aplikace běží zcela ve vašem prohlížeči. Žádná data nejsou přenášena, ukládána ani sledována.',
     toggleTheme: 'Přepnout tmavý/světlý režim',
     disabledBoxMessage: 'Nelze vybrat toto číslo s aktuálním vzorem - překročilo by 2048',
+    invalidWordMessage: 'Toto slovo není v seznamu BIP39',
+    // Word input translations
+    wordInputLabel: 'Napište slovo nebo klikněte na čísla',
+    wordInputPlaceholder: 'abdikace',
     // Modal translations
     modalTitle: 'Co je BIP39?',
     modalStep1Title: '12 Slov = Seed Fráze',
@@ -207,18 +207,18 @@ export const translations: Record<string, Translations> = {
   },
   it: {
     title: 'Selettore di Parole BIP39',
-    subtitle: 'Clicca sulle caselle per selezionare una parola dalla lista BIP39',
-    languageLabel: 'Lingua:',
-    selectedWord: 'Parola Selezionata:',
+    languageLabel: 'Lingua',
     index: 'Indice:',
     resetButton: 'Ripristina',
-    pickPattern: 'Scegli un pattern',
-    outOfRange: 'Fuori intervallo (max 2048)',
-    infoText: 'Ogni casella rappresenta un bit. Seleziona le caselle per creare un numero da 1-2048, corrispondente a una delle 2048 parole BIP39.',
+    infoText: 'Scegli una parola BIP39 scrivendola o cliccando sui numeri (1-2048).',
     privacyTitle: 'Privacy Protetta',
     privacyTooltip: 'Questa applicazione viene eseguita interamente nel tuo browser. Nessun dato viene trasmesso, memorizzato o tracciato.',
     toggleTheme: 'Attiva/disattiva modalità scura/chiara',
     disabledBoxMessage: 'Impossibile selezionare questo numero con il pattern corrente - supererebbe 2048',
+    invalidWordMessage: 'Questa parola non è nella lista BIP39',
+    // Word input translations
+    wordInputLabel: 'Scrivi una parola o clicca sui numeri',
+    wordInputPlaceholder: 'abaco',
     // Modal translations
     modalTitle: 'Cos\'è BIP39?',
     modalStep1Title: '12 Parole = Frase Seed',
@@ -245,18 +245,18 @@ export const translations: Record<string, Translations> = {
   },
   pt: {
     title: 'Seletor de Palavras BIP39',
-    subtitle: 'Clique nas caixas para selecionar uma palavra da lista BIP39',
-    languageLabel: 'Idioma:',
-    selectedWord: 'Palavra Selecionada:',
+    languageLabel: 'Idioma',
     index: 'Índice:',
     resetButton: 'Reiniciar',
-    pickPattern: 'Escolha um padrão',
-    outOfRange: 'Fora do alcance (máx 2048)',
-    infoText: 'Cada caixa representa um bit. Selecione caixas para criar um número de 1-2048, correspondendo a uma das 2048 palavras BIP39.',
+    infoText: 'Escolha uma palavra BIP39 digitando-a ou clicando nos números (1-2048).',
     privacyTitle: 'Privacidade Protegida',
     privacyTooltip: 'Este aplicativo é executado inteiramente no seu navegador. Nenhum dado é transmitido, armazenado ou rastreado.',
     toggleTheme: 'Alternar modo escuro/claro',
     disabledBoxMessage: 'Não é possível selecionar este número com o padrão atual - excederia 2048',
+    invalidWordMessage: 'Esta palavra não está na lista BIP39',
+    // Word input translations
+    wordInputLabel: 'Digite uma palavra ou clique nos números',
+    wordInputPlaceholder: 'abacate',
     // Modal translations
     modalTitle: 'O que é BIP39?',
     modalStep1Title: '12 Palavras = Frase Semente',
@@ -283,18 +283,18 @@ export const translations: Record<string, Translations> = {
   },
   ja: {
     title: 'BIP39 ワードセレクター',
-    subtitle: 'ボックスをクリックして BIP39 ワードリストから単語を選択',
-    languageLabel: '言語：',
-    selectedWord: '選択された単語：',
+    languageLabel: '言語',
     index: 'インデックス：',
     resetButton: 'リセット',
-    pickPattern: 'パターンを選択',
-    outOfRange: '範囲外（最大 2048）',
-    infoText: '各ボックスは1ビットを表します。ボックスを選択して1-2048の数値を作成し、2048個のBIP39単語の1つに対応します。',
+    infoText: 'BIP39単語を入力するか、数字をクリックして選択します（1-2048）。',
     privacyTitle: 'プライバシー保護',
     privacyTooltip: 'このアプリケーションはブラウザ内で完全に動作します。データの送信、保存、追跡は一切行われません。',
     toggleTheme: 'ダークモード/ライトモードを切り替え',
     disabledBoxMessage: '現在のパターンではこの数値を選択できません - 2048を超えます',
+    invalidWordMessage: 'この単語はBIP39リストにありません',
+    // Word input translations
+    wordInputLabel: '単語を入力するか、数字をクリック',
+    wordInputPlaceholder: 'あいこくしん',
     // Modal translations
     modalTitle: 'BIP39とは？',
     modalStep1Title: '12単語 = シードフレーズ',
@@ -321,18 +321,18 @@ export const translations: Record<string, Translations> = {
   },
   ko: {
     title: 'BIP39 단어 선택기',
-    subtitle: 'BIP39 단어 목록에서 단어를 선택하려면 상자를 클릭하세요',
-    languageLabel: '언어:',
-    selectedWord: '선택된 단어:',
+    languageLabel: '언어',
     index: '인덱스:',
     resetButton: '재설정',
-    pickPattern: '패턴 선택',
-    outOfRange: '범위 초과 (최대 2048)',
-    infoText: '각 상자는 비트를 나타냅니다. 상자를 선택하여 1-2048 범위의 숫자를 만들고, 2048개의 BIP39 단어 중 하나에 대응합니다.',
+    infoText: 'BIP39 단어를 입력하거나 숫자를 클릭하여 선택하세요 (1-2048).',
     privacyTitle: '개인정보 보호',
     privacyTooltip: '이 애플리케이션은 브라우저에서 완전히 실행됩니다. 데이터 전송, 저장 또는 추적이 없습니다.',
     toggleTheme: '다크 모드/라이트 모드 전환',
     disabledBoxMessage: '현재 패턴에서는 이 숫자를 선택할 수 없습니다 - 2048을 초과합니다',
+    invalidWordMessage: '이 단어는 BIP39 목록에 없습니다',
+    // Word input translations
+    wordInputLabel: '단어를 입력하거나 숫자를 클릭',
+    wordInputPlaceholder: '가격',
     // Modal translations
     modalTitle: 'BIP39란 무엇인가요?',
     modalStep1Title: '12단어 = 시드 구문',
@@ -359,18 +359,18 @@ export const translations: Record<string, Translations> = {
   },
   'zh-Hans': {
     title: 'BIP39 单词选择器',
-    subtitle: '点击方框从 BIP39 单词列表中选择一个单词',
-    languageLabel: '语言：',
-    selectedWord: '选定的单词：',
+    languageLabel: '语言',
     index: '索引：',
     resetButton: '重置',
-    pickPattern: '选择一个模式',
-    outOfRange: '超出范围（最大 2048）',
-    infoText: '每个方框代表一个位。选择方框创建从 1-2048 的数字，对应 2048 个 BIP39 单词之一。',
+    infoText: '通过输入或点击数字选择 BIP39 单词 (1-2048)。',
     privacyTitle: '隐私保护',
     privacyTooltip: '此应用程序完全在您的浏览器中运行。不会传输、存储或跟踪任何数据。',
     toggleTheme: '切换深色/浅色模式',
     disabledBoxMessage: '无法选择此数字与当前模式 - 会超过2048',
+    invalidWordMessage: '此单词不在 BIP39 列表中',
+    // Word input translations
+    wordInputLabel: '输入单词或点击数字',
+    wordInputPlaceholder: '的',
     // Modal translations
     modalTitle: '什么是BIP39？',
     modalStep1Title: '12个词 = 助记词',
@@ -397,18 +397,18 @@ export const translations: Record<string, Translations> = {
   },
   'zh-Hant': {
     title: 'BIP39 單詞選擇器',
-    subtitle: '點擊方框從 BIP39 單詞列表中選擇一個單詞',
-    languageLabel: '語言：',
-    selectedWord: '選定的單詞：',
+    languageLabel: '語言',
     index: '索引：',
     resetButton: '重置',
-    pickPattern: '選擇一個模式',
-    outOfRange: '超出範圍（最大 2048）',
-    infoText: '每個方框代表一個位。選擇方框創建從 1-2048 的數字，對應 2048 個 BIP39 單詞之一。',
+    infoText: '通過輸入或點擊數字選擇 BIP39 單詞 (1-2048)。',
     privacyTitle: '隱私保護',
     privacyTooltip: '此應用程序完全在您的瀏覽器中運行。不會傳輸、存儲或跟蹤任何數據。',
     toggleTheme: '切換深色/淺色模式',
     disabledBoxMessage: '無法選擇此數字與當前模式 - 會超過2048',
+    invalidWordMessage: '此單詞不在 BIP39 列表中',
+    // Word input translations
+    wordInputLabel: '輸入單詞或點擊數字',
+    wordInputPlaceholder: '的',
     // Modal translations
     modalTitle: '什麼是BIP39？',
     modalStep1Title: '12個詞 = 助記詞',

@@ -5,10 +5,12 @@ import { initTheme, toggleTheme } from './services/theme';
 import { initLanguage, setupLanguageToggle, setTranslations, updateUITranslations } from './services/language';
 import { createGrid } from './components/grid';
 import { updateDisplay } from './components/display';
+import { setupWordInput, clearWordInput } from './components/wordInput';
 import { elements } from './core/dom';
 
 function handleReset(): void {
   resetBoxes();
+  clearWordInput();
   updateDisplay();
 }
 
@@ -56,6 +58,7 @@ async function init(): Promise<void> {
  
   await loadWordlist(savedLanguage);
   createGrid();
+  setupWordInput();
   updateUITranslations();
   
   // Inject git commit hash into footer
@@ -76,7 +79,8 @@ async function init(): Promise<void> {
     // Press 'R' to reset (but not when dropdown is open or in input fields)
     if (e.key === 'r' || e.key === 'R') {
       const isDropdownOpen = elements.languageDropdown.classList.contains('open');
-      if (!isDropdownOpen) {
+      const isInInput = target.tagName === 'INPUT' || target.tagName === 'TEXTAREA';
+      if (!isDropdownOpen && !isInInput) {
         e.preventDefault();
         handleReset();
         return;

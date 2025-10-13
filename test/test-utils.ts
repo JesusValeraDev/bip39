@@ -28,9 +28,18 @@ export function setupMockDOM(): void {
 
   // Mock all required DOM elements
   const elements = [
-    'grid', 'word', 'index', 'binary', 'reset', 'theme-toggle', 'language',
-    'title', 'subtitle', 'wordlist-label', 'word-label', 'binary-label',
-    'info-text', 'privacy-tooltip'
+    'grid', 'index', 'binary', 'reset', 'theme-toggle', 'language-toggle',
+    'title', 'info-text', 'privacy-text', 'word-input', 'word-input-label',
+    'language-dropdown', 'current-flag', 'word-suggestions',
+    'index-label', 'git-hash', 'sr-announcements',
+    'learn-modal', 'learn-more-btn', 'modal-close', 'modal-title',
+    'modal-step1-title', 'modal-step1-text', 'modal-step2-title', 'modal-step2-text',
+    'modal-step2-entropy', 'modal-step3-title', 'modal-step3-text',
+    'modal-step4-title', 'modal-step4-text', 'modal-step4-private-key',
+    'modal-step4-public-key', 'modal-step4-address',
+    'modal-warning-title', 'modal-warning-text',
+    'modal-warning-item1', 'modal-warning-item2', 'modal-warning-item3', 'modal-warning-item4',
+    'modal-why-title', 'modal-why-text', 'modal-why-link'
   ];
 
   elements.forEach(id => {

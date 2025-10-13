@@ -29,7 +29,7 @@ test.describe('Language Functionality', () => {
   test('should change wordlist when language is changed', async ({ page }) => {
     await page.locator('.box').nth(11).click();
 
-    const initialWord = await page.locator('#word').textContent();
+    const initialWord = await page.locator('#word-input').inputValue();
 
     // Open language dropdown
     await page.locator('#language-toggle').click();
@@ -39,7 +39,7 @@ test.describe('Language Functionality', () => {
 
     await page.waitForTimeout(500);
 
-    const newWord = await page.locator('#word').textContent();
+    const newWord = await page.locator('#word-input').inputValue();
 
     expect(newWord).toBeTruthy();
     expect(newWord).not.toBe(initialWord);

@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="format-detection" content="telephone=no, date=no, address=no, email=no">
 
-  <title>BIP39 Word Selector - Free Online Bitcoin Mnemonic Tool</title>
-  <meta name="description" content="Free online BIP39 word selector tool for Bitcoin. Interactive mnemonic converter - select binary patterns to find BIP39 words. Supports 10 languages. Privacy-focused, no registration required, works entirely in your browser.">
-  <meta name="keywords" content="BIP39 tool, online BIP39, BIP39 word selector, Bitcoin tool, crypto tool, mnemonic tool, seed phrase tool, free BIP39 converter, online mnemonic generator, BIP39 online, Bitcoin mnemonic, cryptocurrency tool, wallet tool, BIP39 calculator, word list tool, binary converter, blockchain tool, HD wallet tool, crypto converter online, free crypto tool, no registration">
+  <title>BIP39 Word Selector - Bidirectional Bitcoin Mnemonic Tool</title>
+  <meta name="description" content="Free online BIP39 word selector tool for Bitcoin. Type words or click numbers - bidirectional converter between BIP39 words and binary patterns. Supports 10 languages. Privacy-focused, runs entirely in your browser.">
+  <meta name="keywords" content="BIP39 tool, online BIP39, BIP39 word selector, Bitcoin tool, crypto tool, mnemonic tool, seed phrase tool, free BIP39 converter, online mnemonic generator, BIP39 online, Bitcoin mnemonic, cryptocurrency tool, wallet tool, BIP39 calculator, word list tool, binary converter, bidirectional converter, word to binary, binary to word, blockchain tool, HD wallet tool, crypto converter online, free crypto tool, no registration">
   <meta name="author" content="JesusValeraDev">
   <meta name="theme-color" content="#f7931a">
   <meta name="application-name" content="BIP39 Online Tool">
@@ -19,14 +19,14 @@
 
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://bip39.jesusvalera.dev/">
-  <meta property="og:title" content="BIP39 Word Selector - Free Online Bitcoin Mnemonic Tool">
-  <meta property="og:description" content="Free online BIP39 tool for Bitcoin. Interactive mnemonic converter - select binary patterns to find words. Privacy-focused, no registration required.">
+  <meta property="og:title" content="BIP39 Word Selector - Bidirectional Bitcoin Mnemonic Tool">
+  <meta property="og:description" content="Free online BIP39 tool for Bitcoin. Type words or click numbers - bidirectional converter. Supports 10 languages. Privacy-focused, runs entirely in your browser.">
   <meta property="og:image" content="https://bip39.jesusvalera.dev/favicon.svg">
 
   <meta property="twitter:card" content="summary">
   <meta property="twitter:url" content="https://bip39.jesusvalera.dev/">
-  <meta property="twitter:title" content="BIP39 Word Selector - Free Online Bitcoin Tool">
-  <meta property="twitter:description" content="Free online BIP39 word selector tool. Interactive Bitcoin mnemonic converter. Privacy-focused, no registration required.">
+  <meta property="twitter:title" content="BIP39 Word Selector - Bidirectional Bitcoin Tool">
+  <meta property="twitter:description" content="Free online BIP39 tool. Type words or click numbers - bidirectional converter. Supports 10 languages. Privacy-focused, runs in your browser.">
   <meta property="twitter:image" content="https://bip39.jesusvalera.dev/favicon.svg">
   <script>
     // Apply theme immediately to prevent flash
@@ -71,7 +71,7 @@
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "BIP39 Word Selector",
-    "description": "Free online BIP39 word selector tool for Bitcoin. Interactive mnemonic converter - select binary patterns to find BIP39 words.",
+    "description": "Free online BIP39 word selector tool for Bitcoin. Bidirectional converter - type words or click numbers to find BIP39 mnemonics",
     "url": "https://bip39.jesusvalera.dev/",
     "applicationCategory": "UtilityApplication",
     "author": {
@@ -91,8 +91,9 @@
       </div>
       
       <div class="controls-right">
-        <button id="learn-more-btn" class="learn-more-btn" aria-label="Learn about BIP39" type="button">
-          <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <button id="learn-more-btn" class="learn-more-btn" aria-label="Learn about BIP39" type="button" title="Learn about BIP39">
+          <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Help icon">
+            <title>Help</title>
             <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
             <line x1="12" y1="17" x2="12.01" y2="17"></line>
           </svg>
@@ -258,23 +259,49 @@
 
     <p id="info-text" class="info-description">Each box represents a bit. Select boxes to create a number from 1-2048, matching one of the 2048 BIP39 words.</p>
 
-    <section class="grid-container" role="group" aria-label="Binary pattern selector">
+    <!-- Word Input/Display Section -->
+    <section class="word-section" role="region" aria-label="Word input">
+      <h2 class="section-title" id="word-input-label">Type a word or select numbers...</h2>
+      <div class="word-input-wrapper">
+        <input 
+          type="text" 
+          id="word-input" 
+          class="word-input" 
+          placeholder="abandon"
+          autocomplete="off"
+          spellcheck="false"
+          autofocus
+          aria-describedby="word-input-label"
+          aria-autocomplete="list"
+          aria-controls="word-suggestions"
+          aria-live="polite"
+        />
+        <div id="word-suggestions" class="word-suggestions" role="listbox" aria-label="Word suggestions" hidden></div>
+      </div>
+      <div class="word-info">
+        <span class="word-index" aria-label="Word index"><span id="index-label">Index:</span> <span id="index">-</span> / 2048</span>
+      </div>
+    </section>
+
+    <!-- Grid Selector -->
+    <section class="grid-section" role="group" aria-label="Binary pattern selector">
       <div id="grid" class="grid" role="group" aria-label="Clickable binary boxes"></div>
       <div class="binary-display">
         <code id="binary" aria-label="Current binary pattern">0 0 0 0 0 0 0 0 0 0 0 0</code>
       </div>
     </section>
 
-    <section class="word-display" role="region" aria-live="polite" aria-atomic="true">
-      <div id="word-label" class="word-label">Selected Word:</div>
-      <div id="word" class="word" aria-label="Current selected word">Pick a pattern</div>
-      <div class="word-index" aria-label="Word index"><span id="index-label">Index:</span> <span id="index">-</span> / 2048</div>
-    </section>
-
+    <!-- Reset Button -->
     <button id="reset" class="reset-button" aria-label="Reset all selected boxes">Reset</button>
 
+    <!-- Privacy Info -->
     <section class="privacy-warning" role="complementary" aria-label="Privacy information">
-      <div class="warning-icon">🔒</div>
+      <div class="warning-icon">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="6" y="10" width="12" height="11" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
+          <path d="M8 10V7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7V10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
       <div class="warning-content">
         <strong class="warning-title">Privacy Protected</strong>
         <p id="privacy-text">This application runs entirely in your browser. No data is transmitted, stored, or tracked.</p>

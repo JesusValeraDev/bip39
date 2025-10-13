@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Disabled Boxes Logic', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('http://localhost:4173/');
+    await page.goto('/');
     await page.waitForSelector('.grid');
   });
 
@@ -119,7 +119,7 @@ test.describe('Disabled Boxes Logic', () => {
       const boxes = page.locator('.box');
       const box2048 = boxes.nth(0);
       const box1024 = boxes.nth(1);
-      const wordDisplay = page.locator('#word');
+      const wordDisplay = page.locator('#word-input');
 
       // Click 2048
       await box2048.click();
@@ -142,25 +142,28 @@ test.describe('Disabled Boxes Logic', () => {
     test('should display correct word when 2048 is selected', async ({ page }) => {
       const boxes = page.locator('.box');
       const box2048 = boxes.nth(0);
-      const wordDisplay = page.locator('#word');
+      const wordDisplay = page.locator('#word-input');
       const indexDisplay = page.locator('#index');
 
       // Click 2048
       await box2048.click();
 
       // Should show word at index 2048
-      await expect(wordDisplay).not.toBeEmpty();
       await expect(indexDisplay).toHaveText('2048');
-      await expect(wordDisplay).not.toContainText('out of range');
+      await expect(wordDisplay).not.toHaveClass(/error/);
+      // Word should be populated (wait for async sync)
+      await page.waitForTimeout(100);
+      const wordValue = await wordDisplay.inputValue();
+      expect(wordValue).toBeTruthy();
     });
 
     test('should never show out of range when using disabled logic', async ({ page }) => {
       const boxes = page.locator('.box');
-      const wordDisplay = page.locator('#word');
+      const wordDisplay = page.locator('#word-input');
 
       // Try various combinations - should never be out of range
       await boxes.nth(0).click(); // 2048
-      await expect(wordDisplay).not.toContainText(/out of range/i);
+      await expect(wordDisplay).not.toHaveClass(/error/);
 
       // Reset
       await page.locator('#reset').click();
@@ -169,7 +172,7 @@ test.describe('Disabled Boxes Logic', () => {
       await boxes.nth(1).click(); // 1024
       await boxes.nth(2).click(); // 512
       await boxes.nth(11).click(); // 1
-      await expect(wordDisplay).not.toContainText(/out of range/i);
+      await expect(wordDisplay).not.toHaveClass(/error/);
     });
   });
 
@@ -295,4 +298,3 @@ test.describe('Disabled Boxes Logic', () => {
     });
   });
 });
-

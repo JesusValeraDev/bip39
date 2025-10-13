@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Learn More Modal', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('http://localhost:4173/');
+    await page.goto('/');
   });
 
   test('should have a Learn More button', async ({ page }) => {

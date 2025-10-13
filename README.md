@@ -4,13 +4,21 @@
 [![Lighthouse CI](https://github.com/JesusValeraDev/bip39/actions/workflows/lighthouse.yml/badge.svg)](https://github.com/JesusValeraDev/bip39/actions/workflows/lighthouse.yml)
 [![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://bip39.jesusvalera.dev)
 
-> Interactive Bitcoin BIP39 mnemonic word selector and converter tool
+> **Bidirectional** Bitcoin BIP39 mnemonic word selector and converter tool
 
-An interactive, privacy-focused web application for exploring the BIP39 wordlist through a visual binary pattern selector. Perfect for understanding how Bitcoin seed phrases work.
+An interactive, privacy-focused web application for exploring the BIP39 wordlist. **Type words or click numbers**. Perfect for understanding how Bitcoin seed phrases work.
 
 ## How It Works
 
-The application displays 12 clickable boxes arranged in a grid. Each box represents a bit (0 or 1).
+### Method 1: Type a Word
+
+Simply type any BIP39 word in the input field. The numbers will automatically update to show the binary pattern.
+
+### Method 2: Click Numbers
+
+Click the number boxes (2048, 1024, 512, etc.) to create a binary pattern. The corresponding BIP39 word appears automatically.
+
+Each number represents a binary bit. Combining them creates values from 1-2048, matching the 2048 BIP39 words.
 
 ## Getting Started
 
