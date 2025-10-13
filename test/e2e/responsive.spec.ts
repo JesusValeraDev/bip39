@@ -20,7 +20,7 @@ test.describe('Responsive Design', () => {
     await page.goto('/');
 
     await expect(page.locator('.grid')).toBeVisible();
-    await expect(page.locator('.word-display')).toBeVisible();
+    await expect(page.locator('.word-section')).toBeVisible();
     await expect(page.locator('#reset')).toBeVisible();
   });
 
@@ -29,7 +29,7 @@ test.describe('Responsive Design', () => {
     await page.goto('/');
 
     await expect(page.locator('.grid')).toBeVisible();
-    await expect(page.locator('.word-display')).toBeVisible();
+    await expect(page.locator('.word-section')).toBeVisible();
     await expect(page.locator('#reset')).toBeVisible();
   });
 
@@ -70,5 +70,40 @@ test.describe('Responsive Design', () => {
     
     const privacyText = page.locator('#privacy-text');
     await expect(privacyText).toBeVisible();
+  });
+
+  test('should display all sections properly on mobile', async ({ page }) => {
+    await page.setViewportSize({ width: 375, height: 667 });
+    await page.goto('/');
+    
+    // Check all three sections are visible
+    const gridSection = page.locator('.grid-section');
+    const wordSection = page.locator('.word-section');
+    const privacySection = page.locator('.privacy-warning');
+    
+    await expect(gridSection).toBeVisible();
+    await expect(wordSection).toBeVisible();
+    await expect(privacySection).toBeVisible();
+    
+    // Check section title is visible
+    await expect(page.locator('#word-input-label')).toBeVisible();
+  });
+
+  test('should have readable text sizes on small screens', async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 568 }); // iPhone SE (1st gen)
+    await page.goto('/');
+    
+    // Check word input is still readable
+    const wordInput = page.locator('#word-input');
+    await expect(wordInput).toBeVisible();
+    
+    // Check binary display is visible
+    const binary = page.locator('#binary');
+    await expect(binary).toBeVisible();
+    
+    // Check all sections are visible
+    await expect(page.locator('.grid-section')).toBeVisible();
+    await expect(page.locator('.word-section')).toBeVisible();
+    await expect(page.locator('.privacy-warning')).toBeVisible();
   });
 });

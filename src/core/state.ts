@@ -25,3 +25,19 @@ export function calculateBinaryValue(): number {
 export function getBinaryString(): string {
   return state.boxes.map(b => b ? '1' : '0').join('');
 }
+
+export function setStateFromIndex(wordIndex: number): void {
+  // Convert word index (0-2047) to binary and set the boxes
+  // Note: wordIndex + 1 gives us the actual number (1-2048)
+  const value = wordIndex + 1;
+  
+  // Clear all boxes first
+  resetBoxes();
+  
+  // Set boxes based on binary representation
+  for (let i = 0; i < 12; i++) {
+    const bitPosition = 11 - i;
+    const bitValue = Math.pow(2, bitPosition);
+    state.boxes[i] = (value & bitValue) !== 0;
+  }
+}

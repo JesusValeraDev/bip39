@@ -1,7 +1,6 @@
 export const elements = {
   // Main elements
   grid: document.getElementById('grid') as HTMLDivElement,
-  word: document.getElementById('word') as HTMLDivElement,
   index: document.getElementById('index') as HTMLSpanElement,
   binary: document.getElementById('binary') as HTMLElement,
   resetButton: document.getElementById('reset') as HTMLButtonElement,
@@ -10,9 +9,13 @@ export const elements = {
   languageDropdown: document.getElementById('language-dropdown') as HTMLDivElement,
   currentFlag: document.getElementById('current-flag') as HTMLElement,
 
+  // Word input elements
+  wordInput: document.getElementById('word-input') as HTMLInputElement,
+  wordInputLabel: document.getElementById('word-input-label') as HTMLLabelElement,
+  wordSuggestions: document.getElementById('word-suggestions') as HTMLDivElement,
+
   // Translation elements
   title: document.getElementById('title') as HTMLHeadingElement,
-  wordLabel: document.getElementById('word-label') as HTMLDivElement,
   indexLabel: document.getElementById('index-label') as HTMLSpanElement,
   infoText: document.getElementById('info-text') as HTMLParagraphElement,
   privacyTitle: document.querySelector('.warning-title') as HTMLElement,

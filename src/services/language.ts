@@ -252,7 +252,6 @@ export function setTranslations(translations: Translations): void {
 
 export function updateUITranslations(): void {
   elements.title.textContent = currentTranslations.title;
-  elements.wordLabel.textContent = currentTranslations.selectedWord;
   elements.indexLabel.textContent = currentTranslations.index;
   elements.resetButton.textContent = currentTranslations.resetButton;
   elements.infoText.textContent = currentTranslations.infoText;
@@ -260,6 +259,10 @@ export function updateUITranslations(): void {
   elements.privacyText.textContent = currentTranslations.privacyTooltip;
   elements.themeToggle.title = currentTranslations.toggleTheme;
   elements.languageToggle.title = currentTranslations.languageLabel;
+  
+  // Update word input translations
+  elements.wordInputLabel.textContent = currentTranslations.wordInputLabel;
+  elements.wordInput.placeholder = currentTranslations.wordInputPlaceholder;
   
   // Update modal translations
   elements.modalTitle.textContent = currentTranslations.modalTitle;

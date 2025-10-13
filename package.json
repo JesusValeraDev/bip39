@@ -1,7 +1,7 @@
 {
   "name": "bip39",
   "version": "1.0.0",
-  "description": "Interactive BIP39 word selector and Bitcoin mnemonic converter tool. Privacy-focused web application for exploring BIP39 wordlists.",
+  "description": "Bidirectional BIP39 word selector and Bitcoin mnemonic converter. Type words or click numbers. Privacy-focused.",
   "type": "module",
   "homepage": "https://bip39.jesusvalera.dev",
   "repository": {
@@ -37,7 +37,13 @@
     "mnemonic",
     "seed-phrase",
     "wordlist",
-    "converter"
+    "converter",
+    "bidirectional",
+    "word-to-binary",
+    "binary-to-word",
+    "online-tool",
+    "privacy",
+    "multilingual"
   ],
   "author": "JesusValeraDev (https://jesusvalera.dev)",
   "license": "MIT",

@@ -17,8 +17,8 @@ test.describe('BIP39 Word Selector', () => {
     const binary = page.locator('#binary');
     await expect(binary).toHaveText('000000000000');
 
-    const word = page.locator('#word');
-    await expect(word).toBeVisible();
+    const wordInput = page.locator('#word-input');
+    await expect(wordInput).toBeVisible();
   });
 
   test('should toggle box when clicked', async ({ page }) => {
@@ -39,9 +39,8 @@ test.describe('BIP39 Word Selector', () => {
     const binary = page.locator('#binary');
     await expect(binary).toHaveText('000000000001');
 
-    const word = page.locator('#word');
-    await expect(word).not.toBeEmpty();
-    await expect(word).not.toHaveClass(/error/);
+    const wordInput = page.locator('#word-input');
+    await expect(wordInput).toHaveValue('abandon');
 
     const index = page.locator('#index');
     await expect(index).toHaveText('1');
@@ -52,13 +51,13 @@ test.describe('BIP39 Word Selector', () => {
     
     // Now try to click box 11 (value 1) - should be disabled
     const box1 = page.locator('.box').nth(11);
-    await expect(box1).toBeDisabled();
+    await expect(box1).toHaveClass(/disabled/);
     
     const binary = page.locator('#binary');
     await expect(binary).toHaveText('100000000000');
     
-    const word = page.locator('#word');
-    await expect(word).not.toHaveClass(/error/);
+    const wordInput = page.locator('#word-input');
+    await expect(wordInput).not.toHaveClass(/error/);
     
     const index = page.locator('#index');
     await expect(index).toHaveText('2048');

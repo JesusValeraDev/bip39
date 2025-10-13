@@ -7,6 +7,14 @@ export function updateDisplay(): void {
   updateBoxStates();
   updateBinaryDisplay();
   updateWordDisplay();
+  syncWordInputFromBoxes();
+}
+
+function syncWordInputFromBoxes(): void {
+  // Import dynamically to avoid circular dependency
+  import('./wordInput').then(({ syncWordInputFromState }) => {
+    syncWordInputFromState();
+  });
 }
 
 function updateBoxStates(): void {
@@ -70,40 +78,20 @@ function updateWordDisplay(): void {
   let announcement = '';
 
   if (binaryValue === 0) {
-    setNoPatternState();
+    elements.index.textContent = '-';
     announcement = 'No pattern selected';
   } else if (binaryValue > 2048) {
     // Safety net: Should be unreachable due to disabled box logic,
     // but kept for defensive programming (e.g., direct state manipulation, bugs)
-    setOutOfRangeState(binaryValue);
+    elements.index.textContent = `${binaryValue}`;
     announcement = `Value ${binaryValue} is out of range. Maximum is 2048`;
   } else {
-    setValidWordState(binaryValue);
+    elements.index.textContent = binaryValue.toString();
     const word = getWord(binaryValue - 1);
     announcement = `Word selected: ${word}, index ${binaryValue}`;
   }
 
   announceToScreenReader(announcement);
-}
-
-function setNoPatternState(): void {
-  elements.word.textContent = currentTranslations.pickPattern;
-  elements.index.textContent = '-';
-  elements.word.classList.remove('error');
-}
-
-function setOutOfRangeState(value: number): void {
-  elements.word.textContent = currentTranslations.outOfRange;
-  elements.index.textContent = `${value}`;
-  elements.word.classList.add('error');
-}
-
-function setValidWordState(binaryValue: number): void {
-  const arrayIndex = binaryValue - 1;
-  const word = getWord(arrayIndex);
-  elements.word.textContent = word;
-  elements.index.textContent = binaryValue.toString();
-  elements.word.classList.remove('error');
 }
 
 function announceToScreenReader(message: string): void {
