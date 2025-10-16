@@ -31,18 +31,6 @@ export function createGrid(): void {
       updateDisplay();
     });
 
-    box.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        if (box.dataset.isDisabled === 'true') {
-          showDisabledBoxToast();
-          return;
-        }
-        toggleBox(i);
-        updateDisplay();
-      }
-    });
-
     elements.grid.appendChild(box);
   }
 

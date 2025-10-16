@@ -65,7 +65,7 @@ export const translations: Record<string, Translations> = {
     disabledBoxMessage: 'Cannot select this number with the current pattern - it would exceed 2048',
     invalidWordMessage: 'This word is not in the BIP39 wordlist',
     // Word input translations
-    wordInputLabel: 'Type a word or click numbers',
+    wordInputLabel: 'Type a word or click numbers to select',
     wordInputPlaceholder: 'abandon',
     // Modal translations
     modalTitle: 'What is BIP39?',
