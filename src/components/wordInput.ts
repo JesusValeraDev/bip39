@@ -29,7 +29,6 @@ function validateWordInput(): void {
   const value = elements.wordInput.value.trim().toLowerCase();
   
   if (!value) {
-    // Empty input - valid state
     elements.wordInput.classList.remove('error');
     return;
   }
@@ -37,26 +36,24 @@ function validateWordInput(): void {
   // Check if word exists in wordlist
   const wordExists = state.wordlist.some(word => word.toLowerCase() === value);
   
-  if (!wordExists) {
-    // Invalid word - show error and reset boxes
-    elements.wordInput.classList.add('error');
-    resetBoxes();
-    updateDisplay();
-    showInvalidWordToast();
-  } else {
-    // Valid word
+  if (wordExists) {
     elements.wordInput.classList.remove('error');
+    return;
   }
+
+  // Invalid word - show error and reset boxes
+  elements.wordInput.classList.add('error');
+  resetBoxes();
+  updateDisplay();
+  showInvalidWordToast();
 }
 
 function showInvalidWordToast(): void {
-  // Remove existing toast if any
   const existingToast = document.getElementById('invalid-word-toast');
   if (existingToast) {
     existingToast.remove();
   }
 
-  // Create toast element
   const toast = document.createElement('div');
   toast.id = 'invalid-word-toast';
   toast.className = 'toast';
@@ -145,7 +142,9 @@ function hideSuggestions(): void {
 function handleKeydown(e: KeyboardEvent): void {
   const suggestions = elements.wordSuggestions.querySelectorAll('.suggestion-item');
   
-  if (suggestions.length === 0) return;
+  if (suggestions.length === 0) {
+    return;
+  }
   
   switch (e.key) {
     case 'ArrowDown':
@@ -197,33 +196,20 @@ function selectWord(word: string): void {
   
   if (wordIndex === -1) return;
   
-  // Update the input
   elements.wordInput.value = word;
-  
-  // Remove error state if any
   elements.wordInput.classList.remove('error');
-  
-  // Update the state (wordIndex is 0-based, but we need 1-based for display)
   setStateFromIndex(wordIndex);
-  
-  // Update the display
   updateDisplay();
-  
-  // Hide suggestions
   hideSuggestions();
-  
-  // Blur the input
   elements.wordInput.blur();
 }
 
-// Clear input when state is reset
 export function clearWordInput(): void {
   elements.wordInput.value = '';
   elements.wordInput.classList.remove('error');
   hideSuggestions();
 }
 
-// Update input when boxes change (bidirectional sync)
 export function syncWordInputFromState(): void {
   const index = state.boxes.reduce((acc, val, i) => acc + (val ? Math.pow(2, 11 - i) : 0), 0);
   

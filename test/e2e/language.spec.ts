@@ -16,13 +16,10 @@ test.describe('Language Functionality', () => {
     const languageToggle = page.locator('#language-toggle');
     const languageDropdown = page.locator('#language-dropdown');
 
-    // Dropdown should be hidden initially
     await expect(languageDropdown).not.toHaveClass(/open/);
 
-    // Click toggle to open dropdown
     await languageToggle.click();
 
-    // Dropdown should now be visible
     await expect(languageDropdown).toHaveClass(/open/);
   });
 
@@ -31,10 +28,8 @@ test.describe('Language Functionality', () => {
 
     const initialWord = await page.locator('#word-input').inputValue();
 
-    // Open language dropdown
     await page.locator('#language-toggle').click();
 
-    // Click Spanish flag
     await page.locator('.language-option[data-lang="spanish"]').click();
 
     await page.waitForTimeout(500);
@@ -46,24 +41,19 @@ test.describe('Language Functionality', () => {
   });
 
   test('should persist language preference', async ({ page }) => {
-    // Open language dropdown
     await page.locator('#language-toggle').click();
 
-    // Select Spanish
     await page.locator('.language-option[data-lang="spanish"]').click();
 
     await page.reload();
 
-    // Open dropdown again to check active state
     await page.locator('#language-toggle').click();
 
-    // Spanish option should be marked as active
     const spanishOption = page.locator('.language-option[data-lang="spanish"]');
     await expect(spanishOption).toHaveClass(/active/);
   });
 
   test('should have multiple language options', async ({ page }) => {
-    // Open language dropdown
     await page.locator('#language-toggle').click();
 
     const languageOptions = page.locator('.language-option');
@@ -78,10 +68,8 @@ test.describe('Language Functionality', () => {
 
     const initialTitle = await title.textContent();
 
-    // Open language dropdown
     await page.locator('#language-toggle').click();
 
-    // Select Spanish
     await page.locator('.language-option[data-lang="spanish"]').click();
 
     await page.waitForTimeout(300);
@@ -90,10 +78,8 @@ test.describe('Language Functionality', () => {
     expect(newTitle).toBeTruthy();
     expect(newTitle).not.toBe(initialTitle);
 
-    // Open dropdown again
     await page.locator('#language-toggle').click();
 
-    // Select Czech
     await page.locator('.language-option[data-lang="czech"]').click();
     await page.waitForTimeout(300);
 
@@ -105,29 +91,23 @@ test.describe('Language Functionality', () => {
     const languageToggle = page.locator('#language-toggle');
     const languageDropdown = page.locator('#language-dropdown');
 
-    // Open dropdown
     await languageToggle.click();
     await expect(languageDropdown).toHaveClass(/open/);
 
-    // Click outside (on the title)
     await page.locator('#title').click();
 
-    // Dropdown should be closed
     await expect(languageDropdown).not.toHaveClass(/open/);
   });
 
   test('should update flag icon when language changes', async ({ page }) => {
     const currentFlag = page.locator('#current-flag');
 
-    // Open language dropdown
     await page.locator('#language-toggle').click();
 
-    // Select Spanish
     await page.locator('.language-option[data-lang="spanish"]').click();
 
     await page.waitForTimeout(300);
 
-    // Flag should have been updated (we can't easily check SVG content, but we can verify it exists)
     await expect(currentFlag).toBeVisible();
   });
 });

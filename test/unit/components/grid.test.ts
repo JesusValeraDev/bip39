@@ -1,6 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 
-// Mock all dependencies
 vi.mock('../../../src/components/display', () => ({
   updateDisplay: vi.fn(),
 }));

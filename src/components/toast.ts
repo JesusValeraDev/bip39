@@ -7,7 +7,6 @@ let clickResetTimeout: NodeJS.Timeout | null = null;
 export function showDisabledBoxToast(): void {
   clickCount++;
 
-  // Reset click count after 2 seconds of no clicks
   if (clickResetTimeout) {
     clearTimeout(clickResetTimeout);
   }
@@ -18,7 +17,7 @@ export function showDisabledBoxToast(): void {
   // Show toast only after 2+ clicks
   if (clickCount >= 2) {
     showToast(currentTranslations.disabledBoxMessage);
-    clickCount = 0; // Reset after showing
+    clickCount = 0;
   }
 }
 
@@ -36,18 +35,15 @@ export function resetToastState(): void {
 }
 
 function showToast(message: string): void {
-  // Remove existing toast if any
   const existingToast = document.getElementById('toast-notification');
   if (existingToast) {
     existingToast.remove();
   }
 
-  // Clear existing timeout
   if (toastTimeout) {
     clearTimeout(toastTimeout);
   }
 
-  // Create toast element
   const toast = document.createElement('div');
   toast.id = 'toast-notification';
   toast.className = 'toast';

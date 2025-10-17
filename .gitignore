@@ -1,14 +1,11 @@
 .idea/
-node_modules/
-dist/
+.lighthouseci/
 coverage/
+dist/
+node_modules/
 *.log
 .DS_Store
 
-# Playwright
 test-results/
 playwright-report/
 playwright/.cache/
-
-# Lighthouse CI
-.lighthouseci/

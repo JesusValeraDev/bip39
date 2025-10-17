@@ -91,6 +91,11 @@
   height: 48px;
 }
 
+.language-option svg {
+  border: .5px solid #a3a3a3;
+  border-radius: 100%;
+}
+
 .language-option:hover {
   background: var(--surface-light);
   transform: scale(1.1);
