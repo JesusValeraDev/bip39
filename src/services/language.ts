@@ -248,6 +248,7 @@ export function updateUITranslations(): void {
   elements.privacyText.textContent = currentTranslations.privacyTooltip;
   elements.themeToggle.title = currentTranslations.toggleTheme;
   elements.languageToggle.title = currentTranslations.languageLabel;
+  elements.helpIconTitle.textContent = currentTranslations.helpIconLabel;
   
   // Update word input translations
   elements.wordInputLabel.textContent = currentTranslations.wordInputLabel;
@@ -257,14 +258,34 @@ export function updateUITranslations(): void {
   elements.modalTitle.textContent = currentTranslations.modalTitle;
   elements.modalStep1Title.textContent = currentTranslations.modalStep1Title;
   elements.modalStep1Text.textContent = currentTranslations.modalStep1Text;
+  
+  // Populate word grid with first 12 words
+  elements.modalStep1WordGrid.innerHTML = '';
+  currentTranslations.modalStep1Words.forEach(word => {
+    const wordSpan = document.createElement('span');
+    wordSpan.className = 'word-example';
+    wordSpan.textContent = word;
+    elements.modalStep1WordGrid.appendChild(wordSpan);
+  });
+  
   elements.modalStep2Title.textContent = currentTranslations.modalStep2Title;
   elements.modalStep2Text.textContent = currentTranslations.modalStep2Text;
+  elements.modalStep2Word1.textContent = currentTranslations.modalStep1Words[0];
+  elements.modalStep2Word2.textContent = currentTranslations.modalStep1Words[1];
   elements.modalStep2Entropy.textContent = currentTranslations.modalStep2Entropy;
   elements.modalStep3Title.textContent = currentTranslations.modalStep3Title;
   elements.modalStep3Text.textContent = currentTranslations.modalStep3Text;
+  elements.modalStep3MasterSeed.textContent = currentTranslations.modalStep3MasterSeed;
+  elements.modalStep3BitValue.textContent = currentTranslations.modalStep3BitValue;
   elements.modalStep4Title.textContent = currentTranslations.modalStep4Title;
   elements.modalStep4Text.textContent = currentTranslations.modalStep4Text;
   elements.modalStep4PrivateKey.textContent = currentTranslations.modalStep4PrivateKey;
+  elements.modalStep4PrivateKey1.textContent = currentTranslations.modalStep4PrivateKey1;
+  elements.modalStep4PrivateKey2.textContent = currentTranslations.modalStep4PrivateKey2;
+  elements.modalStep4PrivateKey3.textContent = currentTranslations.modalStep4PrivateKey3;
+  elements.modalStep4BitSize1.textContent = currentTranslations.modalStep4BitSize;
+  elements.modalStep4BitSize2.textContent = currentTranslations.modalStep4BitSize;
+  elements.modalStep4BitSize3.textContent = currentTranslations.modalStep4BitSize;
   elements.modalStep4PublicKey.textContent = currentTranslations.modalStep4PublicKey;
   elements.modalStep4Address.textContent = currentTranslations.modalStep4Address;
   elements.modalWarningTitle.textContent = currentTranslations.modalWarningTitle;
