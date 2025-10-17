@@ -49,14 +49,11 @@ describe('Word Input Validation Logic', () => {
 
   describe('State Updates on Invalid Word', () => {
     it('should clear all boxes when invalid word is entered', () => {
-      // Set some boxes active first
       setStateFromIndex(10); // Word "above" (index 4, value 11)
       expect(state.boxes.some(b => b)).toBe(true);
       
-      // Simulate invalid word validation - should reset boxes
       resetBoxes();
       
-      // All boxes should be false
       expect(state.boxes.every(b => !b)).toBe(true);
     });
 
@@ -65,10 +62,7 @@ describe('Word Input Validation Logic', () => {
       setStateFromIndex(0);
       
       const boxesBefore = [...state.boxes];
-      
-      // Valid word shouldn't clear boxes
-      // (In actual code, it would call setStateFromIndex which is correct)
-      
+
       expect(state.boxes).toEqual(boxesBefore);
     });
   });
@@ -90,7 +84,6 @@ describe('Word Input Validation Logic', () => {
       expect(state.wordlist.indexOf('ABANDON')).toBe(-1);
       expect(state.wordlist.indexOf('Abandon')).toBe(-1);
       
-      // Correct way with toLowerCase
       const word = 'ABANDON';
       const index = state.wordlist.findIndex(w => w.toLowerCase() === word.toLowerCase());
       expect(index).toBe(0);

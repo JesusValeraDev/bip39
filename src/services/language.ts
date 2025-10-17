@@ -6,7 +6,6 @@ import { updateDisplay } from '../components/display';
 export let currentTranslations: Translations = getTranslation('en');
 export let currentLanguage = 'english';
 
-// SVG flags for each language
 const languageFlagsSVG: Record<string, string> = {
   'english': `<svg class="flag-icon" width="28" height="28" viewBox="0 0 28 28">
     <defs><clipPath id="uk-circle"><circle cx="14" cy="14" r="14"/></clipPath></defs>
@@ -126,7 +125,7 @@ const browserLangToWordlist: Record<string, string> = {
   'zh-TW': 'chinese_traditional',
   'zh-HK': 'chinese_traditional',
   'zh-MO': 'chinese_traditional',
-  'zh': 'chinese_simplified', // Default Chinese to simplified
+  'zh': 'chinese_simplified',
 };
 
 function getBrowserLanguage(): string {
@@ -159,11 +158,9 @@ export function initLanguage(): string {
   const savedLanguage = localStorage.getItem('language');
   const defaultLanguage = savedLanguage || getBrowserLanguage();
   currentLanguage = defaultLanguage;
-  
-  // Update flag icon with SVG
+
   elements.currentFlag.innerHTML = languageFlagsSVG[defaultLanguage] || languageFlagsSVG['english'];
-  
-  // Update active state in dropdown
+
   updateActiveLanguageOption();
   
   return defaultLanguage;
@@ -173,14 +170,11 @@ export async function changeLanguage(newLanguage: string): Promise<void> {
   currentLanguage = newLanguage;
   localStorage.setItem('language', newLanguage);
   
-  // Update flag icon with SVG
   elements.currentFlag.innerHTML = languageFlagsSVG[newLanguage] || languageFlagsSVG['english'];
   
-  // Update UI language based on wordlist selection
   const uiLang = wordlistToUILang[newLanguage] || 'en';
   currentTranslations = getTranslation(uiLang);
   
-  // Update active state in dropdown
   updateActiveLanguageOption();
   
   await loadWordlist(newLanguage);
@@ -235,7 +229,6 @@ export function setupLanguageToggle(): void {
     });
   });
 
-  // Keyboard navigation
   elements.languageToggle.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && isOpen) {
       isOpen = false;

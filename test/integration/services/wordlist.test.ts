@@ -3,7 +3,6 @@ import { loadWordlist, getWord } from '../../../src/services/wordlist';
 import { state } from '../../../src/core/state';
 import { mockWordlistResponse, resetState } from '../../test-utils';
 
-// Mock fetch globally
 global.fetch = vi.fn();
 
 describe('Wordlist Service', () => {
@@ -55,7 +54,7 @@ describe('Wordlist Service', () => {
     });
 
     it('should return "N/A" for invalid index', () => {
-      expect(getWord(10)).toBe('N/A'); // We are mocking the wordlist in the beforeEach()
+      expect(getWord(10)).toBe('N/A');
       expect(getWord(-1)).toBe('N/A');
     });
 

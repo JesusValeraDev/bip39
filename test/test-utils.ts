@@ -26,7 +26,6 @@ export function setupMockDOM(): void {
     querySelectorAll: vi.fn(() => []),
   };
 
-  // Mock all required DOM elements
   const elements = [
     'grid', 'index', 'binary', 'reset', 'theme-toggle', 'language-toggle',
     'title', 'info-text', 'privacy-text', 'word-input', 'word-input-label',
@@ -52,18 +51,12 @@ export function setupMockDOM(): void {
   });
 }
 
-/**
- * Mock wordlist data for testing
- */
 export const mockWordlist = [
   'abandon', 'ability', 'able', 'about', 'above', 'absent', 'absorb', 'abstract',
   'absurd', 'abuse', 'access', 'accident', 'account', 'accuse', 'achieve', 'acid',
   'acoustic', 'acquire', 'across', 'act', 'action', 'actor', 'actress', 'actual'
 ];
 
-/**
- * Create a mock fetch response for wordlist loading
- */
 export function mockWordlistResponse(words: string[] = mockWordlist) {
   return Promise.resolve({
     text: () => Promise.resolve(words.join('\n')),

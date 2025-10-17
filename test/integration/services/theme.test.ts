@@ -1,7 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { initTheme, toggleTheme } from '../../../src/services/theme';
 
-// Mock localStorage
 const mockLocalStorage = {
   getItem: vi.fn(),
   setItem: vi.fn(),
@@ -16,7 +15,6 @@ Object.defineProperty(window, 'localStorage', {
 describe('Theme Service', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    // Reset document element
     document.documentElement.removeAttribute('data-theme');
   });
 
@@ -104,12 +102,10 @@ describe('Theme Service', () => {
     });
 
     it('should handle undefined theme by setting to light', () => {
-      // No data-theme attribute set (getAttribute returns null)
       document.documentElement.removeAttribute('data-theme');
 
       toggleTheme();
 
-      // When currentTheme is null, the ternary evaluates to 'dark' (null !== 'dark')
       expect(document.documentElement.getAttribute('data-theme')).toBe('dark');
       expect(mockLocalStorage.setItem).toHaveBeenCalledWith('theme', 'dark');
     });

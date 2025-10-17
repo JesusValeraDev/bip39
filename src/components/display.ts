@@ -1,6 +1,5 @@
 import { state, calculateBinaryValue, getBinaryString } from '../core/state';
 import { elements } from '../core/dom';
-import { currentTranslations } from '../services/language';
 import { getWord } from '../services/wordlist';
 
 export function updateDisplay(): void {

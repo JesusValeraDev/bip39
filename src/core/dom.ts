@@ -20,7 +20,7 @@ export const elements = {
   infoText: document.getElementById('info-text') as HTMLParagraphElement,
   privacyTitle: document.querySelector('.warning-title') as HTMLElement,
   privacyText: document.getElementById('privacy-text') as HTMLParagraphElement,
-  
+
   // Modal translation elements
   modalTitle: document.getElementById('modal-title') as HTMLHeadingElement,
   modalStep1Title: document.getElementById('modal-step1-title') as HTMLHeadingElement,
