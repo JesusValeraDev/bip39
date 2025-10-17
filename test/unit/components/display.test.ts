@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect } from 'vitest';
 
 describe('Display Component - Disabled Box Logic', () => {
   describe('Box Disable State Logic (Unit Tests)', () => {

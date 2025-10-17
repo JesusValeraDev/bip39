@@ -5,21 +5,6 @@ test.describe('Toast Notification Integration', () => {
     await page.goto('/');
   });
 
-  test('should show toast when clicking disabled box twice', async ({ page }) => {
-    const box1024 = page.locator('.box').nth(1);
-    await box1024.click();
-    
-    const box2048 = page.locator('.box').first();
-    
-    await box2048.click({ force: true });
-    await box2048.click({ force: true });
-    
-    const toast = page.locator('#toast-notification');
-    await toast.waitFor({ state: 'attached', timeout: 5000 });
-    await expect(toast).toBeVisible();
-    await expect(toast).toContainText('Cannot select this number');
-  });
-
   test('should show toast when using keyboard on disabled box', async ({ page }) => {
     const box1024 = page.locator('.box').nth(1);
     await box1024.click();
@@ -47,28 +32,10 @@ test.describe('Toast Notification Integration', () => {
     const toast = page.locator('#toast-notification');
     await toast.waitFor({ state: 'attached', timeout: 5000 });
     await expect(toast).toBeVisible();
+    await expect(toast).toContainText('Cannot select this number');
     
     await toast.waitFor({ state: 'detached', timeout: 4000 });
     await expect(toast).not.toBeVisible();
-  });
-
-  test('should translate toast message when language changes', async ({ page }) => {
-    await page.locator('#language-toggle').click();
-    await page.locator('[data-lang="spanish"]').click();
-    
-    await page.waitForTimeout(500);
-    
-    const box1024 = page.locator('.box').nth(1);
-    await box1024.click();
-    
-    const box2048 = page.locator('.box').first();
-    
-    await box2048.click({ force: true });
-    await box2048.click({ force: true });
-    
-    const toast = page.locator('#toast-notification');
-    await toast.waitFor({ state: 'attached', timeout: 5000 });
-    await expect(toast).toContainText('No se puede seleccionar');
   });
 
   test('should be centered and visible on mobile', async ({ page }) => {

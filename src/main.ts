@@ -73,4 +73,6 @@ async function init(): Promise<void> {
   setupLearnModal();
 }
 
-init();
+init().catch((error) => {
+  console.error('Failed to initialize application:', error);
+});

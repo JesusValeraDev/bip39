@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { setStateFromIndex, state } from '../../../src/core/state';
 
 describe('Word Input State Conversion', () => {

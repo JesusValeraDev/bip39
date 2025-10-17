@@ -73,19 +73,15 @@ const languageFlagsSVG: Record<string, string> = {
       <path d="M 9.33 14 A 4.67 4.67 0 0 1 18.67 14 Z" fill="#C60C30"/>
       <path d="M 18.67 14 A 4.67 4.67 0 0 1 9.33 14 Z" fill="#003478"/>
       <g stroke="#000" stroke-width="1.15" stroke-linecap="round">
-        <!-- Superior derecha -->
         <line x1="18.4" y1="7" x2="21.9" y2="10.5"/>
         <line x1="19.45" y1="5.95" x2="22.95" y2="9.45"/>
         <line x1="17.35" y1="8.05" x2="20.85" y2="11.55"/>
-        <!-- Inferior derecha -->
         <line x1="18.4" y1="21" x2="21.9" y2="17.5"/>
         <line x1="19.45" y1="22.05" x2="22.95" y2="18.55"/>
         <line x1="17.35" y1="19.95" x2="20.85" y2="16.45"/>
-        <!-- Inferior izquierda -->
         <line x1="9.6" y1="21" x2="6.1" y2="17.5"/>
         <line x1="8.55" y1="22.05" x2="5.05" y2="18.55"/>
         <line x1="10.65" y1="19.95" x2="7.15" y2="16.45"/>
-        <!-- Superior izquierda -->
         <line x1="9.6" y1="7" x2="6.1" y2="10.5"/>
         <line x1="8.55" y1="5.95" x2="5.05" y2="9.45"/>
         <line x1="10.65" y1="8.05" x2="7.15" y2="11.55"/>

@@ -47,7 +47,7 @@ function updateBoxDisabledState(
   is2048Active: boolean,
   isAnyOtherBoxActive: boolean
 ): void {
-  let shouldDisable = false;
+  let shouldDisable: boolean;
 
   if (index === 0) {
     // First box (2048): disable if any other box is active
@@ -74,7 +74,7 @@ function updateBinaryDisplay(): void {
 
 function updateWordDisplay(): void {
   const binaryValue = calculateBinaryValue();
-  let announcement = '';
+  let announcement: string;
 
   if (binaryValue === 0) {
     elements.index.textContent = '-';

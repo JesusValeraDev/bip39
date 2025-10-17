@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite';
+import { defineConfig } from 'vitest/config';
 import { execSync } from 'child_process';
 
 const gitHash = execSync('git rev-parse --short HEAD').toString().trim();

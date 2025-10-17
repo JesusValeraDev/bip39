@@ -1,4 +1,3 @@
-/* Top Controls Bar */
 .top-controls {
   display: flex;
   justify-content: space-between;
@@ -92,7 +91,7 @@
 }
 
 .language-option svg {
-  border: .5px solid #a3a3a3;
+  border: 1px solid #a3a3a3;
   border-radius: 100%;
 }
 
@@ -143,6 +142,11 @@
 .theme-toggle svg {
   color: var(--text-primary);
   transition: all 0.3s ease;
+}
+
+.sun-icon,
+.moon-icon {
+  fill: none;
 }
 
 .sun-icon {
@@ -564,6 +568,7 @@
   width: 36px;
   height: 36px;
   color: #329239;
+  fill: none;
 }
 
 [data-theme="dark"] .warning-icon svg {
@@ -659,6 +664,7 @@
 .learn-more-btn svg {
   color: var(--text-primary);
   transition: all 0.3s ease;
+  fill: none;
 }
 
 .learn-more-btn:hover svg {
@@ -752,6 +758,10 @@
   border-radius: 8px;
   transition: all 0.2s ease;
   color: var(--text-secondary);
+}
+
+.modal-close svg {
+  fill: none;
 }
 
 .modal-close:hover {

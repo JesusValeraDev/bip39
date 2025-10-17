@@ -21,7 +21,7 @@ test.describe('Theme Functionality', () => {
     expect(finalTheme).toBe(initialTheme);
   });
 
-  test('should persist theme preference', async ({ page, context }) => {
+  test('should persist theme preference', async ({ page }) => {
     await page.locator('#theme-toggle').click();
     const theme = await page.locator('html').getAttribute('data-theme');
 

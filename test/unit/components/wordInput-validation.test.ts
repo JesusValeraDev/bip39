@@ -1,9 +1,8 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import { state, resetBoxes, setStateFromIndex } from '../../../src/core/state';
 
 describe('Word Input Validation Logic', () => {
   beforeEach(() => {
-    // Reset state
     resetBoxes();
     state.wordlist = ['abandon', 'ability', 'able', 'about', 'above'];
   });

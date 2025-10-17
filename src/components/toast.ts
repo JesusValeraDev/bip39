@@ -21,19 +21,6 @@ export function showDisabledBoxToast(): void {
   }
 }
 
-// Exported for testing
-export function resetToastState(): void {
-  clickCount = 0;
-  if (clickResetTimeout) {
-    clearTimeout(clickResetTimeout);
-    clickResetTimeout = null;
-  }
-  if (toastTimeout) {
-    clearTimeout(toastTimeout);
-    toastTimeout = null;
-  }
-}
-
 function showToast(message: string): void {
   const existingToast = document.getElementById('toast-notification');
   if (existingToast) {
