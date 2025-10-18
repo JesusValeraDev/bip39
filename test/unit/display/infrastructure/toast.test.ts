@@ -21,7 +21,7 @@ describe('Toast Component', () => {
   describe('showDisabledBoxToast', () => {
     it('should not show toast on first click (debouncing)', () => {
       showDisabledBoxToast();
-      
+
       const toast = document.getElementById('toast-notification');
       expect(toast).toBeFalsy();
     });

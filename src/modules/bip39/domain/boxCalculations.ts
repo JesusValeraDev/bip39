@@ -27,7 +27,7 @@ export function generateBoxAriaLabel(bitNumber: number, bitValue: number): strin
 export function generateBoxConfig(index: number): BoxConfig {
   const bitValue = calculateBitValue(index);
   const bitNumber = index + 1;
-  
+
   return {
     index,
     bitValue,

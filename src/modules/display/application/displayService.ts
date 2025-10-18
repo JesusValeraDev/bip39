@@ -21,7 +21,7 @@ export interface BinaryDisplayData {
 export function getBoxDisplayData(index: number, boxes: boolean[]): BoxDisplayData {
   const isActive = boxes[index];
   const isDisabled = shouldBoxBeDisabled(index, boxes);
-  
+
   return {
     isActive,
     isDisabled,
@@ -35,14 +35,14 @@ export function getAllBoxesDisplayData(boxes: boolean[]): BoxDisplayData[] {
 
 export function getWordDisplayData(binaryValue: number): WordDisplayData {
   const displayState = calculateDisplayState(binaryValue);
-  
+
   let announcement = displayState.announcement;
-  
+
   if (displayState.shouldGetWord) {
     const word = getWord(binaryValue - 1);
     announcement = generateWordAnnouncement(word, binaryValue);
   }
-  
+
   return {
     indexText: displayState.indexText,
     announcement,
@@ -61,7 +61,7 @@ export function getAllDisplayData(boxes: boolean[]): {
   binary: BinaryDisplayData;
 } {
   const binaryValue = calculateBinaryValue();
-  
+
   return {
     boxes: getAllBoxesDisplayData(boxes),
     word: getWordDisplayData(binaryValue),

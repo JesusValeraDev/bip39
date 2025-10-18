@@ -11,7 +11,7 @@ describe('Language Helpers - Pure Functions', () => {
     it('should return english as default', () => {
       expect(getDefaultLanguage()).toBe('english');
     });
-    
+
     it('should always return the same value', () => {
       expect(getDefaultLanguage()).toBe(getDefaultLanguage());
     });
@@ -29,7 +29,7 @@ describe('Language Helpers - Pure Functions', () => {
 
     it('should handle all supported languages', () => {
       const languages = ['english', 'spanish', 'french', 'italian', 'portuguese', 'japanese', 'korean', 'czech'];
-      
+
       languages.forEach(lang => {
         expect(determineLanguage(lang)).toBe(lang);
       });

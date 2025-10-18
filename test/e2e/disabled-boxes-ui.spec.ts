@@ -28,11 +28,11 @@ test.describe('Disabled Boxes - UI Interactions', () => {
     const wordDisplay = page.locator('#word-input');
 
     await box2048.click();
-    
+
     await expect(wordDisplay).not.toHaveClass(/error/);
-    
+
     await box1024.click({ force: true });
-    
+
     await expect(box1024).not.toHaveClass(/active/);
     await expect(box2048).toHaveClass(/active/);
   });
@@ -42,11 +42,11 @@ test.describe('Disabled Boxes - UI Interactions', () => {
     const resetButton = page.locator('#reset');
 
     await boxes.nth(0).click();
-    
+
     await expect(boxes.nth(1)).toHaveClass(/disabled/);
-    
+
     await resetButton.click();
-    
+
     for (let i = 0; i < 12; i++) {
       await expect(boxes.nth(i)).not.toHaveClass(/disabled/);
     }
@@ -58,10 +58,10 @@ test.describe('Disabled Boxes - UI Interactions', () => {
     const box1024 = boxes.nth(1);
 
     await box1024.click();
-    
+
     await box2048.focus();
     await page.keyboard.press('Enter');
-    
+
     await expect(box2048).not.toHaveClass(/active/);
     await expect(box1024).toHaveClass(/active/); // 1024 should still be active
   });
@@ -70,12 +70,12 @@ test.describe('Disabled Boxes - UI Interactions', () => {
     const boxes = page.locator('.box');
 
     await boxes.nth(0).click();
-    
+
     await boxes.nth(0).focus();
     await page.keyboard.press('ArrowRight');
 
     await page.keyboard.press('Enter');
-    
+
     await expect(boxes.nth(1)).not.toHaveClass(/active/);
   });
 
@@ -85,9 +85,9 @@ test.describe('Disabled Boxes - UI Interactions', () => {
     const box1024 = boxes.nth(1);
 
     await box1024.click();
-    
+
     await expect(box2048).toHaveClass(/disabled/);
-    
+
     await expect(box2048).toHaveAttribute('aria-disabled', 'true');
   });
 
@@ -96,13 +96,11 @@ test.describe('Disabled Boxes - UI Interactions', () => {
     const box1024 = page.locator('.box').nth(1);
 
     await box1024.click();
-    
+
     await expect(box2048).toHaveClass(/disabled/);
-    
-    const cursor = await box2048.evaluate((el) => 
-      window.getComputedStyle(el).cursor
-    );
-    
+
+    const cursor = await box2048.evaluate(el => window.getComputedStyle(el).cursor);
+
     expect(cursor).toBe('not-allowed');
   });
 });

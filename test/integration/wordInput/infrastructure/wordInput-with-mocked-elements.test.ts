@@ -16,9 +16,11 @@ const mockElements = {
     contains: vi.fn(() => false),
   },
   grid: {
-    querySelectorAll: vi.fn(() => Array.from({ length: 12 }, () => ({
-      classList: { add: vi.fn(), remove: vi.fn() },
-    }))),
+    querySelectorAll: vi.fn(() =>
+      Array.from({ length: 12 }, () => ({
+        classList: { add: vi.fn(), remove: vi.fn() },
+      }))
+    ),
   },
 };
 
@@ -49,51 +51,51 @@ describe('WordInput - With Mocked Elements', () => {
     mockElements.wordInput.value = '';
     vi.clearAllMocks();
     vi.resetModules();
-    
+
     // Mock document for click outside handler
     document.addEventListener = vi.fn();
   });
 
   it('should execute setupWordInput', async () => {
     const { setupWordInput } = await import('../../../../src/modules/wordInput/infrastructure/wordInput');
-    
+
     expect(() => setupWordInput()).not.toThrow();
   });
 
   it('should execute clearWordInput', async () => {
     const { clearWordInput } = await import('../../../../src/modules/wordInput/infrastructure/wordInput');
     mockElements.wordInput.value = 'test';
-    
+
     clearWordInput();
-    
+
     expect(mockElements.wordInput.value).toBe('');
   });
 
   it('should execute syncWordInputFromState with no active boxes', async () => {
     const { syncWordInputFromState } = await import('../../../../src/modules/wordInput/infrastructure/wordInput');
-    
+
     syncWordInputFromState();
-    
+
     expect(mockElements.wordInput.value).toBe('');
   });
 
   it('should execute syncWordInputFromState with active boxes', async () => {
     const { state } = await import('../../../../src/modules/bip39/domain/state');
     const { syncWordInputFromState } = await import('../../../../src/modules/wordInput/infrastructure/wordInput');
-    
+
     state.boxes[11] = true; // Value 1
     state.wordlist = ['abandon'];
-    
+
     syncWordInputFromState();
-    
+
     expect(mockElements.wordInput.value).toBe('abandon');
   });
 
   it('should handle setupWordInput event listeners', async () => {
     const { setupWordInput } = await import('../../../../src/modules/wordInput/infrastructure/wordInput');
-    
+
     setupWordInput();
-    
+
     expect(mockElements.wordInput.addEventListener).toHaveBeenCalled();
   });
 });

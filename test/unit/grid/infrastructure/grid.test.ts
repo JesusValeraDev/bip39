@@ -26,9 +26,7 @@ describe('Grid Component', () => {
   describe('Grid Logic', () => {
     it('should calculate correct bit values for labels', () => {
       // Test the bit calculation logic that would be used in createGrid
-      const expectedValues = [
-        2048, 1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 1
-      ];
+      const expectedValues = [2048, 1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 1];
 
       for (let i = 0; i < 12; i++) {
         const bitValue = Math.pow(2, 11 - i);

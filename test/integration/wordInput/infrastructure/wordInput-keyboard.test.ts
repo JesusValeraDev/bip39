@@ -15,11 +15,11 @@ const mockElements = {
     }),
     blur: vi.fn(),
     _handlers: {} as any,
-    _trigger: function(event: string, data?: any) {
+    _trigger: function (event: string, data?: any) {
       if (this._handlers[event]) {
         this._handlers[event](data || {});
       }
-    }
+    },
   },
   wordSuggestions: {
     classList: { add: vi.fn(), remove: vi.fn() },
@@ -76,7 +76,7 @@ describe('WordInput - Keyboard Navigation & Suggestions', () => {
     vi.clearAllMocks();
     vi.resetModules();
     vi.useFakeTimers();
-    
+
     document.addEventListener = vi.fn();
     document.body.innerHTML = '';
   });
@@ -88,102 +88,102 @@ describe('WordInput - Keyboard Navigation & Suggestions', () => {
 
   it('should handle input with matching words', async () => {
     const { setupWordInput } = await import('../../../../src/modules/wordInput/infrastructure/wordInput');
-    
+
     setupWordInput();
-    
+
     // Simulate typing
     mockElements.wordInput.value = 'ab';
     mockElements.wordInput._trigger('input');
-    
+
     expect(mockElements.wordSuggestions.appendChild).toHaveBeenCalled();
   });
 
   it('should handle empty input', async () => {
     const { setupWordInput } = await import('../../../../src/modules/wordInput/infrastructure/wordInput');
-    
+
     setupWordInput();
-    
+
     mockElements.wordInput.value = '';
     mockElements.wordInput._trigger('input');
-    
+
     vi.advanceTimersByTime(300);
     expect(mockElements.wordSuggestions.setAttribute).toHaveBeenCalledWith('hidden', '');
   });
 
   it('should handle ArrowDown key', async () => {
     const { setupWordInput } = await import('../../../../src/modules/wordInput/infrastructure/wordInput');
-    
+
     setupWordInput();
-    
+
     // First show suggestions
     mockElements.wordInput.value = 'ab';
     mockElements.wordInput._trigger('input');
-    
+
     // Then press ArrowDown
     const keyEvent = { key: 'ArrowDown', preventDefault: vi.fn() };
     mockElements.wordInput._trigger('keydown', keyEvent);
-    
+
     expect(keyEvent.preventDefault).toHaveBeenCalled();
   });
 
   it('should handle ArrowUp key', async () => {
     const { setupWordInput } = await import('../../../../src/modules/wordInput/infrastructure/wordInput');
-    
+
     setupWordInput();
-    
+
     mockElements.wordInput.value = 'ab';
     mockElements.wordInput._trigger('input');
-    
+
     const keyEvent = { key: 'ArrowUp', preventDefault: vi.fn() };
     mockElements.wordInput._trigger('keydown', keyEvent);
-    
+
     expect(keyEvent.preventDefault).toHaveBeenCalled();
   });
 
   it('should handle Enter key', async () => {
     mockElements.wordInput.value = 'ab';
     mockElements.wordInput._trigger('input');
-    
+
     const keyEvent = { key: 'Enter', preventDefault: vi.fn() };
     mockElements.wordInput._trigger('keydown', keyEvent);
-    
+
     expect(keyEvent.preventDefault).toHaveBeenCalled();
   });
 
   it('should handle Escape key', async () => {
     const { setupWordInput } = await import('../../../../src/modules/wordInput/infrastructure/wordInput');
-    
+
     setupWordInput();
-    
+
     mockElements.wordInput.value = 'ab';
     mockElements.wordInput._trigger('input');
-    
+
     const keyEvent = { key: 'Escape', preventDefault: vi.fn() };
     mockElements.wordInput._trigger('keydown', keyEvent);
-    
+
     vi.advanceTimersByTime(300);
     expect(mockElements.wordSuggestions.setAttribute).toHaveBeenCalledWith('hidden', '');
   });
 
   it('should handle focus event', async () => {
     const { setupWordInput } = await import('../../../../src/modules/wordInput/infrastructure/wordInput');
-    
+
     setupWordInput();
-    
+
     mockElements.wordInput.value = 'test';
     mockElements.wordInput._trigger('focus');
-    
+
     expect(mockElements.wordInput.addEventListener).toHaveBeenCalled();
   });
 
   it('should validate on blur', async () => {
     const { setupWordInput } = await import('../../../../src/modules/wordInput/infrastructure/wordInput');
-    
+
     setupWordInput();
-    
+
     mockElements.wordInput.value = 'abandon';
     mockElements.wordInput._trigger('blur');
-    
+
     vi.advanceTimersByTime(300);
     expect(mockElements.wordInput.classList.remove).toHaveBeenCalledWith('error');
   });
@@ -191,12 +191,12 @@ describe('WordInput - Keyboard Navigation & Suggestions', () => {
   it('should show error for invalid word on blur', async () => {
     const { setupWordInput } = await import('../../../../src/modules/wordInput/infrastructure/wordInput');
     const { resetBoxes } = await import('../../../../src/modules/bip39/domain/state');
-    
+
     setupWordInput();
-    
+
     mockElements.wordInput.value = 'invalid';
     mockElements.wordInput._trigger('blur');
-    
+
     vi.advanceTimersByTime(300);
     expect(mockElements.wordInput.classList.add).toHaveBeenCalledWith('error');
     expect(resetBoxes).toHaveBeenCalled();

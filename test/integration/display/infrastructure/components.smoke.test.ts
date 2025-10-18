@@ -32,12 +32,12 @@ describe('Components - Smoke Tests', () => {
 
   it('should call toast function', async () => {
     const { showDisabledBoxToast } = await import('../../../../src/modules/display/infrastructure/toast');
-    
+
     // Call it multiple times to trigger the actual toast (needs 2+ calls)
     showDisabledBoxToast();
     showDisabledBoxToast();
     showDisabledBoxToast();
-    
+
     expect(true).toBe(true);
   });
 });

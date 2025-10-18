@@ -16,7 +16,7 @@ const mockElements = {
     removeAttribute: vi.fn(),
     querySelectorAll: vi.fn(() => mockSuggestionItems),
     innerHTML: '',
-    appendChild: vi.fn((item) => mockSuggestionItems.push(item)),
+    appendChild: vi.fn(item => mockSuggestionItems.push(item)),
     contains: vi.fn(() => false),
   },
   grid: {
@@ -54,7 +54,7 @@ describe('WordInput - Suggestions System', () => {
     vi.clearAllMocks();
     vi.resetModules();
     vi.useFakeTimers();
-    
+
     document.addEventListener = vi.fn();
     document.body.innerHTML = `
       <input id="word-input" />
@@ -70,29 +70,28 @@ describe('WordInput - Suggestions System', () => {
 
   it('should have wordlist in state', async () => {
     const { state } = await import('../../../../src/modules/bip39/domain/state');
-    
+
     // Verify state has wordlist
     expect(state.wordlist.length).toBeGreaterThan(0);
   });
 
   it('should limit suggestions to 10 items', async () => {
     const { state } = await import('../../../../src/modules/bip39/domain/state');
-    
+
     // Add many words
     state.wordlist = Array.from({ length: 50 }, (_, i) => `word${i}`);
-    
+
     expect(state.wordlist.length).toBe(50);
   });
 
   it('should get suggestions for prefix', async () => {
     const { state } = await import('../../../../src/modules/bip39/domain/state');
     const { getSuggestions } = await import('../../../../src/modules/wordInput/domain/wordInputHelpers');
-    
+
     const suggestions = getSuggestions('ab', state.wordlist, 10);
-    
+
     expect(suggestions.length).toBeGreaterThanOrEqual(0);
   });
-
 
   it('should handle mouse events on suggestions', () => {
     const mockItem = {
@@ -100,32 +99,32 @@ describe('WordInput - Suggestions System', () => {
       setAttribute: vi.fn(),
       innerHTML: '',
     };
-    
+
     // Test that event listeners would be attached
     mockItem.addEventListener('mousedown', vi.fn());
     mockItem.addEventListener('mouseenter', vi.fn());
-    
+
     expect(mockItem.addEventListener).toHaveBeenCalledTimes(2);
   });
 
   it('should clear suggestions on hide', () => {
     vi.advanceTimersByTime(300);
-    
+
     // After timeout, suggestions should be hidden
     expect(true).toBe(true);
   });
 
   it('should handle selected suggestion index', () => {
     let selectedIndex = -1;
-    
+
     // Simulate arrow down
     selectedIndex = Math.min(selectedIndex + 1, 5);
     expect(selectedIndex).toBe(0);
-    
+
     // Simulate arrow down again
     selectedIndex = Math.min(selectedIndex + 1, 5);
     expect(selectedIndex).toBe(1);
-    
+
     // Simulate arrow up
     selectedIndex = Math.max(selectedIndex - 1, 0);
     expect(selectedIndex).toBe(0);

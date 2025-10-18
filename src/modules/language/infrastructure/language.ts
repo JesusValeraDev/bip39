@@ -8,27 +8,27 @@ export let currentTranslations: Translations = getTranslation('en');
 export let currentLanguage = 'english';
 
 const languageFlagsSVG: Record<string, string> = {
-  'english': `<svg class="flag-icon" width="28" height="28"><use href="/sprite.svg#flag-uk"/></svg>`,
-  'spanish': `<svg class="flag-icon" width="28" height="28"><use href="/sprite.svg#flag-es"/></svg>`,
-  'french': `<svg class="flag-icon" width="28" height="28"><use href="/sprite.svg#flag-fr"/></svg>`,
-  'italian': `<svg class="flag-icon" width="28" height="28"><use href="/sprite.svg#flag-it"/></svg>`,
-  'portuguese': `<svg class="flag-icon" width="28" height="28"><use href="/sprite.svg#flag-pt"/></svg>`,
-  'czech': `<svg class="flag-icon" width="28" height="28"><use href="/sprite.svg#flag-cz"/></svg>`,
-  'japanese': `<svg class="flag-icon" width="28" height="28"><use href="/sprite.svg#flag-jp"/></svg>`,
-  'korean': `<svg class="flag-icon" width="28" height="28"><use href="/sprite.svg#flag-kr"/></svg>`,
-  'chinese_simplified': `<svg class="flag-icon" width="28" height="28"><use href="/sprite.svg#flag-cn"/></svg>`,
-  'chinese_traditional': `<svg class="flag-icon" width="28" height="28"><use href="/sprite.svg#flag-tw"/></svg>`,
+  english: `<svg class="flag-icon" width="28" height="28"><use href="/sprite.svg#flag-uk"/></svg>`,
+  spanish: `<svg class="flag-icon" width="28" height="28"><use href="/sprite.svg#flag-es"/></svg>`,
+  french: `<svg class="flag-icon" width="28" height="28"><use href="/sprite.svg#flag-fr"/></svg>`,
+  italian: `<svg class="flag-icon" width="28" height="28"><use href="/sprite.svg#flag-it"/></svg>`,
+  portuguese: `<svg class="flag-icon" width="28" height="28"><use href="/sprite.svg#flag-pt"/></svg>`,
+  czech: `<svg class="flag-icon" width="28" height="28"><use href="/sprite.svg#flag-cz"/></svg>`,
+  japanese: `<svg class="flag-icon" width="28" height="28"><use href="/sprite.svg#flag-jp"/></svg>`,
+  korean: `<svg class="flag-icon" width="28" height="28"><use href="/sprite.svg#flag-kr"/></svg>`,
+  chinese_simplified: `<svg class="flag-icon" width="28" height="28"><use href="/sprite.svg#flag-cn"/></svg>`,
+  chinese_traditional: `<svg class="flag-icon" width="28" height="28"><use href="/sprite.svg#flag-tw"/></svg>`,
 };
 
 const browserLangToWordlist: Record<string, string> = {
-  'en': 'english',
-  'es': 'spanish',
-  'fr': 'french',
-  'it': 'italian',
-  'pt': 'portuguese',
-  'cs': 'czech',
-  'ja': 'japanese',
-  'ko': 'korean',
+  en: 'english',
+  es: 'spanish',
+  fr: 'french',
+  it: 'italian',
+  pt: 'portuguese',
+  cs: 'czech',
+  ja: 'japanese',
+  ko: 'korean',
   'zh-Hans': 'chinese_simplified',
   'zh-CN': 'chinese_simplified',
   'zh-SG': 'chinese_simplified',
@@ -36,7 +36,7 @@ const browserLangToWordlist: Record<string, string> = {
   'zh-TW': 'chinese_traditional',
   'zh-HK': 'chinese_traditional',
   'zh-MO': 'chinese_traditional',
-  'zh': 'chinese_simplified',
+  zh: 'chinese_simplified',
 };
 
 function getBrowserLanguage(): string {
@@ -45,7 +45,7 @@ function getBrowserLanguage(): string {
   }
 
   // Get browser language (e.g., "en-US", "es", "zh-CN")
-  const browserLang = navigator.language || (navigator as any).userLanguage;
+  const browserLang = navigator.language || (navigator as { userLanguage?: string }).userLanguage;
 
   if (!browserLang) {
     return 'english';
@@ -73,21 +73,21 @@ export function initLanguage(): string {
   elements.currentFlag.innerHTML = languageFlagsSVG[defaultLanguage] || languageFlagsSVG['english'];
 
   updateActiveLanguageOption();
-  
+
   return defaultLanguage;
 }
 
 export async function changeLanguage(newLanguage: string): Promise<void> {
   currentLanguage = newLanguage;
   saveLanguage(newLanguage);
-  
+
   elements.currentFlag.innerHTML = languageFlagsSVG[newLanguage] || languageFlagsSVG['english'];
-  
+
   const uiLang = getUILanguageCode(newLanguage);
   currentTranslations = getTranslation(uiLang);
-  
+
   updateActiveLanguageOption();
-  
+
   await loadWordlist(newLanguage);
   updateUITranslations();
 }
@@ -108,7 +108,7 @@ export function setupLanguageToggle(): void {
   let isOpen = false;
 
   // Toggle dropdown
-  elements.languageToggle.addEventListener('click', (e) => {
+  elements.languageToggle.addEventListener('click', e => {
     e.stopPropagation();
     isOpen = !isOpen;
     elements.languageDropdown.classList.toggle('open', isOpen);
@@ -116,7 +116,7 @@ export function setupLanguageToggle(): void {
   });
 
   // Close dropdown when clicking outside
-  document.addEventListener('click', (e) => {
+  document.addEventListener('click', e => {
     if (isOpen && !elements.languageDropdown.contains(e.target as Node)) {
       isOpen = false;
       elements.languageDropdown.classList.remove('open');
@@ -127,20 +127,21 @@ export function setupLanguageToggle(): void {
   // Handle language option clicks
   const options = elements.languageDropdown.querySelectorAll('.language-option');
   options.forEach(option => {
-    option.addEventListener('click', async () => {
+    option.addEventListener('click', () => {
       const btn = option as HTMLButtonElement;
       const lang = btn.dataset.lang;
       if (lang) {
-        await changeLanguage(lang);
-        // Close dropdown
-        isOpen = false;
-        elements.languageDropdown.classList.remove('open');
-        elements.languageToggle.setAttribute('aria-expanded', 'false');
+        void changeLanguage(lang).then(() => {
+          // Close dropdown
+          isOpen = false;
+          elements.languageDropdown.classList.remove('open');
+          elements.languageToggle.setAttribute('aria-expanded', 'false');
+        });
       }
     });
   });
 
-  elements.languageToggle.addEventListener('keydown', (e) => {
+  elements.languageToggle.addEventListener('keydown', e => {
     if (e.key === 'Escape' && isOpen) {
       isOpen = false;
       elements.languageDropdown.classList.remove('open');
@@ -173,7 +174,7 @@ function updateWordInputTranslations(): void {
 
 function updateModalTranslations(): void {
   elements.modalTitle.textContent = currentTranslations.modalTitle;
-  
+
   updateModalStep1Translations();
   updateModalStep2Translations();
   updateModalStep3Translations();
@@ -185,7 +186,7 @@ function updateModalTranslations(): void {
 function updateModalStep1Translations(): void {
   elements.modalStep1Title.textContent = currentTranslations.modalStep1Title;
   elements.modalStep1Text.textContent = currentTranslations.modalStep1Text;
-  
+
   elements.modalStep1WordGrid.innerHTML = '';
   currentTranslations.modalStep1Words.forEach(word => {
     const wordSpan = document.createElement('span');
@@ -236,7 +237,7 @@ function updateModalWarningTranslations(): void {
 function updateModalWhyTranslations(): void {
   elements.modalWhyTitle.textContent = currentTranslations.modalWhyBIP39Title;
   elements.modalWhyText.textContent = currentTranslations.modalWhyBIP39Text;
-  
+
   elements.modalWhyLink.innerHTML = `
     <svg width="18" height="18" style="display: inline-block">
       <use href="/sprite.svg#icon-lightbulb"/>
@@ -249,6 +250,6 @@ export function updateUITranslations(): void {
   updateBasicUITranslations();
   updateWordInputTranslations();
   updateModalTranslations();
-  
+
   updateDisplay();
 }

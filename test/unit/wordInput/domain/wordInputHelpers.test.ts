@@ -10,7 +10,18 @@ import {
   shouldShowSuggestions,
 } from '../../../../src/modules/wordInput';
 
-const mockWordlist = ['abandon', 'ability', 'able', 'about', 'above', 'absent', 'absorb', 'abstract', 'absurd', 'abuse'];
+const mockWordlist = [
+  'abandon',
+  'ability',
+  'able',
+  'about',
+  'above',
+  'absent',
+  'absorb',
+  'abstract',
+  'absurd',
+  'abuse',
+];
 
 describe('Word Input Helpers - Pure Functions', () => {
   describe('isWordInWordlist', () => {

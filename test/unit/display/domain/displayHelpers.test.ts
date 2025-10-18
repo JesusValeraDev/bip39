@@ -66,7 +66,7 @@ describe('Display Helpers - Pure Functions', () => {
     it('should handle different words', () => {
       const announcement1 = generateWordAnnouncement('ability', 2);
       const announcement2 = generateWordAnnouncement('able', 3);
-      
+
       expect(announcement1).toContain('ability');
       expect(announcement2).toContain('able');
     });

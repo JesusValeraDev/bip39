@@ -1,20 +1,18 @@
 export function isWordInWordlist(word: string, wordlist: string[]): boolean {
   const normalizedWord = word.trim().toLowerCase();
   if (!normalizedWord) return false;
-  
+
   return wordlist.some(w => w.toLowerCase() === normalizedWord);
 }
 
 export function getSuggestions(input: string, wordlist: string[], maxSuggestions: number = 10): string[] {
   const normalizedInput = input.trim().toLowerCase();
-  
+
   if (!normalizedInput) {
     return [];
   }
 
-  return wordlist
-    .filter(word => word.toLowerCase().startsWith(normalizedInput))
-    .slice(0, maxSuggestions);
+  return wordlist.filter(word => word.toLowerCase().startsWith(normalizedInput)).slice(0, maxSuggestions);
 }
 
 export function getWordIndex(word: string, wordlist: string[]): number {

@@ -47,42 +47,42 @@ describe('Display - With Mocked Elements', () => {
 
   it('should execute updateDisplay', async () => {
     const { updateDisplay } = await import('../../../../src/modules/display/infrastructure/display');
-    
+
     expect(() => updateDisplay()).not.toThrow();
   });
 
   it('should update binary display', async () => {
     const { updateDisplay } = await import('../../../../src/modules/display/infrastructure/display');
-    
+
     updateDisplay();
-    
+
     expect(mockElements.binary.textContent).toBe('0 1 1 0 0 1 0 0');
   });
 
   it('should update word index', async () => {
     const { updateDisplay } = await import('../../../../src/modules/display/infrastructure/display');
-    
+
     updateDisplay();
-    
+
     expect(mockElements.index.textContent).toBe('100');
   });
 
   it('should update box states', async () => {
     const { updateDisplay } = await import('../../../../src/modules/display/infrastructure/display');
     mockState.boxes[0] = true;
-    
+
     updateDisplay();
-    
+
     expect(mockBoxElements[0].classList.toggle).toHaveBeenCalled();
   });
 
   it('should handle multiple calls', async () => {
     const { updateDisplay } = await import('../../../../src/modules/display/infrastructure/display');
-    
+
     updateDisplay();
     updateDisplay();
     updateDisplay();
-    
+
     expect(true).toBe(true);
   });
 });

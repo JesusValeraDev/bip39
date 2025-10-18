@@ -1,13 +1,13 @@
 export type WordlistLanguage =
-  | 'english' 
-  | 'spanish' 
-  | 'french' 
-  | 'czech' 
-  | 'italian' 
-  | 'portuguese' 
-  | 'japanese' 
-  | 'korean' 
-  | 'chinese_simplified' 
+  | 'english'
+  | 'spanish'
+  | 'french'
+  | 'czech'
+  | 'italian'
+  | 'portuguese'
+  | 'japanese'
+  | 'korean'
+  | 'chinese_simplified'
   | 'chinese_traditional';
 
 export type UILanguage = 'en' | 'es' | 'fr' | 'cs' | 'it' | 'pt' | 'ja' | 'ko' | 'zh-Hans' | 'zh-Hant';

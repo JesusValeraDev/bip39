@@ -21,7 +21,7 @@ describe('Theme Service', () => {
   describe('initTheme', () => {
     it('should set OS theme as default when no saved theme', () => {
       mockLocalStorage.getItem.mockReturnValue(null);
-      
+
       // Mock matchMedia to return light theme
       Object.defineProperty(window, 'matchMedia', {
         writable: true,
@@ -60,7 +60,7 @@ describe('Theme Service', () => {
 
     it('should set dark theme when OS prefers dark', () => {
       mockLocalStorage.getItem.mockReturnValue(null);
-      
+
       // Mock matchMedia to return dark theme
       Object.defineProperty(window, 'matchMedia', {
         writable: true,

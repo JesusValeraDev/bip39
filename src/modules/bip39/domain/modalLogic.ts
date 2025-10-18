@@ -16,10 +16,6 @@ export function shouldCloseOnKey(key: string, modalOpen: boolean): boolean {
   return isEscapeKey(key) && modalOpen;
 }
 
-export function validateModalElements(
-  button: unknown,
-  modal: unknown,
-  closeButton: unknown
-): boolean {
+export function validateModalElements(button: unknown, modal: unknown, closeButton: unknown): boolean {
   return button !== null && modal !== null && closeButton !== null;
 }

@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+coverage/
+.lighthouseci/
+playwright-report/
+test-results/
+
+# Config files
+package-lock.json
+
+# Public files
+public/
+
+# Documentation
+*.md

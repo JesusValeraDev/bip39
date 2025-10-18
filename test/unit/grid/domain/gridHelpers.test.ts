@@ -1,10 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { 
-  calculateBitValue, 
-  generateBoxAriaLabel,
-  generateBoxConfigs,
-  getBoxCount 
-} from '../../../../src/modules/grid';
+import { calculateBitValue, generateBoxAriaLabel, generateBoxConfigs, getBoxCount } from '../../../../src/modules/grid';
 
 describe('Grid Helpers - Pure Functions', () => {
   describe('calculateBitValue', () => {

@@ -48,17 +48,17 @@ test.describe('BIP39 Word Selector', () => {
 
   test('should prevent out of range values with disabled boxes', async ({ page }) => {
     await page.locator('.box').first().click(); // 2048
-    
+
     // Now try to click box 11 (value 1) - should be disabled
     const box1 = page.locator('.box').nth(11);
     await expect(box1).toHaveClass(/disabled/);
-    
+
     const binary = page.locator('#binary');
     await expect(binary).toHaveText('100000000000');
-    
+
     const wordInput = page.locator('#word-input');
     await expect(wordInput).not.toHaveClass(/error/);
-    
+
     const index = page.locator('#index');
     await expect(index).toHaveText('2048');
   });
@@ -69,7 +69,7 @@ test.describe('BIP39 Word Selector', () => {
     await page.locator('.box').nth(11).click(); // 1
 
     await expect(page.locator('.box.active')).toHaveCount(3);
-  
+
     await page.locator('#reset').click();
 
     await expect(page.locator('.box.active')).toHaveCount(0);

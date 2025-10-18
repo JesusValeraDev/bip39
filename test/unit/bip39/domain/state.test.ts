@@ -23,26 +23,26 @@ describe('State Management', () => {
   describe('toggleBox', () => {
     it('should toggle a box from false to true', () => {
       expect(state.boxes[0]).toBe(false);
-      
+
       toggleBox(0);
-      
+
       expect(state.boxes[0]).toBe(true);
     });
 
     it('should toggle a box from true to false', () => {
       state.boxes[0] = true;
-      
+
       toggleBox(0);
-      
+
       expect(state.boxes[0]).toBe(false);
     });
 
     it('should not affect other boxes', () => {
       state.boxes[1] = true;
       state.boxes[2] = false;
-      
+
       toggleBox(0);
-      
+
       expect(state.boxes[1]).toBe(true);
       expect(state.boxes[2]).toBe(false);
     });
@@ -65,8 +65,8 @@ describe('State Management', () => {
     it('should return correct value for multiple boxes', () => {
       state.boxes[11] = true; // 2^0 = 1
       state.boxes[10] = true; // 2^1 = 2
-      state.boxes[9] = true;  // 2^2 = 4
-      
+      state.boxes[9] = true; // 2^2 = 4
+
       expect(calculateBinaryValue()).toBe(7); // 1 + 2 + 4
     });
 
@@ -91,7 +91,7 @@ describe('State Management', () => {
     });
 
     it('should return correct binary string for multiple boxes', () => {
-      state.boxes[0] = true;  // 2^11
+      state.boxes[0] = true; // 2^11
       state.boxes[11] = true; // 2^0
       expect(getBinaryString()).toBe('100000000001');
     });

@@ -14,7 +14,7 @@ export function generateBoxAriaLabel(index: number, bitValue: number): string {
 
 export function generateBoxConfigs(): BoxConfig[] {
   const configs: BoxConfig[] = [];
-  
+
   for (let i = 0; i < 12; i++) {
     const bitValue = calculateBitValue(i);
     configs.push({
@@ -23,7 +23,7 @@ export function generateBoxConfigs(): BoxConfig[] {
       ariaLabel: generateBoxAriaLabel(i, bitValue),
     });
   }
-  
+
   return configs;
 }
 

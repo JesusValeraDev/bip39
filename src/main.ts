@@ -1,15 +1,15 @@
 import { getTranslation } from './modules/i18n';
 import {
-    resetBoxes,
-    loadWordlist,
-    elements,
-    determineUILanguage,
-    getGitHashOrDefault,
-    validateModalElement,
-    validateButtonElements,
-    isEscapeKey,
-    isModalOpen,
-    getModalTransitionDuration
+  resetBoxes,
+  loadWordlist,
+  elements,
+  determineUILanguage,
+  getGitHashOrDefault,
+  validateModalElement,
+  validateButtonElements,
+  isEscapeKey,
+  isModalOpen,
+  getModalTransitionDuration,
 } from './modules/bip39';
 import { initTheme, toggleTheme } from './modules/theme';
 import { initLanguage, setupLanguageToggle, setTranslations, updateUITranslations } from './modules/language';
@@ -49,7 +49,7 @@ function setupModalEventListeners(
 }
 
 function setupModalKeyboardHandler(modal: HTMLElement): void {
-  document.addEventListener('keydown', (e) => {
+  document.addEventListener('keydown', e => {
     if (isEscapeKey(e.key) && isModalOpen(modal.getAttribute('aria-hidden'))) {
       e.preventDefault();
       closeLearnModal(modal);
@@ -93,6 +93,6 @@ async function init(): Promise<void> {
   setupLearnModal();
 }
 
-init().catch((error) => {
+init().catch(error => {
   console.error('Failed to initialize application:', error);
 });

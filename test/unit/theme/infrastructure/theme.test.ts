@@ -21,23 +21,23 @@ describe('Theme Service (Unit Tests)', () => {
   describe('initTheme', () => {
     it('should set theme from localStorage when available', () => {
       mockLocalStorage.getItem.mockReturnValue('dark');
-      
+
       initTheme();
-      
+
       expect(document.documentElement.getAttribute('data-theme')).toBe('dark');
     });
 
     it('should set light theme from localStorage', () => {
       mockLocalStorage.getItem.mockReturnValue('light');
-      
+
       initTheme();
-      
+
       expect(document.documentElement.getAttribute('data-theme')).toBe('light');
     });
 
     it('should use OS theme when no saved preference', () => {
       mockLocalStorage.getItem.mockReturnValue(null);
-      
+
       Object.defineProperty(window, 'matchMedia', {
         writable: true,
         value: vi.fn().mockImplementation(query => ({
@@ -48,20 +48,20 @@ describe('Theme Service (Unit Tests)', () => {
       });
 
       initTheme();
-      
+
       expect(document.documentElement.getAttribute('data-theme')).toBe('dark');
     });
 
     it('should default to dark when matchMedia is not available', () => {
       mockLocalStorage.getItem.mockReturnValue(null);
-      
+
       Object.defineProperty(window, 'matchMedia', {
         writable: true,
         value: undefined,
       });
 
       initTheme();
-      
+
       // Should use fallback in getOSTheme()
       expect(document.documentElement.getAttribute('data-theme')).toBe('dark');
     });
@@ -70,27 +70,27 @@ describe('Theme Service (Unit Tests)', () => {
   describe('toggleTheme', () => {
     it('should toggle from light to dark', () => {
       document.documentElement.setAttribute('data-theme', 'light');
-      
+
       toggleTheme();
-      
+
       expect(document.documentElement.getAttribute('data-theme')).toBe('dark');
       expect(mockLocalStorage.setItem).toHaveBeenCalledWith('theme', 'dark');
     });
 
     it('should toggle from dark to light', () => {
       document.documentElement.setAttribute('data-theme', 'dark');
-      
+
       toggleTheme();
-      
+
       expect(document.documentElement.getAttribute('data-theme')).toBe('light');
       expect(mockLocalStorage.setItem).toHaveBeenCalledWith('theme', 'light');
     });
 
     it('should toggle to dark when current theme is undefined', () => {
       document.documentElement.removeAttribute('data-theme');
-      
+
       toggleTheme();
-      
+
       expect(document.documentElement.getAttribute('data-theme')).toBe('dark');
     });
   });
@@ -106,7 +106,7 @@ describe('Theme Service (Unit Tests)', () => {
 
     it('should handle missing theme button gracefully', () => {
       document.body.innerHTML = '';
-      
+
       expect(() => updateThemeButtonState('dark')).not.toThrow();
     });
 

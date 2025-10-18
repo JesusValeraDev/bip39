@@ -49,9 +49,7 @@ test.describe('Responsive Design', () => {
 
     const grid = page.locator('.grid');
 
-    const gridDisplay = await grid.evaluate(el => 
-      window.getComputedStyle(el).display
-    );
+    const gridDisplay = await grid.evaluate(el => window.getComputedStyle(el).display);
 
     expect(gridDisplay).toBe('grid');
   });
@@ -60,14 +58,14 @@ test.describe('Responsive Design', () => {
     // iPhone SE dimensions
     await page.setViewportSize({ width: 375, height: 667 });
     await page.goto('/');
-    
+
     const privacyWarning = page.locator('.privacy-warning');
     await expect(privacyWarning).toBeVisible();
-    
+
     // Check privacy warning content is visible
     const warningTitle = page.locator('.warning-title');
     await expect(warningTitle).toContainText('Privacy Protected');
-    
+
     const privacyText = page.locator('#privacy-text');
     await expect(privacyText).toBeVisible();
   });
@@ -75,16 +73,16 @@ test.describe('Responsive Design', () => {
   test('should display all sections properly on mobile', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 });
     await page.goto('/');
-    
+
     // Check all three sections are visible
     const gridSection = page.locator('.grid-section');
     const wordSection = page.locator('.word-section');
     const privacySection = page.locator('.privacy-warning');
-    
+
     await expect(gridSection).toBeVisible();
     await expect(wordSection).toBeVisible();
     await expect(privacySection).toBeVisible();
-    
+
     // Check section title is visible
     await expect(page.locator('#word-input-label')).toBeVisible();
   });
@@ -92,15 +90,15 @@ test.describe('Responsive Design', () => {
   test('should have readable text sizes on small screens', async ({ page }) => {
     await page.setViewportSize({ width: 320, height: 568 }); // iPhone SE (1st gen)
     await page.goto('/');
-    
+
     // Check word input is still readable
     const wordInput = page.locator('#word-input');
     await expect(wordInput).toBeVisible();
-    
+
     // Check binary display is visible
     const binary = page.locator('#binary');
     await expect(binary).toBeVisible();
-    
+
     // Check all sections are visible
     await expect(page.locator('.grid-section')).toBeVisible();
     await expect(page.locator('.word-section')).toBeVisible();

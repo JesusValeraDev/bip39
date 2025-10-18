@@ -1,9 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import {
-  should2048BeDisabled,
-  shouldOtherBoxBeDisabled,
-  shouldBoxBeDisabled,
-} from '../../../../src/modules/bip39';
+import { should2048BeDisabled, shouldOtherBoxBeDisabled, shouldBoxBeDisabled } from '../../../../src/modules/bip39';
 
 describe('Domain - Box Disable Rules', () => {
   describe('should2048BeDisabled', () => {

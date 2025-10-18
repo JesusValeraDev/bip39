@@ -32,33 +32,33 @@ describe('Grid - With Mocked Elements', () => {
 
   it('should execute createGrid', async () => {
     const { createGrid } = await import('../../../../src/modules/grid/infrastructure/grid');
-    
+
     expect(() => createGrid()).not.toThrow();
   });
 
   it('should clear grid innerHTML', async () => {
     const { createGrid } = await import('../../../../src/modules/grid/infrastructure/grid');
     mockElements.grid.innerHTML = 'old content';
-    
+
     createGrid();
-    
+
     expect(mockElements.grid.innerHTML).toBe('');
   });
 
   it('should call appendChild 12 times', async () => {
     const { createGrid } = await import('../../../../src/modules/grid/infrastructure/grid');
-    
+
     createGrid();
-    
+
     expect(mockElements.grid.appendChild).toHaveBeenCalledTimes(12);
   });
 
   it('should call updateDisplay after grid creation', async () => {
     const { updateDisplay } = await import('../../../../src/modules/display/infrastructure/display');
     const { createGrid } = await import('../../../../src/modules/grid/infrastructure/grid');
-    
+
     createGrid();
-    
+
     expect(updateDisplay).toHaveBeenCalled();
   });
 });

@@ -1,8 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import {
-  getSavedLanguage,
-  saveLanguage,
-} from '../../../../src/modules/language';
+import { getSavedLanguage, saveLanguage } from '../../../../src/modules/language';
 
 const mockLocalStorage = {
   getItem: vi.fn(),
@@ -45,7 +42,7 @@ describe('Language Helpers - Extended Tests', () => {
     it('should save different languages', () => {
       saveLanguage('spanish');
       expect(mockLocalStorage.setItem).toHaveBeenCalledWith('language', 'spanish');
-      
+
       saveLanguage('japanese');
       expect(mockLocalStorage.setItem).toHaveBeenCalledWith('language', 'japanese');
     });

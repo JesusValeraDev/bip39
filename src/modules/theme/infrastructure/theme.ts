@@ -3,7 +3,7 @@ import { toggleTheme as domainToggleTheme, getThemeToggleLabel, getAriaPressed }
 export function initTheme(): void {
   const savedTheme = localStorage.getItem('theme');
   const theme = savedTheme || getOSTheme();
-  
+
   setDocumentTheme(theme);
   updateThemeButtonState(theme);
   setupThemeListener(savedTheme);
@@ -23,7 +23,7 @@ function setDocumentTheme(theme: string): void {
 function setupThemeListener(savedTheme: string | null): void {
   if (!savedTheme && typeof window !== 'undefined' && window.matchMedia) {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    mediaQuery.addEventListener('change', (e) => {
+    mediaQuery.addEventListener('change', e => {
       if (!localStorage.getItem('theme')) {
         const newTheme = e.matches ? 'dark' : 'light';
         setDocumentTheme(newTheme);
@@ -36,7 +36,7 @@ function setupThemeListener(savedTheme: string | null): void {
 export function toggleTheme(): void {
   const currentTheme = document.documentElement.getAttribute('data-theme');
   const newTheme = domainToggleTheme(currentTheme);
-  
+
   setDocumentTheme(newTheme);
   localStorage.setItem('theme', newTheme);
   updateThemeButtonState(newTheme);

@@ -5,9 +5,12 @@ export async function loadWordlist(language: string = 'english'): Promise<void> 
     state.currentLanguage = language;
     const response = await fetch(`/doc/${language}.txt`);
     const text = await response.text();
-    state.wordlist = text.trim().split('\n').map(word => word.trim());
-  } catch (error) {
-    // Failed to load wordlist
+    state.wordlist = text
+      .trim()
+      .split('\n')
+      .map(word => word.trim());
+  } catch {
+    // Failed to load wordlist - silently fail as this is handled by E2E tests
   }
 }
 

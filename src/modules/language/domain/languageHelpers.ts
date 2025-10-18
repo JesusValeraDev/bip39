@@ -20,17 +20,17 @@ export function isLanguageActive(optionLang: string, currentLang: string): boole
 
 export function getUILanguageCode(wordlistLang: string): string {
   const mapping: Record<string, string> = {
-    'english': 'en',
-    'spanish': 'es',
-    'french': 'fr',
-    'czech': 'cs',
-    'italian': 'it',
-    'portuguese': 'pt',
-    'japanese': 'ja',
-    'korean': 'ko',
-    'chinese_simplified': 'zh-Hans',
-    'chinese_traditional': 'zh-Hant',
+    english: 'en',
+    spanish: 'es',
+    french: 'fr',
+    czech: 'cs',
+    italian: 'it',
+    portuguese: 'pt',
+    japanese: 'ja',
+    korean: 'ko',
+    chinese_simplified: 'zh-Hans',
+    chinese_traditional: 'zh-Hant',
   };
-  
+
   return mapping[wordlistLang] || 'en';
 }

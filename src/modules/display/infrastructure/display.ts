@@ -4,7 +4,7 @@ import { getAllDisplayData } from '../application/displayService';
 
 export function updateDisplay(): void {
   const displayData = getAllDisplayData(state.boxes);
-  
+
   updateBoxStates(displayData.boxes);
   updateBinaryDisplay(displayData.binary);
   updateWordDisplay(displayData.word);
