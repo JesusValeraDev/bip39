@@ -1,4 +1,4 @@
-import { state } from '../src/core/state';
+import { state } from '../src/modules/bip39';
 
 export function resetState(): void {
   state.boxes.fill(false);

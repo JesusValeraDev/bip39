@@ -1,12 +1,10 @@
-import { getTranslation, wordlistToUILang } from './i18n';
-import { resetBoxes } from './core/state';
-import { loadWordlist } from './services/wordlist';
-import { initTheme, toggleTheme } from './services/theme';
-import { initLanguage, setupLanguageToggle, setTranslations, updateUITranslations } from './services/language';
-import { createGrid } from './components/grid';
-import { updateDisplay } from './components/display';
-import { setupWordInput, clearWordInput } from './components/wordInput';
-import { elements } from './core/dom';
+import { getTranslation } from './modules/i18n';
+import { resetBoxes, loadWordlist, elements, determineUILanguage, getGitHashOrDefault, validateModalElement, validateButtonElements, isEscapeKey, isModalOpen, getModalTransitionDuration } from './modules/bip39';
+import { initTheme, toggleTheme } from './modules/theme';
+import { initLanguage, setupLanguageToggle, setTranslations, updateUITranslations } from './modules/language';
+import { createGrid } from './modules/grid';
+import { updateDisplay } from './modules/display';
+import { setupWordInput, clearWordInput } from './modules/wordInput';
 
 function handleReset(): void {
   resetBoxes();
@@ -24,8 +22,8 @@ function closeLearnModal(modal: HTMLElement): void {
   modal.setAttribute('aria-hidden', 'true');
   setTimeout(() => {
     modal.setAttribute('hidden', '');
-    document.body.style.overflow = ''; // Restore scrolling
-  }, 300); // Match CSS transition duration
+    document.body.style.overflow = '';
+  }, getModalTransitionDuration());
 }
 
 function setupModalEventListeners(
@@ -41,7 +39,7 @@ function setupModalEventListeners(
 
 function setupModalKeyboardHandler(modal: HTMLElement): void {
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') {
+    if (isEscapeKey(e.key) && isModalOpen(modal.getAttribute('aria-hidden'))) {
       e.preventDefault();
       closeLearnModal(modal);
     }
@@ -54,17 +52,17 @@ function setupLearnModal(): void {
   const modalClose = document.getElementById('modal-close');
   const modalOverlay = modal?.querySelector('.modal-overlay') ?? null;
 
-  if (!learnBtn || !modal || !modalClose) return;
+  if (!validateButtonElements(learnBtn, modalClose) || !validateModalElement(modal)) return;
 
-  setupModalEventListeners(learnBtn, modal, modalClose, modalOverlay);
-  setupModalKeyboardHandler(modal);
+  setupModalEventListeners(learnBtn!, modal!, modalClose!, modalOverlay);
+  setupModalKeyboardHandler(modal!);
 }
 
 async function init(): Promise<void> {
   initTheme();
   const savedLanguage = initLanguage();
 
-  const uiLang = wordlistToUILang[savedLanguage] || 'en';
+  const uiLang = determineUILanguage(savedLanguage);
   setTranslations(getTranslation(uiLang));
 
   updateUITranslations();
@@ -75,7 +73,7 @@ async function init(): Promise<void> {
   // Inject git commit hash into footer
   const gitHashElement = document.getElementById('git-hash');
   if (gitHashElement) {
-    gitHashElement.textContent = import.meta.env.VITE_GIT_HASH || 'dev';
+    gitHashElement.textContent = getGitHashOrDefault(import.meta.env.VITE_GIT_HASH);
   }
 
   elements.resetButton.addEventListener('click', handleReset);
