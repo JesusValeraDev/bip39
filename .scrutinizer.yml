@@ -1,4 +1,7 @@
 build:
+  environment:
+    node: '16'
+  
   nodes:
     analysis:
       tests:
@@ -6,6 +9,9 @@ build:
           - js-scrutinizer-run
     
     coverage:
+      dependencies:
+        override:
+          - npm install
       tests:
         override:
           - command: npm run test:coverage
