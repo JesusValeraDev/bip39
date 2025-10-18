@@ -1,7 +1,12 @@
 import { defineConfig } from 'vitest/config';
 import { execSync } from 'child_process';
 
-const gitHash = execSync('git rev-parse --short HEAD').toString().trim();
+let gitHash = 'dev';
+try {
+  gitHash = execSync('git rev-parse --short HEAD').toString().trim();
+} catch (error) {
+  console.warn('Could not determine git hash, using "dev"');
+}
 
 export default defineConfig({
   define: {

@@ -1,6 +1,6 @@
 build:
   environment:
-    node: '16'
+    node: '22'
   
   nodes:
     analysis:
@@ -11,7 +11,10 @@ build:
     coverage:
       dependencies:
         override:
-          - npm install
+          - npm ci
+      environment:
+        node:
+          version: '22'
       tests:
         override:
           - command: npm run test:coverage

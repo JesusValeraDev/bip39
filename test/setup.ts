@@ -1,4 +1,10 @@
-import { vi } from 'vitest';
+import { vi, beforeEach } from 'vitest';
+import { webcrypto } from 'crypto';
+
+// Polyfill Web Crypto API for Node environment
+if (!globalThis.crypto) {
+  globalThis.crypto = webcrypto as any;
+}
 
 const localStorageMock = {
   getItem: vi.fn(),
