@@ -1,0 +1,30 @@
+build:
+  nodes:
+    analysis:
+      tests:
+        override:
+          - js-scrutinizer-run
+    
+    coverage:
+      tests:
+        override:
+          - command: npm run test:coverage
+            coverage:
+              file: coverage/clover.xml
+              format: clover
+
+checks:
+  javascript: true
+
+filter:
+  excluded_paths:
+    - 'node_modules/*'
+    - 'dist/*'
+    - 'coverage/*'
+    - 'test/*'
+    - '*.config.*'
+    - '*.d.ts'
+
+coding_style:
+  javascript: true
+
