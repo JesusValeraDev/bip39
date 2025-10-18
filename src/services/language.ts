@@ -153,7 +153,7 @@ export function setTranslations(translations: Translations): void {
   currentTranslations = translations;
 }
 
-export function updateUITranslations(): void {
+function updateBasicUITranslations(): void {
   elements.title.textContent = currentTranslations.title;
   elements.indexLabel.textContent = currentTranslations.index;
   elements.resetButton.textContent = currentTranslations.resetButton;
@@ -163,17 +163,28 @@ export function updateUITranslations(): void {
   elements.themeToggle.title = currentTranslations.toggleTheme;
   elements.languageToggle.title = currentTranslations.languageLabel;
   elements.helpIconTitle.textContent = currentTranslations.helpIconLabel;
-  
-  // Update word input translations
+}
+
+function updateWordInputTranslations(): void {
   elements.wordInputLabel.textContent = currentTranslations.wordInputLabel;
   elements.wordInput.placeholder = currentTranslations.wordInputPlaceholder;
-  
-  // Update modal translations
+}
+
+function updateModalTranslations(): void {
   elements.modalTitle.textContent = currentTranslations.modalTitle;
+  
+  updateModalStep1Translations();
+  updateModalStep2Translations();
+  updateModalStep3Translations();
+  updateModalStep4Translations();
+  updateModalWarningTranslations();
+  updateModalWhyTranslations();
+}
+
+function updateModalStep1Translations(): void {
   elements.modalStep1Title.textContent = currentTranslations.modalStep1Title;
   elements.modalStep1Text.textContent = currentTranslations.modalStep1Text;
   
-  // Populate word grid with first 12 words
   elements.modalStep1WordGrid.innerHTML = '';
   currentTranslations.modalStep1Words.forEach(word => {
     const wordSpan = document.createElement('span');
@@ -181,16 +192,24 @@ export function updateUITranslations(): void {
     wordSpan.textContent = word;
     elements.modalStep1WordGrid.appendChild(wordSpan);
   });
-  
+}
+
+function updateModalStep2Translations(): void {
   elements.modalStep2Title.textContent = currentTranslations.modalStep2Title;
   elements.modalStep2Text.textContent = currentTranslations.modalStep2Text;
   elements.modalStep2Word1.textContent = currentTranslations.modalStep1Words[0];
   elements.modalStep2Word2.textContent = currentTranslations.modalStep1Words[1];
   elements.modalStep2Entropy.textContent = currentTranslations.modalStep2Entropy;
+}
+
+function updateModalStep3Translations(): void {
   elements.modalStep3Title.textContent = currentTranslations.modalStep3Title;
   elements.modalStep3Text.textContent = currentTranslations.modalStep3Text;
   elements.modalStep3MasterSeed.textContent = currentTranslations.modalStep3MasterSeed;
   elements.modalStep3BitValue.textContent = currentTranslations.modalStep3BitValue;
+}
+
+function updateModalStep4Translations(): void {
   elements.modalStep4Title.textContent = currentTranslations.modalStep4Title;
   elements.modalStep4Text.textContent = currentTranslations.modalStep4Text;
   elements.modalStep4PrivateKey.textContent = currentTranslations.modalStep4PrivateKey;
@@ -202,12 +221,18 @@ export function updateUITranslations(): void {
   elements.modalStep4BitSize3.textContent = currentTranslations.modalStep4BitSize;
   elements.modalStep4PublicKey.textContent = currentTranslations.modalStep4PublicKey;
   elements.modalStep4Address.textContent = currentTranslations.modalStep4Address;
+}
+
+function updateModalWarningTranslations(): void {
   elements.modalWarningTitle.textContent = currentTranslations.modalWarningTitle;
   elements.modalWarningText.textContent = currentTranslations.modalWarningText;
   elements.modalWarningItem1.textContent = currentTranslations.modalWarningItem1;
   elements.modalWarningItem2.textContent = currentTranslations.modalWarningItem2;
   elements.modalWarningItem3.textContent = currentTranslations.modalWarningItem3;
   elements.modalWarningItem4.textContent = currentTranslations.modalWarningItem4;
+}
+
+function updateModalWhyTranslations(): void {
   elements.modalWhyTitle.textContent = currentTranslations.modalWhyBIP39Title;
   elements.modalWhyText.textContent = currentTranslations.modalWhyBIP39Text;
   
@@ -217,6 +242,12 @@ export function updateUITranslations(): void {
     </svg>
     ${currentTranslations.modalWhyBIP39Link}
   `;
+}
+
+export function updateUITranslations(): void {
+  updateBasicUITranslations();
+  updateWordInputTranslations();
+  updateModalTranslations();
   
   updateDisplay();
 }

@@ -139,6 +139,29 @@ function hideSuggestions(): void {
   }, 200);
 }
 
+function handleArrowDown(suggestions: NodeListOf<Element>): void {
+  selectedSuggestionIndex = Math.min(selectedSuggestionIndex + 1, suggestions.length - 1);
+  updateSuggestionSelection(suggestions);
+}
+
+function handleArrowUp(suggestions: NodeListOf<Element>): void {
+  selectedSuggestionIndex = Math.max(selectedSuggestionIndex - 1, 0);
+  updateSuggestionSelection(suggestions);
+}
+
+function handleEnterKey(suggestions: NodeListOf<Element>): void {
+  if (selectedSuggestionIndex >= 0) {
+    const selectedItem = suggestions[selectedSuggestionIndex] as HTMLElement;
+    const word = selectedItem.querySelector('.suggestion-word')?.textContent || '';
+    selectWord(word);
+  }
+}
+
+function handleEscapeKey(): void {
+  hideSuggestions();
+  elements.wordInput.blur();
+}
+
 function handleKeydown(e: KeyboardEvent): void {
   const suggestions = elements.wordSuggestions.querySelectorAll('.suggestion-item');
   
@@ -149,28 +172,21 @@ function handleKeydown(e: KeyboardEvent): void {
   switch (e.key) {
     case 'ArrowDown':
       e.preventDefault();
-      selectedSuggestionIndex = Math.min(selectedSuggestionIndex + 1, suggestions.length - 1);
-      updateSuggestionSelection(suggestions);
+      handleArrowDown(suggestions);
       break;
       
     case 'ArrowUp':
       e.preventDefault();
-      selectedSuggestionIndex = Math.max(selectedSuggestionIndex - 1, 0);
-      updateSuggestionSelection(suggestions);
+      handleArrowUp(suggestions);
       break;
       
     case 'Enter':
       e.preventDefault();
-      if (selectedSuggestionIndex >= 0) {
-        const selectedItem = suggestions[selectedSuggestionIndex] as HTMLElement;
-        const word = selectedItem.querySelector('.suggestion-word')?.textContent || '';
-        selectWord(word);
-      }
+      handleEnterKey(suggestions);
       break;
       
     case 'Escape':
-      hideSuggestions();
-      elements.wordInput.blur();
+      handleEscapeKey();
       break;
   }
 }
