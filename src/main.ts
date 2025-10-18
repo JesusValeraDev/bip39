@@ -1,5 +1,16 @@
 import { getTranslation } from './modules/i18n';
-import { resetBoxes, loadWordlist, elements, determineUILanguage, getGitHashOrDefault, validateModalElement, validateButtonElements, isEscapeKey, isModalOpen, getModalTransitionDuration } from './modules/bip39';
+import {
+    resetBoxes,
+    loadWordlist,
+    elements,
+    determineUILanguage,
+    getGitHashOrDefault,
+    validateModalElement,
+    validateButtonElements,
+    isEscapeKey,
+    isModalOpen,
+    getModalTransitionDuration
+} from './modules/bip39';
 import { initTheme, toggleTheme } from './modules/theme';
 import { initLanguage, setupLanguageToggle, setTranslations, updateUITranslations } from './modules/language';
 import { createGrid } from './modules/grid';
