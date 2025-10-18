@@ -265,6 +265,7 @@
   grid-template-columns: repeat(12, 1fr);
   gap: 0.75rem;
   width: 100%;
+  min-height: 50px;
 }
 
 .box {

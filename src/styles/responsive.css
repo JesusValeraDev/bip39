@@ -6,6 +6,7 @@
 
   .grid {
     grid-template-columns: repeat(6, 1fr);
+    min-height: 112px;
   }
 
   .word-input {
@@ -298,6 +299,7 @@
 @media (max-width: 425px) {
   .grid {
     grid-template-columns: repeat(4, 1fr);
+    min-height: 174px;
   }
 
   .word-input {

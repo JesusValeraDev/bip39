@@ -56,10 +56,10 @@ async function init(): Promise<void> {
   const uiLang = wordlistToUILang[savedLanguage] || 'en';
   setTranslations(getTranslation(uiLang));
 
+  updateUITranslations();
   await loadWordlist(savedLanguage);
   createGrid();
   setupWordInput();
-  updateUITranslations();
 
   // Inject git commit hash into footer
   const gitHashElement = document.getElementById('git-hash');
