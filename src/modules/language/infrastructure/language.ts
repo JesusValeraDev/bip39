@@ -238,7 +238,7 @@ function updateModalWhyTranslations(): void {
   elements.modalWhyText.textContent = currentTranslations.modalWhyBIP39Text;
   
   elements.modalWhyLink.innerHTML = `
-    <svg width="18" height="18" style="display: inline-block; vertical-align: -0.1rem; margin-right: 0.5rem;">
+    <svg width="18" height="18" style="display: inline-block">
       <use href="/sprite.svg#icon-lightbulb"/>
     </svg>
     ${currentTranslations.modalWhyBIP39Link}

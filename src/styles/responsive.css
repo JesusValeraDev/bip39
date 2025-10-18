@@ -412,6 +412,10 @@
   .flow-arrow {
     transform: rotate(90deg);
   }
+
+  .bip39-link svg {
+    display: none;
+  }
 }
 
 @media (max-width: 480px) {
@@ -454,6 +458,7 @@
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
+    margin-bottom: 1rem;
   }
 
   .conversion-item .word-label {
