@@ -71,6 +71,7 @@ jobs:
         uses: codecov/codecov-action@v4
         if: always()
         with:
+          token: ${{ secrets.CODECOV_TOKEN }}
           files: ./coverage/clover.xml,./coverage/coverage-final.json
           flags: unittests
           name: bip39-coverage
