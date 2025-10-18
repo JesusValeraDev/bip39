@@ -1,6 +1,8 @@
 import { currentTranslations } from '../../language';
 
 let toastTimeout: NodeJS.Timeout | null = null;
+let toastRemoveTimeout: NodeJS.Timeout | null = null;
+let toastShowTimeout: NodeJS.Timeout | null = null;
 let clickCount = 0;
 let clickResetTimeout: NodeJS.Timeout | null = null;
 
@@ -27,9 +29,10 @@ function showToast(message: string): void {
     existingToast.remove();
   }
 
-  if (toastTimeout) {
-    clearTimeout(toastTimeout);
-  }
+  // Clear all existing timers
+  if (toastTimeout) clearTimeout(toastTimeout);
+  if (toastRemoveTimeout) clearTimeout(toastRemoveTimeout);
+  if (toastShowTimeout) clearTimeout(toastShowTimeout);
 
   const toast = document.createElement('div');
   toast.id = 'toast-notification';
@@ -41,13 +44,13 @@ function showToast(message: string): void {
   document.body.appendChild(toast);
 
   // Use setTimeout instead of requestAnimationFrame for better testability
-  setTimeout(() => {
+  toastShowTimeout = setTimeout(() => {
     toast.classList.add('show');
   }, 0);
 
   toastTimeout = setTimeout(() => {
     toast.classList.remove('show');
-    setTimeout(() => {
+    toastRemoveTimeout = setTimeout(() => {
       toast.remove();
     }, 300); // Wait for fade out animation
   }, 3000);

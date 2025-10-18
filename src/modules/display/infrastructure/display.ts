@@ -13,6 +13,7 @@ export function updateDisplay(): void {
 
 // Callback for syncing word input (set by wordInput module to avoid circular dependency)
 let syncWordInputCallback: (() => void) | null = null;
+let announcementTimeout: NodeJS.Timeout | null = null;
 
 export function setSyncWordInputCallback(callback: () => void): void {
   syncWordInputCallback = callback;
@@ -54,9 +55,15 @@ function updateWordDisplay(wordData: { indexText: string; announcement: string }
 function announceToScreenReader(message: string): void {
   const announcer = document.getElementById('sr-announcements');
   if (announcer) {
+    // Clear existing timeout
+    if (announcementTimeout) {
+      clearTimeout(announcementTimeout);
+    }
+
     announcer.textContent = message;
+
     // Clear after a short delay to allow for new announcements
-    setTimeout(() => {
+    announcementTimeout = setTimeout(() => {
       announcer.textContent = '';
     }, 1000);
   }

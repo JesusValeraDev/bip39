@@ -4,6 +4,7 @@ export function resetState(): void {
   state.boxes.fill(false);
   state.wordlist = [];
   state.currentLanguage = 'english';
+  state.error = null;
 }
 
 export const mockWordlist = [

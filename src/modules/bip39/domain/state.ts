@@ -2,6 +2,7 @@ export const state = {
   boxes: new Array(12).fill(false) as boolean[],
   wordlist: [] as string[],
   currentLanguage: 'english',
+  error: null as string | null,
 };
 
 export function resetBoxes(): void {

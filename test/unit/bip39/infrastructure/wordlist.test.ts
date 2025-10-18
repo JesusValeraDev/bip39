@@ -14,13 +14,18 @@ describe('Wordlist Service', () => {
   describe('loadWordlist', () => {
     it('should load wordlist successfully', async () => {
       const mockWords = ['abandon', 'ability', 'able'];
-      (fetch as any).mockResolvedValueOnce(mockWordlistResponse(mockWords));
+      const mockResponse = await mockWordlistResponse(mockWords);
+      (fetch as any).mockResolvedValueOnce({
+        ok: true,
+        ...mockResponse,
+      });
 
       await loadWordlist('english');
 
       expect(fetch).toHaveBeenCalledWith('/doc/english.txt');
       expect(state.currentLanguage).toBe('english');
       expect(state.wordlist).toEqual(mockWords);
+      expect(state.error).toBeNull();
     });
 
     it('should handle fetch errors gracefully', async () => {
@@ -43,7 +48,11 @@ describe('Wordlist Service', () => {
   describe('getWord', () => {
     beforeEach(async () => {
       const mockWords = ['abandon', 'ability', 'able', 'about'];
-      (fetch as any).mockResolvedValueOnce(mockWordlistResponse(mockWords));
+      const mockResponse = await mockWordlistResponse(mockWords);
+      (fetch as any).mockResolvedValueOnce({
+        ok: true,
+        ...mockResponse,
+      });
       await loadWordlist('english');
     });
 

@@ -1136,3 +1136,14 @@
   bottom: 2rem;
   opacity: 1;
 }
+
+.toast.error {
+  background: #dc2626;
+  color: white;
+  border-color: #ef4444;
+}
+
+[data-theme='dark'] .toast.error {
+  background: #ef4444;
+  border-color: #fca5a5;
+}

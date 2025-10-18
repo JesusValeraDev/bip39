@@ -26,7 +26,14 @@ function handleReset(): void {
 function openLearnModal(modal: HTMLElement): void {
   modal.removeAttribute('hidden');
   modal.setAttribute('aria-hidden', 'false');
-  document.body.style.overflow = 'hidden'; // Prevent background scrolling
+  document.body.style.overflow = 'hidden';
+
+  setTimeout(() => {
+    const firstFocusable = modal.querySelector<HTMLElement>(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+    firstFocusable?.focus();
+  }, 100);
 }
 
 function closeLearnModal(modal: HTMLElement): void {
@@ -65,7 +72,9 @@ function setupLearnModal(): void {
 
   if (!validateButtonElements(learnBtn, modalClose) || !validateModalElement(modal)) return;
 
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   setupModalEventListeners(learnBtn!, modal!, modalClose!, modalOverlay);
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   setupModalKeyboardHandler(modal!);
 }
 

@@ -5,6 +5,10 @@ import { currentTranslations } from '../../language';
 import { isWordInWordlist, getWordIndex, binaryValueToIndex, getWordByIndex } from '../domain/wordInputHelpers';
 
 let selectedSuggestionIndex = -1;
+let hideSuggestionsTimeout: NodeJS.Timeout | null = null;
+let invalidToastShowTimeout: NodeJS.Timeout | null = null;
+let invalidToastHideTimeout: NodeJS.Timeout | null = null;
+let invalidToastRemoveTimeout: NodeJS.Timeout | null = null;
 
 export function setupWordInput(): void {
   // Register callback to avoid circular dependency
@@ -57,6 +61,11 @@ function showInvalidWordToast(): void {
     existingToast.remove();
   }
 
+  // Clear existing timers
+  if (invalidToastShowTimeout) clearTimeout(invalidToastShowTimeout);
+  if (invalidToastHideTimeout) clearTimeout(invalidToastHideTimeout);
+  if (invalidToastRemoveTimeout) clearTimeout(invalidToastRemoveTimeout);
+
   const toast = document.createElement('div');
   toast.id = 'invalid-word-toast';
   toast.className = 'toast';
@@ -67,14 +76,14 @@ function showInvalidWordToast(): void {
   document.body.appendChild(toast);
 
   // Trigger animation
-  setTimeout(() => {
+  invalidToastShowTimeout = setTimeout(() => {
     toast.classList.add('show');
   }, 0);
 
   // Remove after 3 seconds
-  setTimeout(() => {
+  invalidToastHideTimeout = setTimeout(() => {
     toast.classList.remove('show');
-    setTimeout(() => {
+    invalidToastRemoveTimeout = setTimeout(() => {
       toast.remove();
     }, 300);
   }, 3000);
@@ -134,7 +143,12 @@ function showSuggestions(matches: string[]): void {
 }
 
 function hideSuggestions(): void {
-  setTimeout(() => {
+  // Clear existing timeout to prevent multiple timers
+  if (hideSuggestionsTimeout) {
+    clearTimeout(hideSuggestionsTimeout);
+  }
+
+  hideSuggestionsTimeout = setTimeout(() => {
     elements.wordSuggestions.setAttribute('hidden', '');
     selectedSuggestionIndex = -1;
   }, 200);

@@ -11,6 +11,7 @@ export interface Translations {
   helpIconLabel: string;
   disabledBoxMessage: string;
   invalidWordMessage: string;
+  wordlistLoadError: string;
   // Word input translations
   wordInputLabel: string;
   wordInputPlaceholder: string;
@@ -73,6 +74,7 @@ export const translations: Record<string, Translations> = {
     helpIconLabel: 'Help',
     disabledBoxMessage: 'Cannot select this number with the current pattern - it would exceed 2048',
     invalidWordMessage: 'This word is not in the BIP39 wordlist',
+    wordlistLoadError: '⚠️ Failed to load wordlist. Please refresh the page.',
     // Word input translations
     wordInputLabel: 'Type a word or click numbers to select',
     wordInputPlaceholder: 'abandon',
@@ -139,6 +141,7 @@ export const translations: Record<string, Translations> = {
     helpIconLabel: 'Ayuda',
     disabledBoxMessage: 'No se puede seleccionar este número con el patrón actual - excedería 2048',
     invalidWordMessage: 'Esta palabra no está en la lista BIP39',
+    wordlistLoadError: '⚠️ Error al cargar la lista de palabras. Por favor, recarga la página.',
     // Word input translations
     wordInputLabel: 'Escribe una palabra o haz clic en números',
     wordInputPlaceholder: 'ábaco',
@@ -205,6 +208,7 @@ export const translations: Record<string, Translations> = {
     helpIconLabel: 'Aide',
     disabledBoxMessage: 'Impossible de sélectionner ce nombre avec le motif actuel - il dépasserait 2048',
     invalidWordMessage: "Ce mot n'est pas dans la liste BIP39",
+    wordlistLoadError: '⚠️ Échec du chargement de la liste de mots. Veuillez actualiser la page.',
     // Word input translations
     wordInputLabel: 'Tapez un mot ou cliquez sur des numéros',
     wordInputPlaceholder: 'abaisser',
@@ -271,6 +275,7 @@ export const translations: Record<string, Translations> = {
     helpIconLabel: 'Pomoc',
     disabledBoxMessage: 'Nelze vybrat toto číslo s aktuálním vzorem - překročilo by 2048',
     invalidWordMessage: 'Toto slovo není v seznamu BIP39',
+    wordlistLoadError: '⚠️ Nepodařilo se načíst seznam slov. Obnovte prosím stránku.',
     // Word input translations
     wordInputLabel: 'Napište slovo nebo klikněte na čísla',
     wordInputPlaceholder: 'abdikace',
@@ -337,6 +342,7 @@ export const translations: Record<string, Translations> = {
     helpIconLabel: 'Aiuto',
     disabledBoxMessage: 'Impossibile selezionare questo numero con il pattern corrente - supererebbe 2048',
     invalidWordMessage: 'Questa parola non è nella lista BIP39',
+    wordlistLoadError: '⚠️ Impossibile caricare la lista di parole. Ricarica la pagina.',
     // Word input translations
     wordInputLabel: 'Scrivi una parola o clicca sui numeri',
     wordInputPlaceholder: 'abaco',
@@ -403,6 +409,7 @@ export const translations: Record<string, Translations> = {
     helpIconLabel: 'Ajuda',
     disabledBoxMessage: 'Não é possível selecionar este número com o padrão atual - excederia 2048',
     invalidWordMessage: 'Esta palavra não está na lista BIP39',
+    wordlistLoadError: '⚠️ Falha ao carregar a lista de palavras. Atualize a página.',
     // Word input translations
     wordInputLabel: 'Digite uma palavra ou clique nos números',
     wordInputPlaceholder: 'abacate',
@@ -468,6 +475,7 @@ export const translations: Record<string, Translations> = {
     helpIconLabel: 'ヘルプ',
     disabledBoxMessage: '現在のパターンではこの数値を選択できません - 2048を超えます',
     invalidWordMessage: 'この単語はBIP39リストにありません',
+    wordlistLoadError: '⚠️ ワードリストの読み込みに失敗しました。ページを更新してください。',
     // Word input translations
     wordInputLabel: '単語を入力するか、数字をクリック',
     wordInputPlaceholder: 'あいこくしん',
@@ -533,6 +541,7 @@ export const translations: Record<string, Translations> = {
     helpIconLabel: '도움말',
     disabledBoxMessage: '현재 패턴에서는 이 숫자를 선택할 수 없습니다 - 2048을 초과합니다',
     invalidWordMessage: '이 단어는 BIP39 목록에 없습니다',
+    wordlistLoadError: '⚠️ 단어 목록을 로드하지 못했습니다. 페이지를 새로고침하세요.',
     // Word input translations
     wordInputLabel: '단어를 입력하거나 숫자를 클릭',
     wordInputPlaceholder: '가격',
@@ -598,6 +607,7 @@ export const translations: Record<string, Translations> = {
     helpIconLabel: '帮助',
     disabledBoxMessage: '无法选择此数字与当前模式 - 会超过2048',
     invalidWordMessage: '此单词不在 BIP39 列表中',
+    wordlistLoadError: '⚠️ 加载单词列表失败。请刷新页面。',
     // Word input translations
     wordInputLabel: '输入单词或点击数字',
     wordInputPlaceholder: '的',
@@ -649,6 +659,7 @@ export const translations: Record<string, Translations> = {
     helpIconLabel: '幫助',
     disabledBoxMessage: '無法選擇此數字與當前模式 - 會超過2048',
     invalidWordMessage: '此單詞不在 BIP39 列表中',
+    wordlistLoadError: '⚠️ 載入單詞列表失敗。請重新整理頁面。',
     // Word input translations
     wordInputLabel: '輸入單詞或點擊數字',
     wordInputPlaceholder: '的',
