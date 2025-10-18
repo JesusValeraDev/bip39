@@ -607,10 +607,6 @@
   box-shadow: 0 4px 16px rgba(76, 175, 80, 0.15);
 }
 
-[data-theme="dark"] .privacy-warning:hover {
-  box-shadow: 0 6px 24px rgba(76, 175, 80, 0.25);
-}
-
 /* Footer */
 .footer {
   margin-top: 2rem;
@@ -804,6 +800,18 @@
 .step-icon {
   flex-shrink: 0;
   font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.step-icon svg {
+  color: #f59e0b;
+  transition: color 0.3s ease;
+}
+
+[data-theme="dark"] .step-icon svg {
+  color: #fbbf24;
 }
 
 .step-content {
@@ -978,6 +986,14 @@
 
 .flow-icon {
   font-size: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flow-icon svg {
+  color: var(--primary-color);
+  transition: color 0.3s ease;
 }
 
 .flow-label {

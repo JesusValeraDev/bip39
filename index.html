@@ -414,17 +414,34 @@
                 <div class="address-generation">
                   <div class="address-flow">
                     <div class="flow-item">
-                      <div class="flow-icon">🔑</div>
+                      <div class="flow-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none">
+                          <path d="M14 9.94953C14.6353 10.5978 15.5207 11 16.5 11C18.433 11 20 9.433 20 7.5C20 5.567 18.433 4 16.5 4C14.567 4 13 5.567 13 7.5C13 8.45372 13.3814 9.31834 14 9.94953ZM14 9.94953L8.96844 14.9811M3.94953 16.0001L5.24242 17.2929C5.63295 17.6835 6.26611 17.6835 6.65664 17.2929L8.96844 14.9811M8.96844 14.9811L7 13.0127" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </div>
                       <div id="modal-step4-private-key" class="flow-label">Private Key</div>
                     </div>
                     <span class="flow-arrow">→</span>
                     <div class="flow-item">
-                      <div class="flow-icon">🔓</div>
+                      <div class="flow-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none">
+                          <rect x="6" y="10" width="12" height="11" rx="2" stroke="currentColor" stroke-width="2"/>
+                          <path d="M8 10V6C8 3.79086 9.79086 2 12 2C14.2091 2 16 3.79086 16 6L16 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                      </div>
                       <div id="modal-step4-public-key" class="flow-label">Public Key</div>
                     </div>
                     <span class="flow-arrow">→</span>
                     <div class="flow-item">
-                      <div class="flow-icon">📫</div>
+                      <div class="flow-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                          <path d="M16,25H2v-8c0-3.9,3.1-7,7-7h0c3.9,0,7,3.1,7,7V25z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path d="M23,10L23,10c3.9,0,7,3.1,7,7v8H16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          <line x1="9" y1="10" x2="23" y2="10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          <rect x="13" y="25" width="6" height="6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          <polyline points="22,18 22,4.9 22,1 30,1 30,5 24,5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </div>
                       <div id="modal-step4-address" class="flow-label">Bitcoin Address</div>
                     </div>
                   </div>
@@ -439,7 +456,13 @@
 
         <div class="modal-section highlight">
           <div class="modal-step">
-            <div class="step-icon">⚠️</div>
+            <div class="step-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2L2 20h20L12 2z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" fill="none"/>
+                <line x1="12" y1="9" x2="12" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="12" cy="16" r="1" fill="currentColor"/>
+              </svg>
+            </div>
             <div class="step-content">
               <h3 id="modal-warning-title"></h3>
               <p id="modal-warning-text"></p>

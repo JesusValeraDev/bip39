@@ -296,7 +296,16 @@ export function updateUITranslations(): void {
   elements.modalWarningItem4.textContent = currentTranslations.modalWarningItem4;
   elements.modalWhyTitle.textContent = currentTranslations.modalWhyBIP39Title;
   elements.modalWhyText.textContent = currentTranslations.modalWhyBIP39Text;
-  elements.modalWhyLink.textContent = currentTranslations.modalWhyBIP39Link;
+  
+  // Add lightbulb icon before link text
+  elements.modalWhyLink.innerHTML = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: inline-block; vertical-align: -0.1rem; margin-right: 0.5rem;">
+      <path d="M9 21h6"></path>
+      <path d="M12 17v4"></path>
+      <path d="M12 3C8.686 3 6 5.686 6 9c0 2.25 1.5 4.5 3 6v2h6v-2c1.5-1.5 3-3.75 3-6 0-3.314-2.686-6-6-6z"></path>
+    </svg>
+    ${currentTranslations.modalWhyBIP39Link}
+  `;
   
   updateDisplay();
 }
