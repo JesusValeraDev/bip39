@@ -1,6 +1,7 @@
 # BIP39 Word Selector
 
 [![Tests](https://github.com/JesusValeraDev/bip39/actions/workflows/test.yml/badge.svg)](https://github.com/JesusValeraDev/bip39/actions/workflows/test.yml)
+[![codecov](https://codecov.io/gh/JesusValeraDev/bip39/branch/master/graph/badge.svg)](https://codecov.io/gh/JesusValeraDev/bip39)
 [![Lighthouse CI](https://github.com/JesusValeraDev/bip39/actions/workflows/lighthouse.yml/badge.svg)](https://github.com/JesusValeraDev/bip39/actions/workflows/lighthouse.yml)
 [![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://bip39.jesusvalera.dev)
 

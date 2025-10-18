@@ -1,26 +1,9 @@
 build:
-  environment:
-    node: '22'
-  
   nodes:
     analysis:
       tests:
         override:
           - js-scrutinizer-run
-    
-    coverage:
-      dependencies:
-        override:
-          - npm ci
-      environment:
-        node:
-          version: '22'
-      tests:
-        override:
-          - command: npm run test:coverage
-            coverage:
-              file: coverage/clover.xml
-              format: clover
 
 checks:
   javascript: true

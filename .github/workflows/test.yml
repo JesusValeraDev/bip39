@@ -66,3 +66,12 @@ jobs:
           name: coverage-report
           path: coverage/
           retention-days: 7
+      
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        if: always()
+        with:
+          files: ./coverage/clover.xml,./coverage/coverage-final.json
+          flags: unittests
+          name: bip39-coverage
+          fail_ci_if_error: false
