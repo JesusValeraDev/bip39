@@ -7,102 +7,16 @@ export let currentTranslations: Translations = getTranslation('en');
 export let currentLanguage = 'english';
 
 const languageFlagsSVG: Record<string, string> = {
-  'english': `<svg class="flag-icon" width="28" height="28" viewBox="0 0 28 28">
-    <defs><clipPath id="uk-circle"><circle cx="14" cy="14" r="14"/></clipPath></defs>
-    <g clip-path="url(#uk-circle)">
-      <rect width="28" height="28" fill="#012169"/>
-      <path d="M 0 0 L 28 28 M 28 0 L 0 28" stroke="#FFF" stroke-width="5.6"/>
-      <path d="M 0 0 L 28 28 M 28 0 L 0 28" stroke="#C8102E" stroke-width="3.36"/>
-      <path d="M 14 0 V 28 M 0 14 H 28" stroke="#FFF" stroke-width="9.33"/>
-      <path d="M 14 0 V 28 M 0 14 H 28" stroke="#C8102E" stroke-width="5.6"/>
-    </g>
-  </svg>`,
-  'spanish': `<svg class="flag-icon" width="28" height="28" viewBox="0 0 28 28">
-    <defs><clipPath id="es-circle-btn"><circle cx="14" cy="14" r="14"/></clipPath></defs>
-    <g clip-path="url(#es-circle-btn)">
-      <rect width="28" height="7" fill="#AA151B"/>
-      <rect y="7" width="28" height="14" fill="#F1BF00"/>
-      <rect y="21" width="28" height="7" fill="#AA151B"/>
-    </g>
-  </svg>`,
-  'french': `<svg class="flag-icon" width="28" height="28" viewBox="0 0 28 28">
-    <defs><clipPath id="fr-circle-btn"><circle cx="14" cy="14" r="14"/></clipPath></defs>
-    <g clip-path="url(#fr-circle-btn)">
-      <rect width="9.33" height="28" fill="#002395"/>
-      <rect x="9.33" width="9.33" height="28" fill="#FFF"/>
-      <rect x="18.67" width="9.33" height="28" fill="#ED2939"/>
-    </g>
-  </svg>`,
-  'italian': `<svg class="flag-icon" width="28" height="28" viewBox="0 0 28 28">
-    <defs><clipPath id="it-circle-btn"><circle cx="14" cy="14" r="14"/></clipPath></defs>
-    <g clip-path="url(#it-circle-btn)">
-      <rect width="9.33" height="28" fill="#009246"/>
-      <rect x="9.33" width="9.33" height="28" fill="#FFF"/>
-      <rect x="18.67" width="9.33" height="28" fill="#CE2B37"/>
-    </g>
-  </svg>`,
-  'portuguese': `<svg class="flag-icon" width="28" height="28" viewBox="0 0 28 28">
-    <defs><clipPath id="pt-circle-btn"><circle cx="14" cy="14" r="14"/></clipPath></defs>
-    <g clip-path="url(#pt-circle-btn)">
-      <rect width="11.2" height="28" fill="#006600"/>
-      <rect x="11.2" width="16.8" height="28" fill="#FF0000"/>
-      <circle cx="11.2" cy="14" r="4.67" fill="#FFFF00"/>
-      <circle cx="11.2" cy="14" r="3.06" fill="#FF0000"/>
-      <circle cx="11.2" cy="14" r="1.93" fill="#FFF"/>
-    </g>
-  </svg>`,
-  'czech': `<svg class="flag-icon" width="28" height="28" viewBox="0 0 28 28">
-    <defs><clipPath id="cz-circle-btn"><circle cx="14" cy="14" r="14"/></clipPath></defs>
-    <g clip-path="url(#cz-circle-btn)">
-      <rect width="28" height="14" fill="#FFF"/>
-      <rect y="14" width="28" height="14" fill="#D7141A"/>
-      <path d="M 0 0 L 14 14 L 0 28 Z" fill="#11457E"/>
-    </g>
-  </svg>`,
-  'japanese': `<svg class="flag-icon" width="28" height="28" viewBox="0 0 28 28">
-    <defs><clipPath id="jp-circle-btn"><circle cx="14" cy="14" r="14"/></clipPath></defs>
-    <g clip-path="url(#jp-circle-btn)">
-      <rect width="28" height="28" fill="#FFF"/>
-      <circle cx="14" cy="14" r="5.6" fill="#BC002D"/>
-    </g>
-  </svg>`,
-  'korean': `<svg class="flag-icon" width="28" height="28" viewBox="0 0 28 28">
-    <defs><clipPath id="kr-circle-btn"><circle cx="14" cy="14" r="14"/></clipPath></defs>
-    <g clip-path="url(#kr-circle-btn)">
-      <rect width="28" height="28" fill="#FFF"/>
-      <path d="M 9.33 14 A 4.67 4.67 0 0 1 18.67 14 Z" fill="#C60C30"/>
-      <path d="M 18.67 14 A 4.67 4.67 0 0 1 9.33 14 Z" fill="#003478"/>
-      <g stroke="#000" stroke-width="1.15" stroke-linecap="round">
-        <line x1="18.4" y1="7" x2="21.9" y2="10.5"/>
-        <line x1="19.45" y1="5.95" x2="22.95" y2="9.45"/>
-        <line x1="17.35" y1="8.05" x2="20.85" y2="11.55"/>
-        <line x1="18.4" y1="21" x2="21.9" y2="17.5"/>
-        <line x1="19.45" y1="22.05" x2="22.95" y2="18.55"/>
-        <line x1="17.35" y1="19.95" x2="20.85" y2="16.45"/>
-        <line x1="9.6" y1="21" x2="6.1" y2="17.5"/>
-        <line x1="8.55" y1="22.05" x2="5.05" y2="18.55"/>
-        <line x1="10.65" y1="19.95" x2="7.15" y2="16.45"/>
-        <line x1="9.6" y1="7" x2="6.1" y2="10.5"/>
-        <line x1="8.55" y1="5.95" x2="5.05" y2="9.45"/>
-        <line x1="10.65" y1="8.05" x2="7.15" y2="11.55"/>
-      </g>
-    </g>
-  </svg>`,
-  'chinese_simplified': `<svg class="flag-icon" width="28" height="28" viewBox="0 0 28 28">
-    <defs><clipPath id="cn-circle-btn"><circle cx="14" cy="14" r="14"/></clipPath></defs>
-    <g clip-path="url(#cn-circle-btn)">
-      <rect width="28" height="28" fill="#DE2910"/>
-      <polygon points="5.6,4.9 6.825,8.225 10.325,8.225 7.525,10.15 8.75,13.475 5.6,11.55 2.45,13.475 3.675,10.15 0.875,8.225 4.375,8.225" fill="#FFDE00"/>
-    </g>
-  </svg>`,
-  'chinese_traditional': `<svg class="flag-icon" width="28" height="28" viewBox="0 0 28 28">
-    <defs><clipPath id="tw-circle-btn"><circle cx="14" cy="14" r="14"/></clipPath></defs>
-    <g clip-path="url(#tw-circle-btn)">
-      <rect width="28" height="28" fill="#FE0000"/>
-      <rect width="14" height="14" fill="#000095"/>
-      <polygon points="7,2.8 8.05,5.95 11.375,5.95 8.75,7.875 9.8,11.025 7,9.1 4.2,11.025 5.25,7.875 2.625,5.95 5.95,5.95" fill="#FFF"/>
-    </g>
-  </svg>`,
+  'english': `<svg class="flag-icon" width="28" height="28"><use href="/sprite.svg#flag-uk"/></svg>`,
+  'spanish': `<svg class="flag-icon" width="28" height="28"><use href="/sprite.svg#flag-es"/></svg>`,
+  'french': `<svg class="flag-icon" width="28" height="28"><use href="/sprite.svg#flag-fr"/></svg>`,
+  'italian': `<svg class="flag-icon" width="28" height="28"><use href="/sprite.svg#flag-it"/></svg>`,
+  'portuguese': `<svg class="flag-icon" width="28" height="28"><use href="/sprite.svg#flag-pt"/></svg>`,
+  'czech': `<svg class="flag-icon" width="28" height="28"><use href="/sprite.svg#flag-cz"/></svg>`,
+  'japanese': `<svg class="flag-icon" width="28" height="28"><use href="/sprite.svg#flag-jp"/></svg>`,
+  'korean': `<svg class="flag-icon" width="28" height="28"><use href="/sprite.svg#flag-kr"/></svg>`,
+  'chinese_simplified': `<svg class="flag-icon" width="28" height="28"><use href="/sprite.svg#flag-cn"/></svg>`,
+  'chinese_traditional': `<svg class="flag-icon" width="28" height="28"><use href="/sprite.svg#flag-tw"/></svg>`,
 };
 
 const browserLangToWordlist: Record<string, string> = {
@@ -297,12 +211,9 @@ export function updateUITranslations(): void {
   elements.modalWhyTitle.textContent = currentTranslations.modalWhyBIP39Title;
   elements.modalWhyText.textContent = currentTranslations.modalWhyBIP39Text;
   
-  // Add lightbulb icon before link text
   elements.modalWhyLink.innerHTML = `
-    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: inline-block; vertical-align: -0.1rem; margin-right: 0.5rem;">
-      <path d="M9 21h6"></path>
-      <path d="M12 17v4"></path>
-      <path d="M12 3C8.686 3 6 5.686 6 9c0 2.25 1.5 4.5 3 6v2h6v-2c1.5-1.5 3-3.75 3-6 0-3.314-2.686-6-6-6z"></path>
+    <svg width="18" height="18" style="display: inline-block; vertical-align: -0.1rem; margin-right: 0.5rem;">
+      <use href="/sprite.svg#icon-lightbulb"/>
     </svg>
     ${currentTranslations.modalWhyBIP39Link}
   `;
