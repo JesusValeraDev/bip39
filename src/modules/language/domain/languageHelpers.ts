@@ -34,11 +34,3 @@ export function getUILanguageCode(wordlistLang: string): string {
   
   return mapping[wordlistLang] || 'en';
 }
-
-export function shouldCloseDropdown(isOpen: boolean, clickedInside: boolean): boolean {
-  return isOpen && !clickedInside;
-}
-
-export function toggleOpenState(currentState: boolean): boolean {
-  return !currentState;
-}

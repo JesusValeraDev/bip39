@@ -39,6 +39,7 @@ vi.mock('../../../../src/modules/bip39/domain/state', () => ({
 
 vi.mock('../../../../src/modules/display/infrastructure/display', () => ({
   updateDisplay: vi.fn(),
+  setSyncWordInputCallback: vi.fn(),
 }));
 
 vi.mock('../../../../src/modules/language/infrastructure/language', () => ({

@@ -4,8 +4,6 @@ import {
   determineLanguage,
   isLanguageActive,
   getUILanguageCode,
-  shouldCloseDropdown,
-  toggleOpenState,
 } from '../../../../src/modules/language';
 
 describe('Language Helpers - Pure Functions', () => {
@@ -97,39 +95,6 @@ describe('Language Helpers - Pure Functions', () => {
 
     it('should default to en for unknown language', () => {
       expect(getUILanguageCode('unknown')).toBe('en');
-    });
-  });
-
-  describe('shouldCloseDropdown', () => {
-    it('should return true when open and clicked outside', () => {
-      expect(shouldCloseDropdown(true, false)).toBe(true);
-    });
-
-    it('should return false when not open', () => {
-      expect(shouldCloseDropdown(false, false)).toBe(false);
-      expect(shouldCloseDropdown(false, true)).toBe(false);
-    });
-
-    it('should return false when clicked inside', () => {
-      expect(shouldCloseDropdown(true, true)).toBe(false);
-    });
-  });
-
-  describe('toggleOpenState', () => {
-    it('should toggle from false to true', () => {
-      expect(toggleOpenState(false)).toBe(true);
-    });
-
-    it('should toggle from true to false', () => {
-      expect(toggleOpenState(true)).toBe(false);
-    });
-
-    it('should be reversible', () => {
-      const initial = false;
-      const toggled = toggleOpenState(initial);
-      const toggledBack = toggleOpenState(toggled);
-      
-      expect(toggledBack).toBe(initial);
     });
   });
 });

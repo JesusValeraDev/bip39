@@ -6,7 +6,6 @@ export * from './domain/wordValidation';
 export { 
   determineUILanguage, 
   getGitHashOrDefault, 
-  elementExists, 
   validateModalElement, 
   validateButtonElements 
 } from './domain/mainHelpers';

@@ -2,7 +2,6 @@ import { describe, it, expect } from 'vitest';
 import {
   determineUILanguage,
   getGitHashOrDefault,
-  elementExists,
   validateModalElement,
   validateButtonElements,
   isEscapeKey,
@@ -69,17 +68,6 @@ describe('Main Helpers - Pure Functions', () => {
 
     it('should return dev when git hash is empty string', () => {
       expect(getGitHashOrDefault('')).toBe('dev');
-    });
-  });
-
-  describe('elementExists', () => {
-    it('should return true for non-null element', () => {
-      const element = document.createElement('div');
-      expect(elementExists(element)).toBe(true);
-    });
-
-    it('should return false for null element', () => {
-      expect(elementExists(null)).toBe(false);
     });
   });
 

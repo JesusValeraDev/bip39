@@ -24,19 +24,3 @@ export function shouldBoxBeDisabled(index: number, boxes: boolean[]): boolean {
   }
   return shouldOtherBoxBeDisabled(index, boxes);
 }
-
-export function isBoxActive(index: number, boxes: boolean[]): boolean {
-  return boxes[index];
-}
-
-export function getDisabledBoxIndices(boxes: boolean[]): number[] {
-  return boxes
-    .map((_, index) => index)
-    .filter(index => shouldBoxBeDisabled(index, boxes));
-}
-
-export function getActiveBoxIndices(boxes: boolean[]): number[] {
-  return boxes
-    .map((_, index) => index)
-    .filter(index => isBoxActive(index, boxes));
-}

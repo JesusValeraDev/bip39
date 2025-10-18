@@ -11,11 +11,17 @@ export function updateDisplay(): void {
   syncWordInputFromBoxes();
 }
 
+// Callback for syncing word input (set by wordInput module to avoid circular dependency)
+let syncWordInputCallback: (() => void) | null = null;
+
+export function setSyncWordInputCallback(callback: () => void): void {
+  syncWordInputCallback = callback;
+}
+
 function syncWordInputFromBoxes(): void {
-  // Import dynamically to avoid circular dependency
-  import('../../wordInput/infrastructure/wordInput').then(({ syncWordInputFromState }) => {
-    syncWordInputFromState();
-  });
+  if (syncWordInputCallback) {
+    syncWordInputCallback();
+  }
 }
 
 function updateBoxStates(boxesData: Array<{ isActive: boolean; isDisabled: boolean; ariaPressed: string }>): void {

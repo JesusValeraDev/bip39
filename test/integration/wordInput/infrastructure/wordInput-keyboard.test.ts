@@ -1,5 +1,10 @@
 import { describe, it, expect, beforeEach, vi, afterEach } from 'vitest';
 
+vi.mock('../../../../src/modules/display', () => ({
+  updateDisplay: vi.fn(),
+  setSyncWordInputCallback: vi.fn(),
+}));
+
 const mockElements = {
   wordInput: {
     value: '',

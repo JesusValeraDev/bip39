@@ -1,12 +1,15 @@
 import { elements } from '../../bip39';
 import { state, setStateFromIndex, resetBoxes } from '../../bip39';
-import { updateDisplay } from '../../display';
+import { updateDisplay, setSyncWordInputCallback } from '../../display';
 import { currentTranslations } from '../../language';
 import { isWordInWordlist, getWordIndex, binaryValueToIndex, getWordByIndex } from '../domain/wordInputHelpers';
 
 let selectedSuggestionIndex = -1;
 
 export function setupWordInput(): void {
+  // Register callback to avoid circular dependency
+  setSyncWordInputCallback(syncWordInputFromState);
+  
   elements.wordInput.addEventListener('input', handleWordInput);
   elements.wordInput.addEventListener('keydown', handleKeydown);
   elements.wordInput.addEventListener('focus', handleWordInput);

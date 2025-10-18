@@ -19,10 +19,6 @@ export function getGitHashOrDefault(envGitHash: string | undefined): string {
   return envGitHash || 'dev';
 }
 
-export function elementExists(element: HTMLElement | null): boolean {
-  return element !== null;
-}
-
 export function validateModalElement(modal: HTMLElement | null): boolean {
   return modal !== null && modal !== undefined;
 }
