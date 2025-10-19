@@ -1,8 +1,11 @@
 import { describe, it, expect, beforeEach, vi, afterEach } from 'vitest';
 
+const mockShowToast = vi.fn();
+
 vi.mock('../../../../src/modules/display', () => ({
   updateDisplay: vi.fn(),
   setSyncWordInputCallback: vi.fn(),
+  showToast: mockShowToast,
 }));
 
 const mockElements = {
@@ -200,5 +203,6 @@ describe('WordInput - Keyboard Navigation & Suggestions', () => {
     vi.advanceTimersByTime(300);
     expect(mockElements.wordInput.classList.add).toHaveBeenCalledWith('error');
     expect(resetBoxes).toHaveBeenCalled();
+    expect(mockShowToast).toHaveBeenCalledWith('invalid-word-toast', expect.any(String));
   });
 });

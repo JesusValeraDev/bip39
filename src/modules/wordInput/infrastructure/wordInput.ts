@@ -1,14 +1,11 @@
-import { elements } from '../../bip39';
-import { state, setStateFromIndex, resetBoxes } from '../../bip39';
-import { updateDisplay, setSyncWordInputCallback } from '../../display';
+import { elements, resetBoxes, setStateFromIndex, state } from '../../bip39';
+import { setSyncWordInputCallback, updateDisplay } from '../../display';
+import { showToast } from '../../display';
 import { currentTranslations } from '../../language';
-import { isWordInWordlist, getWordIndex, binaryValueToIndex, getWordByIndex } from '../domain/wordInputHelpers';
+import { binaryValueToIndex, getWordByIndex, getWordIndex, isWordInWordlist } from '../domain/wordInputHelpers';
 
 let selectedSuggestionIndex = -1;
 let hideSuggestionsTimeout: NodeJS.Timeout | null = null;
-let invalidToastShowTimeout: NodeJS.Timeout | null = null;
-let invalidToastHideTimeout: NodeJS.Timeout | null = null;
-let invalidToastRemoveTimeout: NodeJS.Timeout | null = null;
 
 export function setupWordInput(): void {
   // Register callback to avoid circular dependency
@@ -52,41 +49,7 @@ function validateWordInput(): void {
   elements.wordInput.classList.add('error');
   resetBoxes();
   updateDisplay();
-  showInvalidWordToast();
-}
-
-function showInvalidWordToast(): void {
-  const existingToast = document.getElementById('invalid-word-toast');
-  if (existingToast) {
-    existingToast.remove();
-  }
-
-  // Clear existing timers
-  if (invalidToastShowTimeout) clearTimeout(invalidToastShowTimeout);
-  if (invalidToastHideTimeout) clearTimeout(invalidToastHideTimeout);
-  if (invalidToastRemoveTimeout) clearTimeout(invalidToastRemoveTimeout);
-
-  const toast = document.createElement('div');
-  toast.id = 'invalid-word-toast';
-  toast.className = 'toast';
-  toast.textContent = currentTranslations.invalidWordMessage;
-  toast.setAttribute('role', 'alert');
-  toast.setAttribute('aria-live', 'polite');
-
-  document.body.appendChild(toast);
-
-  // Trigger animation
-  invalidToastShowTimeout = setTimeout(() => {
-    toast.classList.add('show');
-  }, 0);
-
-  // Remove after 3 seconds
-  invalidToastHideTimeout = setTimeout(() => {
-    toast.classList.remove('show');
-    invalidToastRemoveTimeout = setTimeout(() => {
-      toast.remove();
-    }, 300);
-  }, 3000);
+  showToast('invalid-word-toast', currentTranslations.invalidWordMessage);
 }
 
 function handleWordInput(): void {

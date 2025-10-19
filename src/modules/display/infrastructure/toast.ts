@@ -1,8 +1,14 @@
 import { currentTranslations } from '../../language';
 
-let toastTimeout: NodeJS.Timeout | null = null;
-let toastRemoveTimeout: NodeJS.Timeout | null = null;
-let toastShowTimeout: NodeJS.Timeout | null = null;
+const toastTimers = new Map<
+  string,
+  {
+    show: NodeJS.Timeout | null;
+    hide: NodeJS.Timeout | null;
+    remove: NodeJS.Timeout | null;
+  }
+>();
+
 let clickCount = 0;
 let clickResetTimeout: NodeJS.Timeout | null = null;
 
@@ -18,40 +24,46 @@ export function showDisabledBoxToast(): void {
 
   // Show toast only after 2+ clicks
   if (clickCount >= 2) {
-    showToast(currentTranslations.disabledBoxMessage);
+    showToast('toast-notification', currentTranslations.disabledBoxMessage);
     clickCount = 0;
   }
 }
 
-function showToast(message: string): void {
-  const existingToast = document.getElementById('toast-notification');
+export function showToast(id: string, message: string, duration: number = 3000, className: string = 'toast'): void {
+  const existingToast = document.getElementById(id);
   if (existingToast) {
     existingToast.remove();
   }
 
-  // Clear all existing timers
-  if (toastTimeout) clearTimeout(toastTimeout);
-  if (toastRemoveTimeout) clearTimeout(toastRemoveTimeout);
-  if (toastShowTimeout) clearTimeout(toastShowTimeout);
+  const timers = toastTimers.get(id);
+  if (timers) {
+    if (timers.show) clearTimeout(timers.show);
+    if (timers.hide) clearTimeout(timers.hide);
+    if (timers.remove) clearTimeout(timers.remove);
+  }
+
+  toastTimers.set(id, { show: null, hide: null, remove: null });
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const currentTimers = toastTimers.get(id)!;
 
   const toast = document.createElement('div');
-  toast.id = 'toast-notification';
-  toast.className = 'toast';
+  toast.id = id;
+  toast.className = className;
   toast.textContent = message;
   toast.setAttribute('role', 'alert');
   toast.setAttribute('aria-live', 'polite');
 
   document.body.appendChild(toast);
 
-  // Use setTimeout instead of requestAnimationFrame for better testability
-  toastShowTimeout = setTimeout(() => {
+  currentTimers.show = setTimeout(() => {
     toast.classList.add('show');
-  }, 0);
+  }, 10);
 
-  toastTimeout = setTimeout(() => {
+  currentTimers.hide = setTimeout(() => {
     toast.classList.remove('show');
-    toastRemoveTimeout = setTimeout(() => {
+    currentTimers.remove = setTimeout(() => {
       toast.remove();
-    }, 300); // Wait for fade out animation
-  }, 3000);
+      toastTimers.delete(id); // Clean up timer storage
+    }, 300);
+  }, duration);
 }
