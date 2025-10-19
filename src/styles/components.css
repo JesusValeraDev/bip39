@@ -36,6 +36,15 @@
   flex-shrink: 0;
   font-size: 1.5rem;
   padding: 0;
+  overflow: hidden;
+}
+
+.language-toggle svg,
+#current-flag {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  clip-path: circle(50% at center);
 }
 
 .language-toggle:hover {
