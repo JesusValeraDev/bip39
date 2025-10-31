@@ -1,8 +1,12 @@
-import { describe, it, expect } from 'vitest';
-import { setStateFromIndex, state } from '../../../../src/modules/bip39';
+import { describe, it, expect, beforeEach } from 'vitest';
+import { setStateFromIndex, state, resetBoxes } from '../../../../src/modules/bip39';
 
-describe('Word Input State Conversion', () => {
-  describe('setStateFromIndex', () => {
+describe('Word Input - Main Orchestrator', () => {
+  beforeEach(() => {
+    resetBoxes();
+  });
+
+  describe('State Updates from Word Index', () => {
     it('should set state for word index 0 (word "abandon" = 1)', () => {
       setStateFromIndex(0);
 
