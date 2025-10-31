@@ -11,7 +11,7 @@
 
   .word-input {
     font-size: 2rem;
-    padding: 1.25rem;
+    padding: 1.25rem 3.5rem 1.25rem 1.25rem;
   }
 
   .word-input::placeholder {
@@ -102,11 +102,22 @@
 
   .word-input {
     font-size: 1.75rem;
-    padding: 1.125rem 1.25rem;
+    padding: 1.125rem 3.5rem 1.125rem 1.25rem;
   }
 
   .word-input::placeholder {
     font-size: 1.75rem;
+  }
+
+  .clear-input-btn {
+    width: 32px;
+    height: 32px;
+    right: 10px;
+  }
+
+  .clear-input-btn svg {
+    width: 18px;
+    height: 18px;
   }
 
   .word-info {
@@ -234,11 +245,22 @@
 
   .word-input {
     font-size: 1.5rem;
-    padding: 1rem;
+    padding: 1rem 3rem 1rem 1rem;
   }
 
   .word-input::placeholder {
     font-size: 1.5rem;
+  }
+
+  .clear-input-btn {
+    width: 30px;
+    height: 30px;
+    right: 8px;
+  }
+
+  .clear-input-btn svg {
+    width: 16px;
+    height: 16px;
   }
 
   .word-info {
@@ -302,11 +324,22 @@
 
   .word-input {
     font-size: 1.35rem;
-    padding: 0.95rem;
+    padding: 0.95rem 3rem 0.95rem 0.95rem;
   }
 
   .word-input::placeholder {
     font-size: 1.35rem;
+  }
+
+  .clear-input-btn {
+    width: 28px;
+    height: 28px;
+    right: 8px;
+  }
+
+  .clear-input-btn svg {
+    width: 16px;
+    height: 16px;
   }
 
   .binary-display code {
@@ -334,7 +367,7 @@
 
   .word-input {
     font-size: 1.25rem;
-    padding: 0.875rem;
+    padding: 0.875rem 0.875rem 0.875rem 2.75rem;
   }
 
   .word-input::placeholder {

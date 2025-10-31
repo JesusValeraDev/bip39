@@ -16,12 +16,26 @@ export function setupWordInput(): void {
   elements.wordInput.addEventListener('focus', handleWordInput);
   elements.wordInput.addEventListener('blur', handleWordInputBlur);
 
-  // Handle click outside to close suggestions
+  const clearBtn = document.getElementById('clear-input-btn');
+  if (clearBtn) {
+    clearBtn.addEventListener('click', handleClearInput);
+  }
+
   document.addEventListener('click', e => {
     if (!elements.wordInput.contains(e.target as Node) && !elements.wordSuggestions.contains(e.target as Node)) {
       hideSuggestions();
     }
   });
+}
+
+function handleClearInput(): void {
+  elements.wordInput.value = '';
+  elements.wordInput.classList.remove('error');
+  resetBoxes();
+  updateDisplay();
+  hideSuggestions();
+  toggleClearButton(false);
+  elements.wordInput.focus();
 }
 
 function handleWordInputBlur(): void {
@@ -42,6 +56,11 @@ function validateWordInput(): void {
 
   if (wordExists) {
     elements.wordInput.classList.remove('error');
+    const wordIndex = getWordIndex(value, state.wordlist);
+    if (wordIndex !== -1) {
+      setStateFromIndex(wordIndex);
+      updateDisplay();
+    }
     return;
   }
 
@@ -55,6 +74,8 @@ function validateWordInput(): void {
 function handleWordInput(): void {
   const value = elements.wordInput.value.trim().toLowerCase();
 
+  toggleClearButton(elements.wordInput.value.length > 0);
+
   if (!value) {
     hideSuggestions();
     return;
@@ -64,6 +85,12 @@ function handleWordInput(): void {
   const matches = state.wordlist.filter(word => word.toLowerCase().startsWith(value));
 
   if (matches.length === 0) {
+    hideSuggestions();
+    return;
+  }
+
+  // Hide suggestions if only 1 match and it's an exact match
+  if (matches.length === 1 && matches[0].toLowerCase() === value) {
     hideSuggestions();
     return;
   }
@@ -202,6 +229,20 @@ export function clearWordInput(): void {
   elements.wordInput.value = '';
   elements.wordInput.classList.remove('error');
   hideSuggestions();
+  toggleClearButton(false);
+}
+
+function toggleClearButton(show: boolean): void {
+  const clearBtn = document.getElementById('clear-input-btn') as HTMLButtonElement | null;
+  if (clearBtn) {
+    if (show) {
+      clearBtn.disabled = false;
+      clearBtn.removeAttribute('aria-disabled');
+    } else {
+      clearBtn.disabled = true;
+      clearBtn.setAttribute('aria-disabled', 'true');
+    }
+  }
 }
 
 export function syncWordInputFromState(): void {
@@ -212,10 +253,12 @@ export function syncWordInputFromState(): void {
     const word = getWordByIndex(wordIndex, state.wordlist);
     if (word && elements.wordInput.value !== word) {
       elements.wordInput.value = word;
+      toggleClearButton(true);
     }
   } else {
     if (elements.wordInput.value !== '') {
       elements.wordInput.value = '';
+      toggleClearButton(false);
     }
   }
 }

@@ -463,7 +463,7 @@
 
 .word-input {
   width: 100%;
-  padding: 1rem;
+  padding: 1rem 3.5rem 1rem 1rem;
   font-size: 2.2rem;
   font-weight: 700;
   font-family: 'Courier New', monospace;
@@ -497,6 +497,51 @@
   font-size: 2.2rem;
   font-weight: 700;
   letter-spacing: 0.05em;
+}
+
+.clear-input-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  background: var(--background);
+  color: var(--text-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  padding: 0;
+  opacity: 0.9;
+  z-index: 10;
+}
+
+.clear-input-btn:hover {
+  opacity: 1;
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+  box-shadow: 0 4px 8px rgba(247, 147, 26, 0.3);
+}
+
+.clear-input-btn:disabled,
+.clear-input-btn[aria-disabled='true'] {
+  opacity: 0.3;
+  cursor: not-allowed;
+  background: var(--surface-light);
+  color: var(--text-secondary);
+  border-color: var(--border);
+  pointer-events: none;
+}
+
+.clear-input-btn svg {
+  width: 20px;
+  height: 20px;
+  stroke-width: 2.5;
 }
 
 /* Word Info (Index display) */
