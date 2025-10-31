@@ -6,6 +6,7 @@ import { binaryValueToIndex, getWordByIndex, getWordIndex, isWordInWordlist } fr
 
 let selectedSuggestionIndex = -1;
 let hideSuggestionsTimeout: NodeJS.Timeout | null = null;
+let errorClearTimeout: NodeJS.Timeout | null = null;
 
 export function setupWordInput(): void {
   // Register callback to avoid circular dependency
@@ -69,6 +70,13 @@ function validateWordInput(): void {
   resetBoxes();
   updateDisplay();
   showToast('invalid-word-toast', currentTranslations.invalidWordMessage);
+
+  if (errorClearTimeout) {
+    clearTimeout(errorClearTimeout);
+  }
+  errorClearTimeout = setTimeout(() => {
+    elements.wordInput.classList.remove('error');
+  }, 3500);
 }
 
 function handleWordInput(): void {
