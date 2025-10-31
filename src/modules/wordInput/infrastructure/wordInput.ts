@@ -48,29 +48,41 @@ function validateWordInput(): void {
   const value = elements.wordInput.value.trim().toLowerCase();
 
   if (!value) {
-    elements.wordInput.classList.remove('error');
+    clearInputError();
     return;
   }
 
-  // Check if word exists in wordlist using helper
   const wordExists = isWordInWordlist(value, state.wordlist);
 
   if (wordExists) {
-    elements.wordInput.classList.remove('error');
-    const wordIndex = getWordIndex(value, state.wordlist);
-    if (wordIndex !== -1) {
-      setStateFromIndex(wordIndex);
-      updateDisplay();
-    }
-    return;
+    handleValidWord(value);
+  } else {
+    handleInvalidWord();
   }
+}
 
-  // Invalid word - show error and reset boxes
+function clearInputError(): void {
+  elements.wordInput.classList.remove('error');
+}
+
+function handleValidWord(value: string): void {
+  clearInputError();
+  const wordIndex = getWordIndex(value, state.wordlist);
+  if (wordIndex !== -1) {
+    setStateFromIndex(wordIndex);
+    updateDisplay();
+  }
+}
+
+function handleInvalidWord(): void {
   elements.wordInput.classList.add('error');
   resetBoxes();
   updateDisplay();
   showToast('invalid-word-toast', currentTranslations.invalidWordMessage);
+  scheduleErrorAutoClear();
+}
 
+function scheduleErrorAutoClear(): void {
   if (errorClearTimeout) {
     clearTimeout(errorClearTimeout);
   }
