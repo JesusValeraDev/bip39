@@ -31,6 +31,7 @@ export default defineConfig({
       provider: 'v8',
       reporter: ['text', 'json', 'html', 'clover'],
       exclude: [
+        'src/main.ts',
         'node_modules/',
         'test/',
         'dist/',
