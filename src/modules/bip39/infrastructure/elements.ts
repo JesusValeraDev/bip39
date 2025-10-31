@@ -37,9 +37,6 @@ export const elements = {
   get wordInput() {
     return getElementById<HTMLInputElement>('word-input');
   },
-  get wordInputLabel() {
-    return getElementById<HTMLLabelElement>('word-input-label');
-  },
   get wordSuggestions() {
     return getElementById<HTMLDivElement>('word-suggestions');
   },

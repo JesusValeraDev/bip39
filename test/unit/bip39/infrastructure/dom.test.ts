@@ -74,7 +74,6 @@ describe('DOM Elements', () => {
 
     it('should have word input elements defined', () => {
       expect(elements.wordInput).toBeDefined();
-      expect(elements.wordInputLabel).toBeDefined();
       expect(elements.wordSuggestions).toBeDefined();
     });
 

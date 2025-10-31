@@ -140,11 +140,10 @@
       </div>
     </div>
 
-    <p id="info-text" class="info-description">Choose a BIP39 word by typing it or by clicking numbers (1-2048).</p>
+    <h2 id="info-text" class="info-description">Choose a BIP39 word by typing it in the input field below or by clicking the number boxes (1-2048)</h2>
 
     <!-- Word Input/Display Section -->
     <section class="word-section" role="region" aria-label="Word input">
-      <h2 class="section-title" id="word-input-label">Type a word or click numbers to select</h2>
       <div class="word-input-wrapper">
         <input
           type="text"
@@ -154,11 +153,23 @@
           autocomplete="off"
           spellcheck="false"
           autofocus
-          aria-describedby="word-input-label"
           aria-autocomplete="list"
           aria-controls="word-suggestions"
           aria-live="polite"
         />
+        <button
+          id="clear-input-btn"
+          class="clear-input-btn"
+          type="button"
+          aria-label="Clear input"
+          disabled
+          aria-disabled="true"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
         <div id="word-suggestions" class="word-suggestions" role="listbox" aria-label="Word suggestions" hidden></div>
       </div>
       <div class="word-info">
