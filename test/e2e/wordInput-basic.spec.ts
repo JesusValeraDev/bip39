@@ -8,10 +8,7 @@ test.describe('Word Input - Basic Functionality', () => {
   test('should have word input field visible', async ({ page }) => {
     const wordInput = page.locator('#word-input');
     await expect(wordInput).toBeVisible();
-
-    const label = page.locator('#word-input-label');
-    await expect(label).toBeVisible();
-    await expect(label).toContainText('Type a word');
+    await expect(wordInput).toBeEditable();
   });
 
   test('should show suggestions when typing', async ({ page }) => {
@@ -29,7 +26,7 @@ test.describe('Word Input - Basic Functionality', () => {
 
   test('should select word and update boxes', async ({ page }) => {
     const wordInput = page.locator('#word-input');
-    await wordInput.fill('abandon');
+    await wordInput.fill('aband');
 
     const firstSuggestion = page.locator('.suggestion-item').first();
     await firstSuggestion.click();
@@ -54,7 +51,7 @@ test.describe('Word Input - Basic Functionality', () => {
 
   test('should clear input when reset is clicked', async ({ page }) => {
     const wordInput = page.locator('#word-input');
-    await wordInput.fill('ability');
+    await wordInput.fill('abili');
 
     const firstSuggestion = page.locator('.suggestion-item').first();
     await firstSuggestion.click();
@@ -113,7 +110,7 @@ test.describe('Word Input - Basic Functionality', () => {
 
   test('should show word index in suggestions', async ({ page }) => {
     const wordInput = page.locator('#word-input');
-    await wordInput.fill('abandon');
+    await wordInput.fill('aband');
 
     await page.waitForSelector('.suggestion-item');
 
@@ -121,14 +118,14 @@ test.describe('Word Input - Basic Functionality', () => {
     await expect(suggestionIndex).toContainText('#1');
   });
 
-  test('should translate input label when language changes', async ({ page }) => {
+  test('should translate placeholder when language changes', async ({ page }) => {
     await page.locator('#language-toggle').click();
     await page.locator('[data-lang="spanish"]').click();
 
     await page.waitForTimeout(500);
 
-    const label = page.locator('#word-input-label');
-    await expect(label).toContainText('Escribe una palabra');
+    const wordInput = page.locator('#word-input');
+    await expect(wordInput).toHaveAttribute('placeholder', 'ábaco');
   });
 
   test('should not trigger Reset shortcut when typing in input', async ({ page }) => {

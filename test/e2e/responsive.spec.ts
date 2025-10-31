@@ -74,17 +74,16 @@ test.describe('Responsive Design', () => {
     await page.setViewportSize({ width: 375, height: 667 });
     await page.goto('/');
 
-    // Check all three sections are visible
+    // Check all sections are visible
+    const infoText = page.locator('#info-text');
     const gridSection = page.locator('.grid-section');
     const wordSection = page.locator('.word-section');
     const privacySection = page.locator('.privacy-warning');
 
+    await expect(infoText).toBeVisible();
     await expect(gridSection).toBeVisible();
     await expect(wordSection).toBeVisible();
     await expect(privacySection).toBeVisible();
-
-    // Check section title is visible
-    await expect(page.locator('#word-input-label')).toBeVisible();
   });
 
   test('should have readable text sizes on small screens', async ({ page }) => {
