@@ -202,25 +202,16 @@
 .info-description {
   color: var(--text-secondary);
   margin: 0 0 3rem 0;
-  font-size: 1.15rem;
+  font-size: 1.4rem;
   line-height: 1.6;
   text-align: left;
+  letter-spacing: 0.05em;
 }
 
 /* Section Styles */
 .grid-section,
 .word-section {
   margin-bottom: 2.5rem;
-}
-
-.section-title {
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: var(--primary-color);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  margin-bottom: 1.5rem;
-  text-align: center;
 }
 
 /* Visually hidden class for accessibility */
@@ -452,8 +443,6 @@
   transform: scale(0.95);
   box-shadow: 0 2px 6px rgba(247, 147, 26, 0.2);
 }
-
-/* Word input label is now section-title */
 
 .word-input-wrapper {
   position: relative;

@@ -13,7 +13,6 @@ export interface Translations {
   invalidWordMessage: string;
   wordlistLoadError: string;
   // Word input translations
-  wordInputLabel: string;
   wordInputPlaceholder: string;
   // Modal translations
   modalTitle: string;
@@ -67,7 +66,7 @@ export const translations: Record<string, Translations> = {
     languageLabel: 'Language',
     index: 'Index:',
     resetButton: 'Reset',
-    infoText: 'Choose a BIP39 word by typing it or by clicking numbers (1-2048).',
+    infoText: 'Choose a BIP39 word by typing it in the input field below or by clicking the number boxes (1-2048)',
     privacyTitle: 'Privacy Protected',
     privacyTooltip: 'This application runs entirely in your browser. No data is transmitted, stored, or tracked.',
     toggleTheme: 'Toggle dark/light mode',
@@ -76,7 +75,6 @@ export const translations: Record<string, Translations> = {
     invalidWordMessage: 'This word is not in the BIP39 wordlist',
     wordlistLoadError: '⚠️ Failed to load wordlist. Please refresh the page.',
     // Word input translations
-    wordInputLabel: 'Type a word or click numbers to select',
     wordInputPlaceholder: 'abandon',
     // Modal translations
     modalTitle: 'What is BIP39?',
@@ -133,7 +131,8 @@ export const translations: Record<string, Translations> = {
     languageLabel: 'Idioma',
     index: 'Índice:',
     resetButton: 'Reiniciar',
-    infoText: 'Elige una palabra BIP39 escribiéndola o haciendo clic en números (1-2048).',
+    infoText:
+      'Elige una palabra BIP39 escribiéndola en el campo de texto o haciendo clic en las casillas numéricas (1-2048)',
     privacyTitle: 'Privacidad Protegida',
     privacyTooltip:
       'Esta aplicación se ejecuta completamente en tu navegador. No se transmite, almacena ni rastrea ningún dato.',
@@ -143,7 +142,6 @@ export const translations: Record<string, Translations> = {
     invalidWordMessage: 'Esta palabra no está en la lista BIP39',
     wordlistLoadError: '⚠️ Error al cargar la lista de palabras. Por favor, recarga la página.',
     // Word input translations
-    wordInputLabel: 'Escribe una palabra o haz clic en números',
     wordInputPlaceholder: 'ábaco',
     // Modal translations
     modalTitle: '¿Qué es BIP39?',
@@ -200,7 +198,8 @@ export const translations: Record<string, Translations> = {
     languageLabel: 'Langue',
     index: 'Indice:',
     resetButton: 'Réinitialiser',
-    infoText: 'Choisissez un mot BIP39 en le tapant ou en cliquant sur des numéros (1-2048).',
+    infoText:
+      'Choisissez un mot BIP39 en le tapant dans le champ de saisie ci-dessous ou en cliquant sur les cases numériques (1-2048)',
     privacyTitle: 'Confidentialité Protégée',
     privacyTooltip:
       "Cette application s'exécute entièrement dans votre navigateur. Aucune donnée n'est transmise, stockée ou suivie.",
@@ -210,7 +209,6 @@ export const translations: Record<string, Translations> = {
     invalidWordMessage: "Ce mot n'est pas dans la liste BIP39",
     wordlistLoadError: '⚠️ Échec du chargement de la liste de mots. Veuillez actualiser la page.',
     // Word input translations
-    wordInputLabel: 'Tapez un mot ou cliquez sur des numéros',
     wordInputPlaceholder: 'abaisser',
     // Modal translations
     modalTitle: "Qu'est-ce que BIP39?",
@@ -267,7 +265,7 @@ export const translations: Record<string, Translations> = {
     languageLabel: 'Jazyk',
     index: 'Index:',
     resetButton: 'Resetovat',
-    infoText: 'Vyberte slovo BIP39 jeho napsáním nebo kliknutím na čísla (1-2048).',
+    infoText: 'Vyberte slovo BIP39 jeho napsáním do vstupního pole níže nebo kliknutím na číselná pole (1-2048)',
     privacyTitle: 'Soukromí Chráněno',
     privacyTooltip:
       'Tato aplikace běží zcela ve vašem prohlížeči. Žádná data nejsou přenášena, ukládána ani sledována.',
@@ -277,7 +275,6 @@ export const translations: Record<string, Translations> = {
     invalidWordMessage: 'Toto slovo není v seznamu BIP39',
     wordlistLoadError: '⚠️ Nepodařilo se načíst seznam slov. Obnovte prosím stránku.',
     // Word input translations
-    wordInputLabel: 'Napište slovo nebo klikněte na čísla',
     wordInputPlaceholder: 'abdikace',
     // Modal translations
     modalTitle: 'Co je BIP39?',
@@ -334,7 +331,8 @@ export const translations: Record<string, Translations> = {
     languageLabel: 'Lingua',
     index: 'Indice:',
     resetButton: 'Ripristina',
-    infoText: 'Scegli una parola BIP39 scrivendola o cliccando sui numeri (1-2048).',
+    infoText:
+      'Scegli una parola BIP39 scrivendola nel campo di input qui sotto o cliccando sulle caselle numeriche (1-2048)',
     privacyTitle: 'Privacy Protetta',
     privacyTooltip:
       'Questa applicazione viene eseguita interamente nel tuo browser. Nessun dato viene trasmesso, memorizzato o tracciato.',
@@ -344,7 +342,6 @@ export const translations: Record<string, Translations> = {
     invalidWordMessage: 'Questa parola non è nella lista BIP39',
     wordlistLoadError: '⚠️ Impossibile caricare la lista di parole. Ricarica la pagina.',
     // Word input translations
-    wordInputLabel: 'Scrivi una parola o clicca sui numeri',
     wordInputPlaceholder: 'abaco',
     // Modal translations
     modalTitle: "Cos'è BIP39?",
@@ -401,7 +398,8 @@ export const translations: Record<string, Translations> = {
     languageLabel: 'Idioma',
     index: 'Índice:',
     resetButton: 'Reiniciar',
-    infoText: 'Escolha uma palavra BIP39 digitando-a ou clicando nos números (1-2048).',
+    infoText:
+      'Escolha uma palavra BIP39 digitando-a no campo de entrada abaixo ou clicando nas caixas numéricas (1-2048)',
     privacyTitle: 'Privacidade Protegida',
     privacyTooltip:
       'Este aplicativo é executado inteiramente no seu navegador. Nenhum dado é transmitido, armazenado ou rastreado.',
@@ -411,7 +409,6 @@ export const translations: Record<string, Translations> = {
     invalidWordMessage: 'Esta palavra não está na lista BIP39',
     wordlistLoadError: '⚠️ Falha ao carregar a lista de palavras. Atualize a página.',
     // Word input translations
-    wordInputLabel: 'Digite uma palavra ou clique nos números',
     wordInputPlaceholder: 'abacate',
     // Modal translations
     modalTitle: 'O que é BIP39?',
@@ -468,7 +465,7 @@ export const translations: Record<string, Translations> = {
     languageLabel: '言語',
     index: 'インデックス：',
     resetButton: 'リセット',
-    infoText: 'BIP39単語を入力するか、数字をクリックして選択します（1-2048）。',
+    infoText: 'BIP39単語を下の入力フィールドに入力するか、数字ボックスをクリックして選択します（1-2048）',
     privacyTitle: 'プライバシー保護',
     privacyTooltip: 'このアプリケーションはブラウザ内で完全に動作します。データの送信、保存、追跡は一切行われません。',
     toggleTheme: 'ダークモード/ライトモードを切り替え',
@@ -477,7 +474,6 @@ export const translations: Record<string, Translations> = {
     invalidWordMessage: 'この単語はBIP39リストにありません',
     wordlistLoadError: '⚠️ ワードリストの読み込みに失敗しました。ページを更新してください。',
     // Word input translations
-    wordInputLabel: '単語を入力するか、数字をクリック',
     wordInputPlaceholder: 'あいこくしん',
     // Modal translations
     modalTitle: 'BIP39とは？',
@@ -534,7 +530,7 @@ export const translations: Record<string, Translations> = {
     languageLabel: '언어',
     index: '인덱스:',
     resetButton: '재설정',
-    infoText: 'BIP39 단어를 입력하거나 숫자를 클릭하여 선택하세요 (1-2048).',
+    infoText: 'BIP39 단어를 아래 입력 필드에 입력하거나 숫자 상자를 클릭하여 선택하세요 (1-2048)',
     privacyTitle: '개인정보 보호',
     privacyTooltip: '이 애플리케이션은 브라우저에서 완전히 실행됩니다. 데이터 전송, 저장 또는 추적이 없습니다.',
     toggleTheme: '다크 모드/라이트 모드 전환',
@@ -543,7 +539,6 @@ export const translations: Record<string, Translations> = {
     invalidWordMessage: '이 단어는 BIP39 목록에 없습니다',
     wordlistLoadError: '⚠️ 단어 목록을 로드하지 못했습니다. 페이지를 새로고침하세요.',
     // Word input translations
-    wordInputLabel: '단어를 입력하거나 숫자를 클릭',
     wordInputPlaceholder: '가격',
     // Modal translations
     modalTitle: 'BIP39란 무엇인가요?',
@@ -600,7 +595,7 @@ export const translations: Record<string, Translations> = {
     languageLabel: '语言',
     index: '索引：',
     resetButton: '重置',
-    infoText: '通过输入或点击数字选择 BIP39 单词 (1-2048)。',
+    infoText: '在下面的输入字段中输入 BIP39 单词或通过点击数字框选择 (1-2048)',
     privacyTitle: '隐私保护',
     privacyTooltip: '此应用程序完全在您的浏览器中运行。不会传输、存储或跟踪任何数据。',
     toggleTheme: '切换深色/浅色模式',
@@ -609,7 +604,6 @@ export const translations: Record<string, Translations> = {
     invalidWordMessage: '此单词不在 BIP39 列表中',
     wordlistLoadError: '⚠️ 加载单词列表失败。请刷新页面。',
     // Word input translations
-    wordInputLabel: '输入单词或点击数字',
     wordInputPlaceholder: '的',
     // Modal translations
     modalTitle: '什么是BIP39？',
@@ -652,7 +646,7 @@ export const translations: Record<string, Translations> = {
     languageLabel: '語言',
     index: '索引：',
     resetButton: '重置',
-    infoText: '通過輸入或點擊數字選擇 BIP39 單詞 (1-2048)。',
+    infoText: '在下面的輸入字段中輸入 BIP39 單詞或通過點擊數字框選擇 (1-2048)',
     privacyTitle: '隱私保護',
     privacyTooltip: '此應用程序完全在您的瀏覽器中運行。不會傳輸、存儲或跟蹤任何數據。',
     toggleTheme: '切換深色/淺色模式',
@@ -661,7 +655,6 @@ export const translations: Record<string, Translations> = {
     invalidWordMessage: '此單詞不在 BIP39 列表中',
     wordlistLoadError: '⚠️ 載入單詞列表失敗。請重新整理頁面。',
     // Word input translations
-    wordInputLabel: '輸入單詞或點擊數字',
     wordInputPlaceholder: '的',
     // Modal translations
     modalTitle: '什麼是BIP39？',

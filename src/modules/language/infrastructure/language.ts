@@ -168,7 +168,6 @@ function updateBasicUITranslations(): void {
 }
 
 function updateWordInputTranslations(): void {
-  elements.wordInputLabel.textContent = currentTranslations.wordInputLabel;
   elements.wordInput.placeholder = currentTranslations.wordInputPlaceholder;
 }
 

@@ -66,7 +66,7 @@ describe('i18n', () => {
       expect(en.title).toBeDefined();
       expect(en.resetButton).toBeDefined();
       expect(en.infoText).toBeDefined();
-      expect(en.wordInputLabel).toBeDefined();
+      expect(en.wordInputPlaceholder).toBeDefined();
       expect(en.modalTitle).toBeDefined();
     });
   });
