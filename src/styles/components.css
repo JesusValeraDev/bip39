@@ -244,9 +244,8 @@
 }
 
 .binary-display code {
-  font-family: 'Courier New', monospace;
   font-size: 1.25rem;
-  font-weight: 800;
+  font-weight: bolder;
   color: var(--primary-color);
   letter-spacing: 0.6em;
   padding: 0.6rem 0.3rem 0.6rem calc(0.3rem + 0.6em);

@@ -24,7 +24,7 @@ export function calculateBinaryValue(): number {
 }
 
 export function getBinaryString(): string {
-  return state.boxes.map(b => (b ? '1' : '0')).join('');
+  return state.boxes.map(b => (b ? '●' : '○')).join('');
 }
 
 export function setStateFromIndex(wordIndex: number): void {

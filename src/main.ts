@@ -90,6 +90,12 @@ async function init(): Promise<void> {
   createGrid();
   setupWordInput();
 
+  // Inject current year into footer
+  const currentYearElement = document.getElementById('current-year');
+  if (currentYearElement) {
+    currentYearElement.textContent = new Date().getFullYear().toString();
+  }
+
   // Inject git commit hash into footer
   const gitHashElement = document.getElementById('git-hash');
   if (gitHashElement) {

@@ -6,7 +6,7 @@ vi.mock('../../../../src/modules/bip39/domain/state', () => ({
   resetBoxes: vi.fn(),
   setStateFromIndex: vi.fn(),
   calculateBinaryValue: vi.fn(() => 0),
-  getBinaryString: vi.fn(() => '0 0 0 0 0 0 0 0 0 0 0 0'),
+  getBinaryString: vi.fn(() => '○○○○○○○○○○○○'),
 }));
 
 vi.mock('../../../../src/modules/bip39/infrastructure/wordlist', () => ({

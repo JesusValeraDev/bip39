@@ -77,28 +77,28 @@ describe('State Management', () => {
   });
 
   describe('getBinaryString', () => {
-    it('should return all zeros for no boxes selected', () => {
-      expect(getBinaryString()).toBe('000000000000');
+    it('should return all empty dots for no boxes selected', () => {
+      expect(getBinaryString()).toBe('○○○○○○○○○○○○');
     });
 
     it('should return correct binary string for single box', () => {
       state.boxes[11] = true;
-      expect(getBinaryString()).toBe('000000000001');
+      expect(getBinaryString()).toBe('○○○○○○○○○○○●');
 
       state.boxes[11] = false;
       state.boxes[0] = true;
-      expect(getBinaryString()).toBe('100000000000');
+      expect(getBinaryString()).toBe('●○○○○○○○○○○○');
     });
 
     it('should return correct binary string for multiple boxes', () => {
       state.boxes[0] = true; // 2^11
       state.boxes[11] = true; // 2^0
-      expect(getBinaryString()).toBe('100000000001');
+      expect(getBinaryString()).toBe('●○○○○○○○○○○●');
     });
 
-    it('should return all ones for all boxes selected', () => {
+    it('should return all filled dots for all boxes selected', () => {
       state.boxes.fill(true);
-      expect(getBinaryString()).toBe('111111111111');
+      expect(getBinaryString()).toBe('●●●●●●●●●●●●');
     });
   });
 });

@@ -9,7 +9,7 @@ import {
 
 vi.mock('../../../src/modules/bip39/domain/state', () => ({
   calculateBinaryValue: vi.fn(() => 100),
-  getBinaryString: vi.fn(() => '0 1 1 0 0 1 0 0'),
+  getBinaryString: vi.fn(() => '○●●○○●○○'),
 }));
 
 vi.mock('../../../src/modules/bip39/infrastructure/wordlist', () => ({
@@ -87,7 +87,7 @@ describe('Application - Display Service', () => {
     it('should return binary string', () => {
       const data = getBinaryDisplayData();
 
-      expect(data.binaryString).toBe('000000000000');
+      expect(data.binaryString).toBe('○○○○○○○○○○○○');
     });
   });
 
