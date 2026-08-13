@@ -3,7 +3,9 @@ import {
   DEFAULT_INDEX_BASE,
   applyIndexMax,
   applyIndexRange,
+  WORD_BITS,
   getMinDisplayIndex,
+  toBinaryString,
   hasEmptyPatternState,
   isSelectableDisplayIndex,
   toWordlistIndex,
@@ -173,6 +175,30 @@ describe('Index Base Logic - Pure Functions', () => {
     it('should fill in the current and the next base', () => {
       expect(formatIndexBaseToggleLabel('at {current}, go {next}', 1)).toBe('at 1, go 0');
       expect(formatIndexBaseToggleLabel('at {current}, go {next}', 0)).toBe('at 0, go 1');
+    });
+  });
+  describe('toBinaryString', () => {
+    it('should use the eleven bits a BIP39 word carries', () => {
+      expect(WORD_BITS).toBe(11);
+      expect(toBinaryString(0)).toHaveLength(11);
+    });
+
+    it('should render the first word as all zeros when 0-based', () => {
+      expect(toBinaryString(toDisplayIndex(0, 0))).toBe('00000000000');
+      expect(toBinaryString(toDisplayIndex(1, 0))).toBe('00000000001');
+    });
+
+    it('should shift the same words up when 1-based', () => {
+      expect(toBinaryString(toDisplayIndex(0, 1))).toBe('00000000001');
+      expect(toBinaryString(toDisplayIndex(1, 1))).toBe('00000000010');
+    });
+
+    it('should render the last 0-based word as all ones', () => {
+      expect(toBinaryString(toDisplayIndex(2047, 0))).toBe('11111111111');
+    });
+
+    it('should accept a different width', () => {
+      expect(toBinaryString(1, 4)).toBe('0001');
     });
   });
 });

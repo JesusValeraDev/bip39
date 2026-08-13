@@ -8,6 +8,8 @@ import {
   formatIndexBaseToggleLabel,
   getIndexBase,
   getMaxDisplayIndex,
+  toBinaryString,
+  toDisplayIndex,
   type IndexBase,
 } from '../../indexBase';
 
@@ -221,10 +223,18 @@ function updateModalStep1Translations(): void {
 }
 
 function updateModalStep2Translations(): void {
+  const indexBase = getIndexBase();
+
   elements.modalStep2Title.textContent = currentTranslations.modalStep2Title;
   elements.modalStep2Text.textContent = currentTranslations.modalStep2Text;
   elements.modalStep2Word1.textContent = currentTranslations.modalStep1Words[0];
   elements.modalStep2Word2.textContent = currentTranslations.modalStep1Words[1];
+
+  // The worked example follows the numbering in effect, so the first word reads
+  // as all zeros when the index starts at 0
+  elements.modalStep2Binary1.textContent = toBinaryString(toDisplayIndex(0, indexBase));
+  elements.modalStep2Binary2.textContent = toBinaryString(toDisplayIndex(1, indexBase));
+
   elements.modalStep2Entropy.textContent = currentTranslations.modalStep2Entropy;
 }
 

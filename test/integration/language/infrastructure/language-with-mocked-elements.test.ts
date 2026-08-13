@@ -31,6 +31,8 @@ const mockElements = {
   modalStep2Text: { textContent: '' },
   modalStep2Word1: { textContent: '' },
   modalStep2Word2: { textContent: '' },
+  modalStep2Binary1: { textContent: '' },
+  modalStep2Binary2: { textContent: '' },
   modalStep2Entropy: { textContent: '' },
   modalStep3Title: { textContent: '' },
   modalStep3Text: { textContent: '' },

@@ -144,3 +144,65 @@ test.describe('Learn More Modal', () => {
     expect(hasScroll).toBe(true);
   });
 });
+
+test.describe('Modal - Binary example follows the index base', () => {
+  const openModal = async (page: import('@playwright/test').Page) => {
+    await page.locator('#learn-more-btn').click();
+    await page.waitForTimeout(300);
+  };
+
+  test('should show the 1-based encoding by default', async ({ page }) => {
+    await page.goto('/');
+    await openModal(page);
+
+    await expect(page.locator('#modal-step2-word1')).toHaveText('abandon');
+    await expect(page.locator('#modal-step2-binary1')).toHaveText('00000000001');
+    await expect(page.locator('#modal-step2-word2')).toHaveText('ability');
+    await expect(page.locator('#modal-step2-binary2')).toHaveText('00000000010');
+  });
+
+  test('should start the first word at all zeros when 0-based', async ({ page }) => {
+    await page.goto('/');
+    await page.locator('#index-base-toggle').click();
+    await openModal(page);
+
+    await expect(page.locator('#modal-step2-binary1')).toHaveText('00000000000');
+    await expect(page.locator('#modal-step2-binary2')).toHaveText('00000000001');
+  });
+
+  test('should follow a toggle made while the modal was closed', async ({ page }) => {
+    await page.goto('/');
+    await openModal(page);
+    await expect(page.locator('#modal-step2-binary1')).toHaveText('00000000001');
+
+    await page.keyboard.press('Escape');
+    await page.waitForTimeout(400);
+    await page.locator('#index-base-toggle').click();
+    await openModal(page);
+
+    await expect(page.locator('#modal-step2-binary1')).toHaveText('00000000000');
+  });
+
+  test('should keep the numbering after a language change', async ({ page }) => {
+    await page.goto('/');
+    await page.locator('#index-base-toggle').click();
+    await page.locator('#language-toggle').click();
+    await page.locator('[data-lang="spanish"]').click();
+    await page.waitForTimeout(500);
+    await openModal(page);
+
+    // The example words are translation constants, so compare independently of encoding
+    const word = await page.locator('#modal-step2-word1').textContent();
+    expect(word?.normalize('NFC')).toBe('ábaco'.normalize('NFC'));
+
+    await expect(page.locator('#modal-step2-binary1')).toHaveText('00000000000');
+  });
+
+  test('should keep eleven bits, as a BIP39 word carries', async ({ page }) => {
+    await page.goto('/');
+    await openModal(page);
+
+    const bits = await page.locator('#modal-step2-binary1').textContent();
+    expect(bits).toHaveLength(11);
+  });
+});

@@ -12,6 +12,8 @@ export {
   getMaxDisplayIndex,
   hasEmptyPatternState,
   isSelectableDisplayIndex,
+  WORD_BITS,
+  toBinaryString,
   getIndexRangeLabel,
   getIndexBaseLabel,
   getIndexBaseAriaPressed,

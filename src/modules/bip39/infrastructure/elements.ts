@@ -101,6 +101,12 @@ export const elements = {
   get modalStep2Word2() {
     return getElementById<HTMLSpanElement>('modal-step2-word2');
   },
+  get modalStep2Binary1() {
+    return getElementById<HTMLSpanElement>('modal-step2-binary1');
+  },
+  get modalStep2Binary2() {
+    return getElementById<HTMLSpanElement>('modal-step2-binary2');
+  },
   get modalStep2Entropy() {
     return getElementById<HTMLElement>('modal-step2-entropy');
   },

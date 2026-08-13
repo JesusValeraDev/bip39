@@ -55,6 +55,13 @@ export function isSelectableDisplayIndex(displayIndex: number, base: IndexBase):
   return displayIndex >= getMinDisplayIndex(base) && displayIndex <= getMaxDisplayIndex(base);
 }
 
+/** A BIP39 word carries eleven bits of entropy. */
+export const WORD_BITS = 11;
+
+export function toBinaryString(displayIndex: number, bits: number = WORD_BITS): string {
+  return displayIndex.toString(2).padStart(bits, '0');
+}
+
 export function getIndexRangeLabel(base: IndexBase): string {
   return `${base}-${getMaxDisplayIndex(base)}`;
 }
