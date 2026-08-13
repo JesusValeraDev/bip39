@@ -1262,7 +1262,7 @@
   z-index: 10000;
   opacity: 0;
   transition: all 0.3s ease;
-  max-width: 600px;
+  max-width: 680px;
   width: 90%;
   text-align: center;
 }
