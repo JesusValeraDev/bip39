@@ -1,16 +1,34 @@
 import { elements, resetBoxes, setStateFromIndex, state } from '../../bip39';
 import { setSyncWordInputCallback, updateDisplay } from '../../display';
-import { getWordByIndex, getWordIndex } from '../domain/wordInputHelpers';
+import {
+  getAutocompletion,
+  getCompletionCaretOffset,
+  getWordByIndex,
+  getWordIndex,
+  isCaretAtEnd,
+  isForwardTyping,
+  isWordInWordlist,
+  normalizeForMatching,
+} from '../domain/wordInputHelpers';
 import { getIndexBase, isSelectableDisplayIndex, toWordlistIndex } from '../../indexBase';
 import { validateWordInput } from './validation';
-import { showSuggestions, hideSuggestions } from './suggestions';
+import { showSuggestions, hideSuggestions, clearSuggestions } from './suggestions';
 import { handleKeydown as handleKeyboardNavigation } from './keyboard';
+
+// Guards the input against being rewritten from the state mid-keystroke
+let isTyping = false;
 
 export function setupWordInput(): void {
   setSyncWordInputCallback(syncWordInputFromState);
 
   elements.wordInput.addEventListener('input', handleWordInput);
-  elements.wordInput.addEventListener('keydown', e => handleKeyboardNavigation(e, selectWord));
+  elements.wordInput.addEventListener('keydown', e =>
+    handleKeyboardNavigation(e, {
+      onSelectWord: word => selectWord(word, true),
+      onReset: handleClearInput,
+      onAccept: handleAcceptInput,
+    })
+  );
   elements.wordInput.addEventListener('focus', handleWordInput);
   elements.wordInput.addEventListener('blur', handleWordInputBlur);
 
@@ -31,9 +49,26 @@ function handleClearInput(): void {
   elements.wordInput.classList.remove('error');
   resetBoxes();
   updateDisplay();
-  hideSuggestions();
+  clearSuggestions();
   toggleClearButton(false);
   elements.wordInput.focus();
+}
+
+/**
+ * Enter on a word that exists settles the caret behind it; on anything else
+ * there is nothing to settle on, so the input goes back to empty.
+ */
+function handleAcceptInput(): void {
+  const value = elements.wordInput.value;
+
+  if (!normalizeForMatching(value)) return;
+
+  if (!isWordInWordlist(value, state.wordlist)) {
+    handleClearInput();
+    return;
+  }
+
+  elements.wordInput.setSelectionRange(value.length, value.length);
 }
 
 function handleWordInputBlur(): void {
@@ -41,33 +76,85 @@ function handleWordInputBlur(): void {
   validateWordInput();
 }
 
-function handleWordInput(): void {
-  const value = elements.wordInput.value.trim().toLowerCase();
+function handleWordInput(event?: Event): void {
+  const value = normalizeForMatching(elements.wordInput.value);
 
   toggleClearButton(elements.wordInput.value.length > 0);
 
   if (!value) {
-    hideSuggestions();
+    clearSuggestions();
     return;
   }
 
-  const matches = state.wordlist.filter(word => word.toLowerCase().startsWith(value));
+  const matches = state.wordlist.filter(word => normalizeForMatching(word).startsWith(value));
 
   if (matches.length === 0) {
-    hideSuggestions();
+    // Nothing the input could still become, so stop showing a word it no longer names
+    clearSelectionWhileTyping();
+    clearSuggestions();
     return;
   }
 
-  // Hide suggestions if only 1 match and it's an exact match
-  if (matches.length === 1 && matches[0].toLowerCase() === value) {
-    hideSuggestions();
+  const completed = autocompleteWordInput(value, matches, event);
+
+  // Nothing left to offer once the only match is already in the input. Taken
+  // down at once: a list still fading out is a list Enter can still act on.
+  if (matches.length === 1 && (completed !== null || normalizeForMatching(matches[0]) === value)) {
+    clearSuggestions();
     return;
   }
 
   showSuggestions(matches.slice(0, 10), selectWord);
 }
 
-function selectWord(word: string): void {
+/**
+ * Fills in the rest of the word and leaves it selected, so the caret stays put
+ * and the next keystroke either types over the selection or, when it matches,
+ * simply advances through it.
+ */
+function autocompleteWordInput(typed: string, matches: string[], event?: Event): string | null {
+  const input = elements.wordInput;
+
+  if (!isForwardTyping((event as InputEvent | undefined)?.inputType)) {
+    return null;
+  }
+
+  if (!isCaretAtEnd(input.selectionStart, input.selectionEnd, input.value.length)) {
+    return null;
+  }
+
+  const completion = getAutocompletion(typed, matches);
+  if (completion === null) {
+    return null;
+  }
+
+  const wordIndex = getWordIndex(completion, state.wordlist);
+  if (wordIndex === -1) {
+    return null;
+  }
+
+  input.value = completion;
+  input.classList.remove('error');
+  setStateFromIndex(wordIndex);
+  updateDisplay();
+  input.setSelectionRange(getCompletionCaretOffset(completion, typed), completion.length);
+  toggleClearButton(true);
+
+  return completion;
+}
+
+/**
+ * Drops the selection without the display writing the state back over what is
+ * being typed.
+ */
+function clearSelectionWhileTyping(): void {
+  isTyping = true;
+  resetBoxes();
+  updateDisplay();
+  isTyping = false;
+}
+
+function selectWord(word: string, keepFocus: boolean = false): void {
   const wordIndex = getWordIndex(word, state.wordlist);
 
   if (wordIndex === -1) return;
@@ -76,14 +163,21 @@ function selectWord(word: string): void {
   elements.wordInput.classList.remove('error');
   setStateFromIndex(wordIndex);
   updateDisplay();
-  hideSuggestions();
+  clearSuggestions();
+
+  // Enter fills the word mid-typing, so the caret stays for the next keystroke
+  if (keepFocus) {
+    elements.wordInput.setSelectionRange(word.length, word.length);
+    return;
+  }
+
   elements.wordInput.blur();
 }
 
 export function clearWordInput(): void {
   elements.wordInput.value = '';
   elements.wordInput.classList.remove('error');
-  hideSuggestions();
+  clearSuggestions();
   toggleClearButton(false);
 }
 
@@ -101,6 +195,8 @@ function toggleClearButton(show: boolean): void {
 }
 
 export function syncWordInputFromState(): void {
+  if (isTyping) return;
+
   const index = state.boxes.reduce((acc, val, i) => acc + (val ? Math.pow(2, 11 - i) : 0), 0);
   const base = getIndexBase();
 

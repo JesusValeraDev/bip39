@@ -22,10 +22,15 @@ const mockElements = {
   wordInput: {
     value: '',
     blur: vi.fn(),
+    setSelectionRange: vi.fn(),
   },
   wordSuggestions: {
     querySelectorAll: vi.fn(() => mockSuggestions),
     setAttribute: vi.fn(),
+    removeAttribute: vi.fn(),
+    innerHTML: '',
+    // Open unless a test says otherwise
+    hasAttribute: vi.fn(() => false),
   },
 };
 
@@ -43,9 +48,11 @@ describe('Keyboard Navigation', () => {
       const { handleKeydown } = await import('../../../../src/modules/wordInput/infrastructure/keyboard');
       mockElements.wordSuggestions.querySelectorAll = vi.fn(() => []);
       const onSelectWord = vi.fn();
+      const onReset = vi.fn();
+      const onAccept = vi.fn();
 
       const event = new KeyboardEvent('keydown', { key: 'ArrowDown' });
-      handleKeydown(event, onSelectWord);
+      handleKeydown(event, { onSelectWord, onReset, onAccept });
 
       expect(onSelectWord).not.toHaveBeenCalled();
     });
@@ -54,9 +61,11 @@ describe('Keyboard Navigation', () => {
       const { handleKeydown } = await import('../../../../src/modules/wordInput/infrastructure/keyboard');
       mockElements.wordSuggestions.querySelectorAll = vi.fn(() => mockSuggestions);
       const onSelectWord = vi.fn();
+      const onReset = vi.fn();
+      const onAccept = vi.fn();
       const event = { key: 'ArrowDown', preventDefault: vi.fn() } as any;
 
-      handleKeydown(event, onSelectWord);
+      handleKeydown(event, { onSelectWord, onReset, onAccept });
 
       expect(event.preventDefault).toHaveBeenCalled();
     });
@@ -65,9 +74,11 @@ describe('Keyboard Navigation', () => {
       const { handleKeydown } = await import('../../../../src/modules/wordInput/infrastructure/keyboard');
       mockElements.wordSuggestions.querySelectorAll = vi.fn(() => mockSuggestions);
       const onSelectWord = vi.fn();
+      const onReset = vi.fn();
+      const onAccept = vi.fn();
       const event = { key: 'ArrowUp', preventDefault: vi.fn() } as any;
 
-      handleKeydown(event, onSelectWord);
+      handleKeydown(event, { onSelectWord, onReset, onAccept });
 
       expect(event.preventDefault).toHaveBeenCalled();
     });
@@ -76,9 +87,11 @@ describe('Keyboard Navigation', () => {
       const { handleKeydown } = await import('../../../../src/modules/wordInput/infrastructure/keyboard');
       mockElements.wordSuggestions.querySelectorAll = vi.fn(() => mockSuggestions);
       const onSelectWord = vi.fn();
+      const onReset = vi.fn();
+      const onAccept = vi.fn();
       const event = { key: 'Enter', preventDefault: vi.fn() } as any;
 
-      handleKeydown(event, onSelectWord);
+      handleKeydown(event, { onSelectWord, onReset, onAccept });
 
       expect(event.preventDefault).toHaveBeenCalled();
     });
@@ -87,18 +100,22 @@ describe('Keyboard Navigation', () => {
       const { handleKeydown } = await import('../../../../src/modules/wordInput/infrastructure/keyboard');
       mockElements.wordSuggestions.querySelectorAll = vi.fn(() => mockSuggestions);
       const onSelectWord = vi.fn();
+      const onReset = vi.fn();
+      const onAccept = vi.fn();
       const event = { key: 'Escape', preventDefault: vi.fn() } as any;
 
       // Function should execute without throwing
-      expect(() => handleKeydown(event, onSelectWord)).not.toThrow();
+      expect(() => handleKeydown(event, { onSelectWord, onReset, onAccept })).not.toThrow();
     });
 
     it('should ignore other keys', async () => {
       const { handleKeydown } = await import('../../../../src/modules/wordInput/infrastructure/keyboard');
       const onSelectWord = vi.fn();
+      const onReset = vi.fn();
+      const onAccept = vi.fn();
       const event = { key: 'a', preventDefault: vi.fn() } as any;
 
-      handleKeydown(event, onSelectWord);
+      handleKeydown(event, { onSelectWord, onReset, onAccept });
 
       expect(event.preventDefault).not.toHaveBeenCalled();
       expect(onSelectWord).not.toHaveBeenCalled();

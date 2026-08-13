@@ -108,7 +108,7 @@ test.describe('Index Base Toggle', () => {
   test('should shift the index shown in suggestions', async ({ page }) => {
     await page.locator('#index-base-toggle').click();
 
-    await page.locator('#word-input').fill('aband');
+    await page.locator('#word-input').fill('aba');
     await page.waitForSelector('.suggestion-item');
 
     await expect(page.locator('.suggestion-index').first()).toContainText('#0');

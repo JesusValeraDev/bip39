@@ -42,7 +42,7 @@ test.describe('Word Input - Validation & Error Handling', () => {
     await expect(wordInput).toHaveClass(/error/);
 
     await wordInput.click();
-    await wordInput.fill('aband');
+    await wordInput.fill('aba');
 
     const firstSuggestion = page.locator('.suggestion-item').first();
     await expect(firstSuggestion).toBeVisible({ timeout: 2000 });

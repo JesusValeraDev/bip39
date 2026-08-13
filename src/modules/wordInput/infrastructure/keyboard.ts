@@ -4,13 +4,38 @@ import {
   setSelectedIndex,
   updateSuggestionSelection,
   clearSuggestionSelection,
-  hideSuggestions,
+  clearSuggestions,
+  isSuggestionListOpen,
 } from './suggestions';
 
-export function handleKeydown(e: KeyboardEvent, onSelectWord: (word: string) => void): void {
-  const suggestions = elements.wordSuggestions.querySelectorAll('.suggestion-item');
+export interface WordInputKeyHandlers {
+  /** Fills in a suggestion the user picked, or the first one on offer. */
+  onSelectWord: (word: string) => void;
+  /** Clears the input and the selection it made. */
+  onReset: () => void;
+  /** Settles whatever was typed once there is nothing left to offer. */
+  onAccept: () => void;
+}
 
-  if (suggestions.length === 0) return;
+export function handleKeydown(e: KeyboardEvent, handlers: WordInputKeyHandlers): void {
+  // Escape clears the input, so it acts whether or not suggestions are open
+  if (e.key === 'Escape') {
+    e.preventDefault();
+    handleEscapeKey(handlers.onReset);
+    return;
+  }
+
+  const suggestions = elements.wordSuggestions.querySelectorAll('.suggestion-item');
+  const hasOffer = isSuggestionListOpen() && suggestions.length > 0;
+
+  if (!hasOffer) {
+    // Enter with nothing on offer settles on what was typed
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handlers.onAccept();
+    }
+    return;
+  }
 
   switch (e.key) {
     case 'ArrowDown':
@@ -25,14 +50,9 @@ export function handleKeydown(e: KeyboardEvent, onSelectWord: (word: string) => 
 
     case 'Enter': {
       e.preventDefault();
-      handleEnterKey(suggestions, onSelectWord);
+      handleEnterKey(suggestions, handlers.onSelectWord);
       break;
     }
-
-    case 'Escape':
-      e.preventDefault();
-      handleEscapeKey();
-      break;
   }
 }
 
@@ -51,19 +71,22 @@ function handleArrowUp(suggestions: NodeListOf<Element>): void {
 }
 
 function handleEnterKey(suggestions: NodeListOf<Element>, onSelectWord: (word: string) => void): void {
+  // Without an explicit pick, Enter takes the first suggestion
   const currentIndex = getSelectedIndex();
-  if (currentIndex >= 0) {
-    const selectedItem = suggestions[currentIndex] as HTMLElement;
-    const wordSpan = selectedItem.querySelector('.suggestion-word');
-    const word = wordSpan?.textContent;
-    if (word) {
-      onSelectWord(word);
-      hideSuggestions();
-    }
+  const targetIndex = currentIndex >= 0 ? currentIndex : 0;
+
+  const selectedItem = suggestions[targetIndex] as HTMLElement;
+  const wordSpan = selectedItem.querySelector('.suggestion-word');
+  const word = wordSpan?.textContent;
+
+  if (word) {
+    onSelectWord(word);
+    clearSuggestions();
   }
 }
 
-function handleEscapeKey(): void {
-  hideSuggestions();
+function handleEscapeKey(onReset: () => void): void {
+  clearSuggestions();
   clearSuggestionSelection();
+  onReset();
 }

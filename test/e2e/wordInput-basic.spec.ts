@@ -26,7 +26,7 @@ test.describe('Word Input - Basic Functionality', () => {
 
   test('should select word and update boxes', async ({ page }) => {
     const wordInput = page.locator('#word-input');
-    await wordInput.fill('aband');
+    await wordInput.fill('aba');
 
     const firstSuggestion = page.locator('.suggestion-item').first();
     await firstSuggestion.click();
@@ -51,7 +51,7 @@ test.describe('Word Input - Basic Functionality', () => {
 
   test('should clear input when reset is clicked', async ({ page }) => {
     const wordInput = page.locator('#word-input');
-    await wordInput.fill('abili');
+    await wordInput.fill('abi');
 
     const firstSuggestion = page.locator('.suggestion-item').first();
     await firstSuggestion.click();
@@ -110,7 +110,7 @@ test.describe('Word Input - Basic Functionality', () => {
 
   test('should show word index in suggestions', async ({ page }) => {
     const wordInput = page.locator('#word-input');
-    await wordInput.fill('aband');
+    await wordInput.fill('aba');
 
     await page.waitForSelector('.suggestion-item');
 

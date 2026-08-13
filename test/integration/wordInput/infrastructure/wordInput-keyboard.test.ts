@@ -17,6 +17,10 @@ const mockElements = {
       mockElements.wordInput._handlers[event] = handler;
     }),
     blur: vi.fn(),
+    focus: vi.fn(),
+    selectionStart: 0,
+    selectionEnd: 0,
+    setSelectionRange: vi.fn(),
     _handlers: {} as any,
     _trigger: function (event: string, data?: any) {
       if (this._handlers[event]) {
@@ -28,6 +32,8 @@ const mockElements = {
     classList: { add: vi.fn(), remove: vi.fn() },
     setAttribute: vi.fn(),
     removeAttribute: vi.fn(),
+    // Open unless a test says otherwise
+    hasAttribute: vi.fn(() => false),
     querySelectorAll: vi.fn(() => [
       {
         getAttribute: vi.fn(() => '0'),
