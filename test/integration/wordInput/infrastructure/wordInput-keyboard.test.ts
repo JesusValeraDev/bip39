@@ -18,9 +18,12 @@ const mockElements = {
     }),
     blur: vi.fn(),
     focus: vi.fn(),
+    select: vi.fn(),
     selectionStart: 0,
     selectionEnd: 0,
     setSelectionRange: vi.fn(),
+    setAttribute: vi.fn(),
+    removeAttribute: vi.fn(),
     _handlers: {} as any,
     _trigger: function (event: string, data?: any) {
       if (this._handlers[event]) {

@@ -1,6 +1,12 @@
 import { describe, it, expect, beforeEach, vi, afterEach } from 'vitest';
 
 const mockElements = {
+  wordInput: {
+    value: '',
+    setAttribute: vi.fn(),
+    removeAttribute: vi.fn(),
+    select: vi.fn(),
+  },
   wordSuggestions: {
     setAttribute: vi.fn(),
     removeAttribute: vi.fn(),

@@ -6,6 +6,13 @@ const mockElements = {
     classList: { add: vi.fn(), remove: vi.fn() },
     addEventListener: vi.fn(),
     blur: vi.fn(),
+    focus: vi.fn(),
+    select: vi.fn(),
+    setAttribute: vi.fn(),
+    removeAttribute: vi.fn(),
+    setSelectionRange: vi.fn(),
+    selectionStart: 0,
+    selectionEnd: 0,
   },
   wordSuggestions: {
     classList: { add: vi.fn(), remove: vi.fn() },

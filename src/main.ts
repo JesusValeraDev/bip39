@@ -18,7 +18,7 @@ import { getIndexBase, initIndexBase, toggleIndexBase, toWordlistIndex } from '.
 import { initLanguage, setupLanguageToggle, setTranslations, updateUITranslations } from './modules/language';
 import { createGrid } from './modules/grid';
 import { updateDisplay } from './modules/display';
-import { setupWordInput, clearWordInput } from './modules/wordInput';
+import { setupWordInput, clearWordInput, selectPrefilledWordInput } from './modules/wordInput';
 
 function handleReset(): void {
   resetBoxes();
@@ -43,10 +43,24 @@ function handleIndexBaseToggle(): void {
   updateUITranslations();
 }
 
+// Everything outside the dialog, which a modal dialog must not leak focus into
+const BACKGROUND_REGIONS = ['#main-content', '.footer'];
+
+let focusedBeforeModal: HTMLElement | null = null;
+
+function setBackgroundInert(isInert: boolean): void {
+  for (const selector of BACKGROUND_REGIONS) {
+    document.querySelector(selector)?.toggleAttribute('inert', isInert);
+  }
+}
+
 function openLearnModal(modal: HTMLElement): void {
+  focusedBeforeModal = document.activeElement as HTMLElement | null;
+
   modal.removeAttribute('hidden');
   modal.setAttribute('aria-hidden', 'false');
   document.body.style.overflow = 'hidden';
+  setBackgroundInert(true);
 
   setTimeout(() => {
     const firstFocusable = modal.querySelector<HTMLElement>(
@@ -58,6 +72,12 @@ function openLearnModal(modal: HTMLElement): void {
 
 function closeLearnModal(modal: HTMLElement): void {
   modal.setAttribute('aria-hidden', 'true');
+  setBackgroundInert(false);
+
+  // Back where the dialog was opened from, rather than at the top of the page
+  focusedBeforeModal?.focus();
+  focusedBeforeModal = null;
+
   setTimeout(() => {
     modal.setAttribute('hidden', '');
     document.body.style.overflow = '';
@@ -112,6 +132,7 @@ async function init(): Promise<void> {
   // input sync already registered to fill in a 0-based empty pattern.
   setupWordInput();
   createGrid();
+  selectPrefilledWordInput();
 
   // Inject current year into footer
   const currentYearElement = document.getElementById('current-year');

@@ -40,7 +40,8 @@ export function setupWordInput(): void {
       onAccept: handleAcceptInput,
     })
   );
-  elements.wordInput.addEventListener('focus', handleWordInput);
+  elements.wordInput.addEventListener('focus', handleWordInputFocus);
+  elements.wordInput.addEventListener('mouseup', handleWordInputMouseUp);
   elements.wordInput.addEventListener('blur', handleWordInputBlur);
 
   const clearBtn = document.getElementById('clear-input-btn');
@@ -88,7 +89,34 @@ function handleAcceptInput(): void {
   elements.wordInput.setSelectionRange(value.length, value.length);
 }
 
+// Set while a focus-time selection is waiting for the click that caused it
+let isSelectingOnFocus = false;
+
+/**
+ * A word the app filled in is a starting point, not something to type around,
+ * so it comes selected and the first keystroke replaces it.
+ */
+function handleWordInputFocus(event: FocusEvent): void {
+  const stateWord = getStateWord();
+
+  if (stateWord && elements.wordInput.value === stateWord) {
+    elements.wordInput.select();
+    isSelectingOnFocus = true;
+  }
+
+  handleWordInput(event);
+}
+
+/** Without this the click that focused the field would collapse the selection. */
+function handleWordInputMouseUp(event: MouseEvent): void {
+  if (!isSelectingOnFocus) return;
+
+  event.preventDefault();
+  isSelectingOnFocus = false;
+}
+
 function handleWordInputBlur(): void {
+  isSelectingOnFocus = false;
   hideSuggestions();
   validateWordInput();
 
@@ -215,6 +243,29 @@ function toggleClearButton(show: boolean): void {
       clearBtn.setAttribute('aria-disabled', 'true');
     }
   }
+}
+
+/**
+ * autofocus lands before any of this is wired up, so the word filled in during
+ * start-up gets the same treatment a later focus would give it.
+ */
+export function selectPrefilledWordInput(): void {
+  if (document.activeElement !== elements.wordInput) return;
+
+  const stateWord = getStateWord();
+  if (stateWord && elements.wordInput.value === stateWord) {
+    elements.wordInput.select();
+  }
+}
+
+/** The word the boxes currently name, if they name one. */
+function getStateWord(): string | null {
+  const index = state.boxes.reduce((acc, val, i) => acc + (val ? Math.pow(2, 11 - i) : 0), 0);
+  const base = getIndexBase();
+
+  if (!isSelectableDisplayIndex(index, base)) return null;
+
+  return getWordByIndex(toWordlistIndex(index, base), state.wordlist);
 }
 
 export function syncWordInputFromState(): void {

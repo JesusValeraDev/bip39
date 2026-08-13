@@ -23,6 +23,8 @@ const mockElements = {
     value: '',
     blur: vi.fn(),
     setSelectionRange: vi.fn(),
+    setAttribute: vi.fn(),
+    removeAttribute: vi.fn(),
   },
   wordSuggestions: {
     querySelectorAll: vi.fn(() => mockSuggestions),

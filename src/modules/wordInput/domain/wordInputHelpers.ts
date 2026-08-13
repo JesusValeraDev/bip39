@@ -56,6 +56,9 @@ export const AUTOCOMPLETE_MIN_LENGTH = 4;
  */
 const LATIN_COMBINING_MARKS = /[̀-ͯ]/;
 
+// Built once: folding runs over the whole wordlist on every keystroke
+const ALL_LATIN_COMBINING_MARKS = /[̀-ͯ]/g;
+
 function isCombiningMark(character: string): boolean {
   return LATIN_COMBINING_MARKS.test(character);
 }
@@ -68,7 +71,7 @@ function isCombiningMark(character: string): boolean {
  * No two words in any of the ten wordlists collide once folded.
  */
 export function foldDiacritics(text: string): string {
-  return text.normalize('NFD').replace(new RegExp(LATIN_COMBINING_MARKS, 'g'), '');
+  return text.normalize('NFD').replace(ALL_LATIN_COMBINING_MARKS, '');
 }
 
 export function normalizeForMatching(text: string): string {
