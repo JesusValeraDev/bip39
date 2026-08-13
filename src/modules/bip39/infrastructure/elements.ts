@@ -33,6 +33,9 @@ export const elements = {
   get downloadOffline(): HTMLAnchorElement | null {
     return document.getElementById('download-offline') as HTMLAnchorElement | null;
   },
+  get downloadOfflineLabel(): HTMLElement | null {
+    return document.getElementById('download-offline-label');
+  },
   get indexBaseToggle() {
     return getElementById<HTMLButtonElement>('index-base-toggle');
   },

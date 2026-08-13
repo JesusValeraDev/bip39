@@ -115,12 +115,12 @@
     height: 18px;
   }
 
-  .word-info {
+  .readout {
     margin-top: 1.25rem;
   }
 
-  .word-info .word-index {
-    font-size: 0.9rem;
+  .readout-value {
+    font-size: 2.25rem;
   }
 
   .suggestion-item {
@@ -224,7 +224,6 @@
 
   .bit-label {
     font-size: 0.6rem;
-    bottom: 3px;
   }
 
   .binary-display code {
@@ -253,12 +252,12 @@
     height: 16px;
   }
 
-  .word-info {
+  .readout {
     margin-top: 1rem;
   }
 
-  .word-info .word-index {
-    font-size: 0.85rem;
+  .readout-value {
+    font-size: 2rem;
   }
 
   .reset-button {

@@ -20,13 +20,19 @@ test.describe('Offline Download - Button', () => {
   test('should translate its label', async ({ page }) => {
     const button = page.locator('#download-offline');
 
-    await expect(button).toHaveAttribute('aria-label', 'Download to use offline');
+    // Named by its visible text, so no aria-label to keep in step
+    await expect(button).toHaveText('Download to use offline');
 
     await page.locator('#language-toggle').click();
     await page.locator('[data-lang="spanish"]').click();
     await page.waitForTimeout(500);
 
-    await expect(button).toHaveAttribute('aria-label', 'Descargar para usar sin conexión');
+    await expect(button).toHaveText('Descargar para usar sin conexión');
+  });
+
+  test('should sit with the promise it delivers on', async ({ page }) => {
+    // The privacy panel claims nothing leaves the browser; this is that claim, finished
+    await expect(page.locator('.privacy-warning #download-offline')).toHaveCount(1);
   });
 });
 

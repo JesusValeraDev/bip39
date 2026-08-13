@@ -91,27 +91,29 @@
       </div>
       
       <div class="controls-right">
-        <button id="learn-more-btn" class="learn-more-btn" aria-label="Learn about BIP39" type="button" title="Learn about BIP39">
-          <svg width="35" height="35" role="img" aria-label="Help icon">
-            <title></title><use href="/sprite.svg#icon-help"/></svg>
-        </button>
-        
-        <button id="language-toggle" class="language-toggle" aria-label="Select language" aria-expanded="false">
-          <svg id="current-flag" class="flag-icon" width="28" height="28"><use href="/sprite.svg#flag-uk"/></svg>
-        </button>
-        
-        <button id="index-base-toggle" class="index-base-toggle" type="button" aria-label="Toggle index base" aria-pressed="false">
-          <span id="index-base-value" class="index-base-value" aria-hidden="true">#1</span>
-        </button>
+        <!-- How the numbers read -->
+        <div class="control-group">
+          <button id="language-toggle" class="language-toggle" aria-label="Select language" aria-expanded="false">
+            <svg id="current-flag" class="flag-icon" width="28" height="28"><use href="/sprite.svg#flag-uk"/></svg>
+          </button>
 
-        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" aria-pressed="false">
-          <svg class="sun-icon" width="20" height="20"><use href="/sprite.svg#icon-sun"/></svg>
-          <svg class="moon-icon" width="20" height="20"><use href="/sprite.svg#icon-moon"/></svg>
-        </button>
+          <button id="index-base-toggle" class="index-base-toggle" type="button" aria-label="Toggle index base" aria-pressed="false">
+            <span id="index-base-value" class="index-base-value" aria-hidden="true">#1</span>
+          </button>
+        </div>
 
-        <a id="download-offline" class="download-offline" href="bip39-offline.html" download="bip39-offline.html" aria-label="Download for offline use">
-          <svg width="20" height="20"><use href="/sprite.svg#icon-download"/></svg>
-        </a>
+        <!-- About the page -->
+        <div class="control-group">
+          <button id="learn-more-btn" class="learn-more-btn" aria-label="Learn about BIP39" type="button" title="Learn about BIP39">
+            <svg width="35" height="35" role="img" aria-label="Help icon">
+              <title></title><use href="/sprite.svg#icon-help"/></svg>
+          </button>
+
+          <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" aria-pressed="false">
+            <svg class="sun-icon" width="20" height="20"><use href="/sprite.svg#icon-sun"/></svg>
+            <svg class="moon-icon" width="20" height="20"><use href="/sprite.svg#icon-moon"/></svg>
+          </button>
+        </div>
       </div>
       
       <div id="language-dropdown" class="language-dropdown" role="menu" aria-label="Language selection">
@@ -181,8 +183,10 @@
         </button>
         <div id="word-suggestions" class="word-suggestions" role="listbox" aria-label="Word suggestions" hidden></div>
       </div>
-      <div class="word-info">
-        <span class="word-index" aria-label="Word index"><span id="index-label">Index:</span> <span id="index">-</span> / <span id="index-max">2048</span></span>
+      <div class="readout">
+        <span id="index-label" class="readout-label">Index:</span>
+        <span id="index" class="readout-value">-</span>
+        <span class="readout-total">/ <span id="index-max">2048</span></span>
       </div>
     </section>
 
@@ -205,6 +209,10 @@
       <div class="warning-content">
         <strong class="warning-title"></strong>
         <p id="privacy-text"></p>
+        <a id="download-offline" class="download-offline" href="bip39-offline.html" download="bip39-offline.html">
+          <svg width="18" height="18" aria-hidden="true"><use href="/sprite.svg#icon-download"/></svg>
+          <span id="download-offline-label">Download to use offline</span>
+        </a>
       </div>
     </section>
 

@@ -17,8 +17,15 @@
 .controls-right {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  /* Wide enough to read as two groups: how the numbers read, and about the page */
+  gap: 1.75rem;
   flex-shrink: 0;
+}
+
+.control-group {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
 }
 
 /* Language Toggle Button */
@@ -125,34 +132,37 @@
   display: block;
 }
 
-/* Offline Download Button */
+/* Offline download, the end of the promise the privacy panel makes */
 .download-offline {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: var(--surface-light);
-  border: 2px solid var(--border);
-  cursor: pointer;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  flex-shrink: 0;
-  color: var(--text-primary);
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 0.55rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--primary-color);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 600;
   text-decoration: none;
+  transition: all 0.2s ease;
 }
 
 .download-offline:hover {
   border-color: var(--primary-color);
+  background: rgba(247, 147, 26, 0.08);
 }
 
 .download-offline:active {
-  transform: scale(0.95);
+  transform: scale(0.98);
 }
 
 .download-offline svg {
-  color: var(--text-primary);
+  color: var(--primary-color);
   fill: none;
+  flex-shrink: 0;
 }
 
 /* Index Base Toggle Button */
@@ -184,7 +194,7 @@
 }
 
 .index-base-value {
-  font-family: 'Courier New', monospace;
+  font-family: var(--font-mono);
   font-size: 0.95rem;
   font-weight: 600;
   color: var(--text-primary);
@@ -257,21 +267,24 @@
 
 /* Title Section */
 .title-section h1 {
-  font-size: 2.5rem;
+  font-family: var(--font-mono);
+  font-size: 2.1rem;
   font-weight: 700;
+  letter-spacing: -0.03em;
   text-align: left;
   margin: 0;
   color: var(--primary-color);
 }
 
-/* Info Description */
+/* Info Description: instructions, not a second headline */
 .info-description {
   color: var(--text-secondary);
-  margin: 0 0 3rem 0;
-  font-size: 1.4rem;
+  margin: 0 0 2.75rem 0;
+  font-size: 1rem;
+  font-weight: 400;
   line-height: 1.6;
   text-align: left;
-  letter-spacing: 0.05em;
+  max-width: 62ch;
 }
 
 /* Section Styles */
@@ -301,17 +314,20 @@
   min-height: 80px;
 }
 
+/* The pattern spelled out: the grid's value, not a second instrument.
+   Kept tight and close to the grid so it reads as a string of bits rather
+   than as a row of pagination dots. */
+/* The pattern as one readable string, which is what the boxes cannot be */
 .binary-display {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 2.5rem;
-  gap: 0.75rem;
+  justify-content: center;
+  margin-top: 2.25rem;
 }
 
 .binary-display code {
+  font-family: var(--font-mono);
   font-size: 1.25rem;
-  font-weight: bolder;
+  font-weight: 700;
   color: var(--primary-color);
   letter-spacing: 0.6em;
   padding: 0.6rem 0.3rem 0.6rem calc(0.3rem + 0.6em);
@@ -381,14 +397,13 @@
   box-shadow: none;
 }
 
+/* The box is the bit, so its value is its identity: centred and legible */
 .bit-label {
-  font-size: 0.625rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
   font-weight: 600;
   color: var(--text-secondary);
-  position: absolute;
-  bottom: 3px;
-  left: 50%;
-  transform: translateX(-50%);
+  font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
 
@@ -424,7 +439,7 @@
   font-weight: 700;
   color: var(--primary-color);
   margin-bottom: 0.75rem;
-  font-family: 'Courier New', monospace;
+  font-family: var(--font-mono);
   word-break: break-word;
   min-height: 4.5rem;
   height: 4.5rem;
@@ -440,7 +455,7 @@
 .word-index {
   font-size: 1rem;
   color: var(--text-secondary);
-  font-family: 'Courier New', monospace;
+  font-family: var(--font-mono);
 }
 
 .reset-button {
@@ -520,7 +535,7 @@
   padding: 1rem 3.5rem 1rem 1rem;
   font-size: 2.2rem;
   font-weight: 700;
-  font-family: 'Courier New', monospace;
+  font-family: var(--font-mono);
   color: var(--primary-color);
   background: var(--surface);
   border: 2px solid var(--border);
@@ -599,15 +614,36 @@
 }
 
 /* Word Info (Index display) */
-.word-info {
-  margin-top: 1.5rem;
-  text-align: center;
+/* The answer the page exists to give */
+.readout {
+  margin-top: 1.75rem;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
 }
 
-.word-info .word-index {
+.readout-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.readout-value {
+  font-size: 2.75rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--primary-color);
+  font-variant-numeric: tabular-nums;
+}
+
+.readout-total {
   font-size: 1rem;
   color: var(--text-secondary);
-  font-weight: 500;
+  font-variant-numeric: tabular-nums;
 }
 
 /* Word Suggestions Dropdown */
@@ -665,33 +701,28 @@
   color: var(--primary-color);
 }
 
+/* Privacy panel: one accent on the page, so this stays neutral */
 .privacy-warning {
-  background: linear-gradient(135deg, rgba(50, 146, 57, 0.15) 0%, rgba(50, 146, 57, 0.05) 100%);
-  border: 2px solid #329239;
+  background: var(--surface-light);
+  border: 1px solid var(--border);
   border-radius: 20px;
-  padding: 2rem;
+  padding: 1.75rem 2rem;
   display: flex;
   align-items: flex-start;
   gap: 1.5rem;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 16px rgba(50, 146, 57, 0.1);
 }
 
 .warning-icon {
   line-height: 1;
   flex-shrink: 0;
-  filter: drop-shadow(0 2px 4px rgba(50, 146, 57, 0.3));
 }
 
 .warning-icon svg {
-  width: 36px;
-  height: 36px;
-  color: #329239;
+  width: 32px;
+  height: 32px;
+  color: var(--primary-color);
   fill: none;
-}
-
-[data-theme='dark'] .warning-icon svg {
-  color: #4caf50;
 }
 
 .warning-content {
@@ -700,30 +731,21 @@
 
 .warning-title {
   display: block;
-  font-size: 1.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
   font-weight: 700;
-  color: #329239;
-  margin-bottom: 0.75rem;
-  letter-spacing: 0.025em;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-}
-
-[data-theme='dark'] .warning-title {
-  color: #4caf50;
 }
 
 .warning-content p {
   margin: 0;
-  color: var(--text-primary);
-  font-size: 1.05rem;
-  line-height: 1.7;
-  font-weight: 500;
-}
-
-[data-theme='dark'] .privacy-warning {
-  background: linear-gradient(135deg, rgba(76, 175, 80, 0.2) 0%, rgba(76, 175, 80, 0.08) 100%);
-  border-color: #4caf50;
-  box-shadow: 0 4px 16px rgba(76, 175, 80, 0.15);
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  max-width: 62ch;
 }
 
 /* Footer */
@@ -981,7 +1003,7 @@
   background: var(--surface);
   padding: 0.75rem 1rem;
   border-radius: 8px;
-  font-family: 'Courier New', monospace;
+  font-family: var(--font-mono);
   font-weight: 600;
   color: var(--primary-color);
   border: 1px solid var(--border);
@@ -1003,7 +1025,7 @@
 }
 
 .word-label {
-  font-family: 'Courier New', monospace;
+  font-family: var(--font-mono);
   font-weight: 600;
   color: var(--primary-color);
   min-width: 80px;
@@ -1015,7 +1037,7 @@
 }
 
 .binary-value {
-  font-family: 'Courier New', monospace;
+  font-family: var(--font-mono);
   color: var(--text-primary);
   font-size: 0.9rem;
 }
@@ -1069,7 +1091,7 @@
 .box-content {
   color: var(--text-secondary);
   font-size: 0.8rem;
-  font-family: 'Courier New', monospace;
+  font-family: var(--font-mono);
 }
 
 .derivation-arrow {

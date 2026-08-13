@@ -177,10 +177,12 @@ function updateBasicUITranslations(): void {
   elements.languageToggle.title = currentTranslations.languageLabel;
   elements.helpIconTitle.textContent = currentTranslations.helpIconLabel;
 
+  // The link carries its own visible text now, so that is what names it
   const downloadOffline = elements.downloadOffline;
-  if (downloadOffline) {
+  const downloadOfflineLabel = elements.downloadOfflineLabel;
+  if (downloadOffline && downloadOfflineLabel) {
     downloadOffline.title = currentTranslations.downloadOffline;
-    downloadOffline.setAttribute('aria-label', currentTranslations.downloadOffline);
+    downloadOfflineLabel.textContent = currentTranslations.downloadOffline;
   }
 
   updateIndexBaseTranslations(indexBase);
