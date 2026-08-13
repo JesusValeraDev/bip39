@@ -94,9 +94,8 @@ describe('Language Service - With Mocked Elements', () => {
   });
 
   it('should execute setTranslations and updateUITranslations', async () => {
-    const { setTranslations, updateUITranslations } = await import(
-      '../../../../src/modules/language/infrastructure/language'
-    );
+    const { setTranslations, updateUITranslations } =
+      await import('../../../../src/modules/language/infrastructure/language');
     const { getTranslation } = await import('../../../../src/modules/i18n/domain/i18n');
 
     setTranslations(getTranslation('en'));
@@ -114,9 +113,8 @@ describe('Language Service - With Mocked Elements', () => {
   });
 
   it('should update UI for multiple languages', async () => {
-    const { setTranslations, updateUITranslations } = await import(
-      '../../../../src/modules/language/infrastructure/language'
-    );
+    const { setTranslations, updateUITranslations } =
+      await import('../../../../src/modules/language/infrastructure/language');
     const { getTranslation } = await import('../../../../src/modules/i18n/domain/i18n');
 
     // Test English

@@ -57,7 +57,7 @@ describe('i18n', () => {
     });
 
     it('should default to English for unknown language', () => {
-      const unknown = getTranslation('unknown' as any);
+      const unknown = getTranslation('unknown');
       expect(unknown.title).toBe('BIP39 Word Selector');
     });
 
