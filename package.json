@@ -12,7 +12,7 @@
     "dev": "vite",
     "build": "tsc && vite build && node scripts/build-offline.mjs",
     "preview": "vite preview",
-    "deploy": "vite build && gh-pages -d dist",
+    "deploy": "npm run build && gh-pages -d dist",
     "test": "vitest run",
     "test:all": "npm run test && npm run test:e2e",
     "test:watch": "vitest",

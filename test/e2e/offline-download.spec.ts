@@ -34,6 +34,18 @@ test.describe('Offline Download - Button', () => {
     // The privacy panel claims nothing leaves the browser; this is that claim, finished
     await expect(page.locator('.privacy-warning #download-offline')).toHaveCount(1);
   });
+
+  test('should serve the built page, not the app shell', async ({ page }) => {
+    // The link used to fall through to the dev server's fallback, which answers
+    // 200 with index.html: a download that looks right and cannot work offline
+    const response = await page.request.get('/bip39-offline.html');
+    const body = await response.text();
+
+    expect(response.status()).toBe(200);
+    expect(body).toContain('__BIP39_WORDLISTS__');
+    expect(body).not.toContain('/src/main.ts');
+    expect(body).not.toContain('/assets/');
+  });
 });
 
 // The file itself is built by the global setup, so it is ready before any worker

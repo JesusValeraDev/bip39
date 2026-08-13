@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitest/config';
 import { execSync } from 'child_process';
-import { existsSync, readFileSync } from 'fs';
+import { readFileSync } from 'fs';
 
 let gitHash = 'dev';
 try {
@@ -12,17 +12,24 @@ try {
 export default defineConfig({
   plugins: [
     {
-      // The offline file is a build artifact, so the dev server hands out the
-      // last built one rather than leaving the download button dead.
+      // The offline file is a build artifact. It is built on demand here rather
+      // than served from dist: falling through to the dev server's fallback
+      // returns index.html with a 200, which downloads as a page that looks
+      // right and cannot work offline, and a stale dist is barely better.
       name: 'serve-offline-build',
       configureServer(server) {
-        server.middlewares.use('/bip39-offline.html', (_req, res, next) => {
-          const file = 'dist/bip39-offline.html';
-
-          if (!existsSync(file)) return next();
+        server.middlewares.use('/bip39-offline.html', (_req, res) => {
+          try {
+            execSync('npm run build', { stdio: 'pipe' });
+          } catch {
+            res.statusCode = 500;
+            res.setHeader('Content-Type', 'text/plain');
+            res.end('Could not build the offline page. Run "npm run build" to see why.');
+            return;
+          }
 
           res.setHeader('Content-Type', 'text/html');
-          res.end(readFileSync(file));
+          res.end(readFileSync('dist/bip39-offline.html'));
         });
       },
     },
