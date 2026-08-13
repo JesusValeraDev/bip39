@@ -1,6 +1,7 @@
 import { elements, resetBoxes, setStateFromIndex, state } from '../../bip39';
 import { setSyncWordInputCallback, updateDisplay } from '../../display';
-import { binaryValueToIndex, getWordByIndex, getWordIndex } from '../domain/wordInputHelpers';
+import { getWordByIndex, getWordIndex } from '../domain/wordInputHelpers';
+import { getIndexBase, isSelectableDisplayIndex, toWordlistIndex } from '../../indexBase';
 import { validateWordInput } from './validation';
 import { showSuggestions, hideSuggestions } from './suggestions';
 import { handleKeydown as handleKeyboardNavigation } from './keyboard';
@@ -101,9 +102,10 @@ function toggleClearButton(show: boolean): void {
 
 export function syncWordInputFromState(): void {
   const index = state.boxes.reduce((acc, val, i) => acc + (val ? Math.pow(2, 11 - i) : 0), 0);
+  const base = getIndexBase();
 
-  if (index > 0 && index <= state.wordlist.length) {
-    const wordIndex = binaryValueToIndex(index);
+  if (isSelectableDisplayIndex(index, base)) {
+    const wordIndex = toWordlistIndex(index, base);
     const word = getWordByIndex(wordIndex, state.wordlist);
     if (word && elements.wordInput.value !== word) {
       elements.wordInput.value = word;

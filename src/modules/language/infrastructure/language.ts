@@ -3,6 +3,13 @@ import { elements } from '../../bip39';
 import { loadWordlist } from '../../bip39';
 import { updateDisplay } from '../../display';
 import { saveLanguage, isLanguageActive, getUILanguageCode } from '../domain/languageHelpers';
+import {
+  applyIndexRange,
+  formatIndexBaseToggleLabel,
+  getIndexBase,
+  getMaxDisplayIndex,
+  type IndexBase,
+} from '../../indexBase';
 
 export let currentTranslations: Translations = getTranslation('en');
 export let currentLanguage = 'english';
@@ -156,15 +163,27 @@ export function setTranslations(translations: Translations): void {
 }
 
 function updateBasicUITranslations(): void {
+  const indexBase = getIndexBase();
+
   elements.title.textContent = currentTranslations.title;
   elements.indexLabel.textContent = currentTranslations.index;
   elements.resetButton.textContent = currentTranslations.resetButton;
-  elements.infoText.textContent = currentTranslations.infoText;
+  elements.infoText.textContent = applyIndexRange(currentTranslations.infoText, indexBase);
   elements.privacyTitle.textContent = currentTranslations.privacyTitle;
   elements.privacyText.textContent = currentTranslations.privacyTooltip;
   elements.themeToggle.title = currentTranslations.toggleTheme;
   elements.languageToggle.title = currentTranslations.languageLabel;
   elements.helpIconTitle.textContent = currentTranslations.helpIconLabel;
+
+  updateIndexBaseTranslations(indexBase);
+}
+
+function updateIndexBaseTranslations(indexBase: IndexBase): void {
+  const label = formatIndexBaseToggleLabel(currentTranslations.indexBaseToggle, indexBase);
+
+  elements.indexMax.textContent = getMaxDisplayIndex(indexBase).toString();
+  elements.indexBaseToggle.title = label;
+  elements.indexBaseToggle.setAttribute('aria-label', label);
 }
 
 function updateWordInputTranslations(): void {

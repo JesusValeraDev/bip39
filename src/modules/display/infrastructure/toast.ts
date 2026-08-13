@@ -1,4 +1,5 @@
 import { currentTranslations } from '../../language';
+import { applyIndexMax, getIndexBase } from '../../indexBase';
 
 const toastTimers = new Map<
   string,
@@ -24,7 +25,7 @@ export function showDisabledBoxToast(): void {
 
   // Show toast only after 2+ clicks
   if (clickCount >= 2) {
-    showToast('toast-notification', currentTranslations.disabledBoxMessage);
+    showToast('toast-notification', applyIndexMax(currentTranslations.disabledBoxMessage, getIndexBase()));
     clickCount = 0;
   }
 }

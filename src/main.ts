@@ -1,6 +1,8 @@
 import { getTranslation } from './modules/i18n';
 import {
   resetBoxes,
+  calculateBinaryValue,
+  setStateFromIndex,
   loadWordlist,
   elements,
   determineUILanguage,
@@ -12,6 +14,7 @@ import {
   getModalTransitionDuration,
 } from './modules/bip39';
 import { initTheme, toggleTheme } from './modules/theme';
+import { getIndexBase, initIndexBase, toggleIndexBase, toWordlistIndex } from './modules/indexBase';
 import { initLanguage, setupLanguageToggle, setTranslations, updateUITranslations } from './modules/language';
 import { createGrid } from './modules/grid';
 import { updateDisplay } from './modules/display';
@@ -21,6 +24,23 @@ function handleReset(): void {
   resetBoxes();
   clearWordInput();
   updateDisplay();
+}
+
+function handleIndexBaseToggle(): void {
+  // The boxes encode the index as shown, so re-encode the selected word under
+  // the new numbering instead of letting the pattern point at a different word.
+  const wordIndex = toWordlistIndex(calculateBinaryValue(), getIndexBase());
+
+  toggleIndexBase();
+
+  if (wordIndex < 0) {
+    resetBoxes();
+  } else {
+    setStateFromIndex(wordIndex);
+  }
+
+  // Repaints the labels carrying the index range, and the index readout with them.
+  updateUITranslations();
 }
 
 function openLearnModal(modal: HTMLElement): void {
@@ -80,6 +100,7 @@ function setupLearnModal(): void {
 
 async function init(): Promise<void> {
   initTheme();
+  initIndexBase();
   const savedLanguage = initLanguage();
 
   const uiLang = determineUILanguage(savedLanguage);
@@ -87,8 +108,10 @@ async function init(): Promise<void> {
 
   updateUITranslations();
   await loadWordlist(savedLanguage);
-  createGrid();
+  // Before createGrid: it paints the first display pass, which needs the word
+  // input sync already registered to fill in a 0-based empty pattern.
   setupWordInput();
+  createGrid();
 
   // Inject current year into footer
   const currentYearElement = document.getElementById('current-year');
@@ -104,6 +127,7 @@ async function init(): Promise<void> {
 
   elements.resetButton.addEventListener('click', handleReset);
   elements.themeToggle.addEventListener('click', toggleTheme);
+  elements.indexBaseToggle.addEventListener('click', handleIndexBaseToggle);
   setupLanguageToggle();
   setupLearnModal();
 }

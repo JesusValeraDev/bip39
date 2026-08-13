@@ -1,3 +1,5 @@
+import { getIndexBase, toDisplayIndex, type IndexBase } from '../../indexBase';
+
 export const state = {
   boxes: new Array(12).fill(false) as boolean[],
   wordlist: [] as string[],
@@ -27,10 +29,11 @@ export function getBinaryString(): string {
   return state.boxes.map(b => (b ? '●' : '○')).join('');
 }
 
-export function setStateFromIndex(wordIndex: number): void {
-  // Convert word index (0-2047) to binary and set the boxes
-  // Note: wordIndex + 1 gives us the actual number (1-2048)
-  const value = wordIndex + 1;
+export function setStateFromIndex(wordIndex: number, base: IndexBase = getIndexBase()): void {
+  // Convert word index (0-2047) to binary and set the boxes.
+  // The boxes encode the index as shown: 0-based numbering puts the first word
+  // on the empty pattern, 1-based numbering shifts every word up by one.
+  const value = toDisplayIndex(wordIndex, base);
 
   resetBoxes();
 

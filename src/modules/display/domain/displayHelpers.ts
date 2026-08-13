@@ -1,11 +1,21 @@
+import {
+  DEFAULT_INDEX_BASE,
+  getMaxDisplayIndex,
+  hasEmptyPatternState,
+  isSelectableDisplayIndex,
+  type IndexBase,
+} from '../../indexBase';
+
 export interface DisplayState {
   indexText: string;
   announcement: string;
   shouldGetWord: boolean;
 }
 
-export function calculateDisplayState(binaryValue: number): DisplayState {
-  if (binaryValue === 0) {
+export function calculateDisplayState(binaryValue: number, base: IndexBase = DEFAULT_INDEX_BASE): DisplayState {
+  // The boxes encode the index directly, so the empty pattern only means
+  // "nothing selected" while 1-based numbering leaves it spare.
+  if (binaryValue === 0 && hasEmptyPatternState(base)) {
     return {
       indexText: '-',
       announcement: 'No pattern selected',
@@ -13,10 +23,10 @@ export function calculateDisplayState(binaryValue: number): DisplayState {
     };
   }
 
-  if (binaryValue > 2048) {
+  if (!isSelectableDisplayIndex(binaryValue, base)) {
     return {
       indexText: binaryValue.toString(),
-      announcement: `Value ${binaryValue} is out of range. Maximum is 2048`,
+      announcement: `Value ${binaryValue} is out of range. Maximum is ${getMaxDisplayIndex(base)}`,
       shouldGetWord: false,
     };
   }
@@ -36,7 +46,12 @@ export function shouldBoxBeActive(boxState: boolean): boolean {
   return boxState;
 }
 
-export function shouldBoxBeDisabled(index: number, boxes: boolean[]): boolean {
+export function shouldBoxBeDisabled(index: number, boxes: boolean[], base: IndexBase = DEFAULT_INDEX_BASE): boolean {
+  // 0-based numbering tops out at 2047, so the 2048 bit is never available
+  if (base === 0) {
+    return index === 0;
+  }
+
   const is2048Active = boxes[0];
   const isCurrentBoxActive = boxes[index];
 

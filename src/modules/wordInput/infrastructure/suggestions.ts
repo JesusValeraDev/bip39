@@ -1,4 +1,5 @@
 import { elements, state } from '../../bip39';
+import { getIndexBase, toDisplayIndex } from '../../indexBase';
 
 let selectedSuggestionIndex = -1;
 let hideSuggestionsTimeout: NodeJS.Timeout | null = null;
@@ -23,7 +24,7 @@ export function showSuggestions(matches: string[], onSelect: (word: string) => v
 
     item.innerHTML = `
       <span class="suggestion-word">${word}</span>
-      <span class="suggestion-index">#${wordIndex + 1}</span>
+      <span class="suggestion-index">#${toDisplayIndex(wordIndex, getIndexBase())}</span>
     `;
 
     item.addEventListener('mousedown', e => {

@@ -8,6 +8,7 @@ export interface Translations {
   privacyTitle: string;
   privacyTooltip: string;
   toggleTheme: string;
+  indexBaseToggle: string;
   helpIconLabel: string;
   disabledBoxMessage: string;
   invalidWordMessage: string;
@@ -66,12 +67,13 @@ export const translations: Record<string, Translations> = {
     languageLabel: 'Language',
     index: 'Index:',
     resetButton: 'Reset',
-    infoText: 'Choose a BIP39 word by typing it in the input field below or by clicking the number boxes (1-2048)',
+    infoText: 'Choose a BIP39 word by typing it in the input field below or by clicking the number boxes ({range})',
     privacyTitle: 'Privacy Protected',
     privacyTooltip: 'This application runs entirely in your browser. No data is transmitted, stored, or tracked.',
     toggleTheme: 'Toggle dark/light mode',
+    indexBaseToggle: 'Word index starts at {current}. Switch to {next}.',
     helpIconLabel: 'Help',
-    disabledBoxMessage: 'Cannot select this number with the current pattern - it would exceed 2048',
+    disabledBoxMessage: 'Cannot select this number with the current pattern - it would exceed {max}',
     invalidWordMessage: 'This word is not in the BIP39 wordlist',
     wordlistLoadError: '⚠️ Failed to load wordlist. Please refresh the page.',
     // Word input translations
@@ -132,13 +134,14 @@ export const translations: Record<string, Translations> = {
     index: 'Índice:',
     resetButton: 'Reiniciar',
     infoText:
-      'Elige una palabra BIP39 escribiéndola en el campo de texto o haciendo clic en las casillas numéricas (1-2048)',
+      'Elige una palabra BIP39 escribiéndola en el campo de texto o haciendo clic en las casillas numéricas ({range})',
     privacyTitle: 'Privacidad Protegida',
     privacyTooltip:
       'Esta aplicación se ejecuta completamente en tu navegador. No se transmite, almacena ni rastrea ningún dato.',
     toggleTheme: 'Cambiar modo oscuro/claro',
+    indexBaseToggle: 'El índice de palabras empieza en {current}. Cambiar a {next}.',
     helpIconLabel: 'Ayuda',
-    disabledBoxMessage: 'No se puede seleccionar este número con el patrón actual - excedería 2048',
+    disabledBoxMessage: 'No se puede seleccionar este número con el patrón actual - excedería {max}',
     invalidWordMessage: 'Esta palabra no está en la lista BIP39',
     wordlistLoadError: '⚠️ Error al cargar la lista de palabras. Por favor, recarga la página.',
     // Word input translations
@@ -199,13 +202,14 @@ export const translations: Record<string, Translations> = {
     index: 'Indice:',
     resetButton: 'Réinitialiser',
     infoText:
-      'Choisissez un mot BIP39 en le tapant dans le champ de saisie ci-dessous ou en cliquant sur les cases numériques (1-2048)',
+      'Choisissez un mot BIP39 en le tapant dans le champ de saisie ci-dessous ou en cliquant sur les cases numériques ({range})',
     privacyTitle: 'Confidentialité Protégée',
     privacyTooltip:
       "Cette application s'exécute entièrement dans votre navigateur. Aucune donnée n'est transmise, stockée ou suivie.",
     toggleTheme: 'Basculer le mode sombre/clair',
+    indexBaseToggle: "L'index des mots commence à {current}. Passer à {next}.",
     helpIconLabel: 'Aide',
-    disabledBoxMessage: 'Impossible de sélectionner ce nombre avec le motif actuel - il dépasserait 2048',
+    disabledBoxMessage: 'Impossible de sélectionner ce nombre avec le motif actuel - il dépasserait {max}',
     invalidWordMessage: "Ce mot n'est pas dans la liste BIP39",
     wordlistLoadError: '⚠️ Échec du chargement de la liste de mots. Veuillez actualiser la page.',
     // Word input translations
@@ -265,13 +269,14 @@ export const translations: Record<string, Translations> = {
     languageLabel: 'Jazyk',
     index: 'Index:',
     resetButton: 'Resetovat',
-    infoText: 'Vyberte slovo BIP39 jeho napsáním do vstupního pole níže nebo kliknutím na číselná pole (1-2048)',
+    infoText: 'Vyberte slovo BIP39 jeho napsáním do vstupního pole níže nebo kliknutím na číselná pole ({range})',
     privacyTitle: 'Soukromí Chráněno',
     privacyTooltip:
       'Tato aplikace běží zcela ve vašem prohlížeči. Žádná data nejsou přenášena, ukládána ani sledována.',
     toggleTheme: 'Přepnout tmavý/světlý režim',
+    indexBaseToggle: 'Index slov začíná na {current}. Přepnout na {next}.',
     helpIconLabel: 'Pomoc',
-    disabledBoxMessage: 'Nelze vybrat toto číslo s aktuálním vzorem - překročilo by 2048',
+    disabledBoxMessage: 'Nelze vybrat toto číslo s aktuálním vzorem - překročilo by {max}',
     invalidWordMessage: 'Toto slovo není v seznamu BIP39',
     wordlistLoadError: '⚠️ Nepodařilo se načíst seznam slov. Obnovte prosím stránku.',
     // Word input translations
@@ -332,13 +337,14 @@ export const translations: Record<string, Translations> = {
     index: 'Indice:',
     resetButton: 'Ripristina',
     infoText:
-      'Scegli una parola BIP39 scrivendola nel campo di input qui sotto o cliccando sulle caselle numeriche (1-2048)',
+      'Scegli una parola BIP39 scrivendola nel campo di input qui sotto o cliccando sulle caselle numeriche ({range})',
     privacyTitle: 'Privacy Protetta',
     privacyTooltip:
       'Questa applicazione viene eseguita interamente nel tuo browser. Nessun dato viene trasmesso, memorizzato o tracciato.',
     toggleTheme: 'Attiva/disattiva modalità scura/chiara',
+    indexBaseToggle: "L'indice delle parole parte da {current}. Passa a {next}.",
     helpIconLabel: 'Aiuto',
-    disabledBoxMessage: 'Impossibile selezionare questo numero con il pattern corrente - supererebbe 2048',
+    disabledBoxMessage: 'Impossibile selezionare questo numero con il pattern corrente - supererebbe {max}',
     invalidWordMessage: 'Questa parola non è nella lista BIP39',
     wordlistLoadError: '⚠️ Impossibile caricare la lista di parole. Ricarica la pagina.',
     // Word input translations
@@ -399,13 +405,14 @@ export const translations: Record<string, Translations> = {
     index: 'Índice:',
     resetButton: 'Reiniciar',
     infoText:
-      'Escolha uma palavra BIP39 digitando-a no campo de entrada abaixo ou clicando nas caixas numéricas (1-2048)',
+      'Escolha uma palavra BIP39 digitando-a no campo de entrada abaixo ou clicando nas caixas numéricas ({range})',
     privacyTitle: 'Privacidade Protegida',
     privacyTooltip:
       'Este aplicativo é executado inteiramente no seu navegador. Nenhum dado é transmitido, armazenado ou rastreado.',
     toggleTheme: 'Alternar modo escuro/claro',
+    indexBaseToggle: 'O índice das palavras começa em {current}. Mudar para {next}.',
     helpIconLabel: 'Ajuda',
-    disabledBoxMessage: 'Não é possível selecionar este número com o padrão atual - excederia 2048',
+    disabledBoxMessage: 'Não é possível selecionar este número com o padrão atual - excederia {max}',
     invalidWordMessage: 'Esta palavra não está na lista BIP39',
     wordlistLoadError: '⚠️ Falha ao carregar a lista de palavras. Atualize a página.',
     // Word input translations
@@ -465,12 +472,13 @@ export const translations: Record<string, Translations> = {
     languageLabel: '言語',
     index: 'インデックス：',
     resetButton: 'リセット',
-    infoText: 'BIP39単語を下の入力フィールドに入力するか、数字ボックスをクリックして選択します（1-2048）',
+    infoText: 'BIP39単語を下の入力フィールドに入力するか、数字ボックスをクリックして選択します（{range}）',
     privacyTitle: 'プライバシー保護',
     privacyTooltip: 'このアプリケーションはブラウザ内で完全に動作します。データの送信、保存、追跡は一切行われません。',
     toggleTheme: 'ダークモード/ライトモードを切り替え',
+    indexBaseToggle: '単語のインデックスは{current}から始まります。{next}に切り替えます。',
     helpIconLabel: 'ヘルプ',
-    disabledBoxMessage: '現在のパターンではこの数値を選択できません - 2048を超えます',
+    disabledBoxMessage: '現在のパターンではこの数値を選択できません - {max}を超えます',
     invalidWordMessage: 'この単語はBIP39リストにありません',
     wordlistLoadError: '⚠️ ワードリストの読み込みに失敗しました。ページを更新してください。',
     // Word input translations
@@ -530,12 +538,13 @@ export const translations: Record<string, Translations> = {
     languageLabel: '언어',
     index: '인덱스:',
     resetButton: '재설정',
-    infoText: 'BIP39 단어를 아래 입력 필드에 입력하거나 숫자 상자를 클릭하여 선택하세요 (1-2048)',
+    infoText: 'BIP39 단어를 아래 입력 필드에 입력하거나 숫자 상자를 클릭하여 선택하세요 ({range})',
     privacyTitle: '개인정보 보호',
     privacyTooltip: '이 애플리케이션은 브라우저에서 완전히 실행됩니다. 데이터 전송, 저장 또는 추적이 없습니다.',
     toggleTheme: '다크 모드/라이트 모드 전환',
+    indexBaseToggle: '단어 인덱스는 {current}부터 시작합니다. {next}(으)로 전환합니다.',
     helpIconLabel: '도움말',
-    disabledBoxMessage: '현재 패턴에서는 이 숫자를 선택할 수 없습니다 - 2048을 초과합니다',
+    disabledBoxMessage: '현재 패턴에서는 이 숫자를 선택할 수 없습니다 - {max}을 초과합니다',
     invalidWordMessage: '이 단어는 BIP39 목록에 없습니다',
     wordlistLoadError: '⚠️ 단어 목록을 로드하지 못했습니다. 페이지를 새로고침하세요.',
     // Word input translations
@@ -595,12 +604,13 @@ export const translations: Record<string, Translations> = {
     languageLabel: '语言',
     index: '索引：',
     resetButton: '重置',
-    infoText: '在下面的输入字段中输入 BIP39 单词或通过点击数字框选择 (1-2048)',
+    infoText: '在下面的输入字段中输入 BIP39 单词或通过点击数字框选择 ({range})',
     privacyTitle: '隐私保护',
     privacyTooltip: '此应用程序完全在您的浏览器中运行。不会传输、存储或跟踪任何数据。',
     toggleTheme: '切换深色/浅色模式',
+    indexBaseToggle: '单词索引从 {current} 开始。切换为 {next}。',
     helpIconLabel: '帮助',
-    disabledBoxMessage: '无法选择此数字与当前模式 - 会超过2048',
+    disabledBoxMessage: '无法选择此数字与当前模式 - 会超过{max}',
     invalidWordMessage: '此单词不在 BIP39 列表中',
     wordlistLoadError: '⚠️ 加载单词列表失败。请刷新页面。',
     // Word input translations
@@ -646,12 +656,13 @@ export const translations: Record<string, Translations> = {
     languageLabel: '語言',
     index: '索引：',
     resetButton: '重置',
-    infoText: '在下面的輸入字段中輸入 BIP39 單詞或通過點擊數字框選擇 (1-2048)',
+    infoText: '在下面的輸入字段中輸入 BIP39 單詞或通過點擊數字框選擇 ({range})',
     privacyTitle: '隱私保護',
     privacyTooltip: '此應用程序完全在您的瀏覽器中運行。不會傳輸、存儲或跟蹤任何數據。',
     toggleTheme: '切換深色/淺色模式',
+    indexBaseToggle: '單詞索引從 {current} 開始。切換為 {next}。',
     helpIconLabel: '幫助',
-    disabledBoxMessage: '無法選擇此數字與當前模式 - 會超過2048',
+    disabledBoxMessage: '無法選擇此數字與當前模式 - 會超過{max}',
     invalidWordMessage: '此單詞不在 BIP39 列表中',
     wordlistLoadError: '⚠️ 載入單詞列表失敗。請重新整理頁面。',
     // Word input translations

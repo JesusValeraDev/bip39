@@ -13,6 +13,8 @@ const mockElements = {
   },
   title: { textContent: '' },
   indexLabel: { textContent: '' },
+  indexMax: { textContent: '' },
+  indexBaseToggle: { title: '', setAttribute: vi.fn() },
   resetButton: { textContent: '' },
   infoText: { textContent: '' },
   privacyTitle: { textContent: '' },

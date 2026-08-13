@@ -14,6 +14,9 @@ export const elements = {
   get index() {
     return getElementById<HTMLSpanElement>('index');
   },
+  get indexMax() {
+    return getElementById<HTMLSpanElement>('index-max');
+  },
   get binary() {
     return getElementById<HTMLElement>('binary');
   },
@@ -25,6 +28,12 @@ export const elements = {
   },
   get languageToggle() {
     return getElementById<HTMLButtonElement>('language-toggle');
+  },
+  get indexBaseToggle() {
+    return getElementById<HTMLButtonElement>('index-base-toggle');
+  },
+  get indexBaseValue() {
+    return getElementById<HTMLSpanElement>('index-base-value');
   },
   get languageDropdown() {
     return getElementById<HTMLDivElement>('language-dropdown');

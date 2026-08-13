@@ -125,6 +125,42 @@
   display: block;
 }
 
+/* Index Base Toggle Button */
+.index-base-toggle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--surface-light);
+  border: 2px solid var(--border);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  padding: 0;
+}
+
+.index-base-toggle:hover {
+  border-color: var(--primary-color);
+}
+
+.index-base-toggle:active {
+  transform: scale(0.95);
+}
+
+.index-base-toggle[aria-pressed='true'] {
+  border-color: var(--primary-color);
+}
+
+.index-base-value {
+  font-family: 'Courier New', monospace;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
 /* Theme Toggle Button */
 .theme-toggle {
   width: 44px;

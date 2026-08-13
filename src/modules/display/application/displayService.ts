@@ -2,6 +2,7 @@ import { calculateBinaryValue, getBinaryString } from '../../bip39';
 import { getWord } from '../../bip39';
 import { calculateDisplayState, generateWordAnnouncement } from '../domain/displayHelpers';
 import { shouldBoxBeDisabled } from '../../bip39';
+import { getIndexBase, toWordlistIndex, type IndexBase } from '../../indexBase';
 
 export interface BoxDisplayData {
   isActive: boolean;
@@ -18,9 +19,9 @@ export interface BinaryDisplayData {
   binaryString: string;
 }
 
-export function getBoxDisplayData(index: number, boxes: boolean[]): BoxDisplayData {
+export function getBoxDisplayData(index: number, boxes: boolean[], base: IndexBase = getIndexBase()): BoxDisplayData {
   const isActive = boxes[index];
-  const isDisabled = shouldBoxBeDisabled(index, boxes);
+  const isDisabled = shouldBoxBeDisabled(index, boxes, base);
 
   return {
     isActive,
@@ -29,17 +30,17 @@ export function getBoxDisplayData(index: number, boxes: boolean[]): BoxDisplayDa
   };
 }
 
-export function getAllBoxesDisplayData(boxes: boolean[]): BoxDisplayData[] {
-  return boxes.map((_, index) => getBoxDisplayData(index, boxes));
+export function getAllBoxesDisplayData(boxes: boolean[], base: IndexBase = getIndexBase()): BoxDisplayData[] {
+  return boxes.map((_, index) => getBoxDisplayData(index, boxes, base));
 }
 
-export function getWordDisplayData(binaryValue: number): WordDisplayData {
-  const displayState = calculateDisplayState(binaryValue);
+export function getWordDisplayData(binaryValue: number, base: IndexBase = getIndexBase()): WordDisplayData {
+  const displayState = calculateDisplayState(binaryValue, base);
 
   let announcement = displayState.announcement;
 
   if (displayState.shouldGetWord) {
-    const word = getWord(binaryValue - 1);
+    const word = getWord(toWordlistIndex(binaryValue, base));
     announcement = generateWordAnnouncement(word, binaryValue);
   }
 
@@ -61,10 +62,11 @@ export function getAllDisplayData(boxes: boolean[]): {
   binary: BinaryDisplayData;
 } {
   const binaryValue = calculateBinaryValue();
+  const base = getIndexBase();
 
   return {
-    boxes: getAllBoxesDisplayData(boxes),
-    word: getWordDisplayData(binaryValue),
+    boxes: getAllBoxesDisplayData(boxes, base),
+    word: getWordDisplayData(binaryValue, base),
     binary: getBinaryDisplayData(),
   };
 }

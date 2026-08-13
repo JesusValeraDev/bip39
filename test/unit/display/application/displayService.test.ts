@@ -6,6 +6,7 @@ import {
   getBinaryDisplayData,
   getAllDisplayData,
 } from '../../../../src/modules/display';
+import { setIndexBase } from '../../../../src/modules/indexBase';
 
 vi.mock('../../../src/modules/bip39/domain/state', () => ({
   calculateBinaryValue: vi.fn(() => 100),
@@ -80,6 +81,30 @@ describe('Application - Display Service', () => {
 
       expect(data.indexText).toBe('3000');
       expect(data.announcement).toContain('out of range');
+    });
+
+    it('should read the pattern as the index itself when 0-based', () => {
+      const data = getWordDisplayData(100, 0);
+
+      expect(data.indexText).toBe('100');
+      expect(data.announcement).toContain('index 100');
+    });
+
+    it('should resolve the empty pattern to a word when 0-based', () => {
+      const data = getWordDisplayData(0, 0);
+
+      expect(data.indexText).toBe('0');
+      expect(data.announcement).toContain('Word selected');
+    });
+
+    it('should follow the current base when none is passed', () => {
+      setIndexBase(0);
+
+      expect(getWordDisplayData(0).indexText).toBe('0');
+
+      setIndexBase(1);
+
+      expect(getWordDisplayData(0).indexText).toBe('-');
     });
   });
 

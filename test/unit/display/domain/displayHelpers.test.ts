@@ -51,6 +51,42 @@ describe('Display Helpers - Pure Functions', () => {
     });
   });
 
+  describe('calculateDisplayState - index base', () => {
+    it('should make the empty pattern the first word when 0-based', () => {
+      const state = calculateDisplayState(0, 0);
+
+      expect(state.indexText).toBe('0');
+      expect(state.shouldGetWord).toBe(true);
+    });
+
+    it('should keep the empty pattern unselected when 1-based', () => {
+      const state = calculateDisplayState(0, 1);
+
+      expect(state.indexText).toBe('-');
+      expect(state.shouldGetWord).toBe(false);
+    });
+
+    it('should read the pattern as the index itself when 0-based', () => {
+      expect(calculateDisplayState(1, 0).indexText).toBe('1');
+      expect(calculateDisplayState(2, 0).indexText).toBe('2');
+    });
+
+    it('should accept the whole 0-2047 range when 0-based', () => {
+      expect(calculateDisplayState(2047, 0).shouldGetWord).toBe(true);
+    });
+
+    it('should reject 2048 when 0-based', () => {
+      const state = calculateDisplayState(2048, 0);
+
+      expect(state.shouldGetWord).toBe(false);
+      expect(state.announcement).toBe('Value 2048 is out of range. Maximum is 2047');
+    });
+
+    it('should still accept 2048 when 1-based', () => {
+      expect(calculateDisplayState(2048, 1).shouldGetWord).toBe(true);
+    });
+  });
+
   describe('generateWordAnnouncement', () => {
     it('should generate correct announcement', () => {
       const announcement = generateWordAnnouncement('abandon', 1);
