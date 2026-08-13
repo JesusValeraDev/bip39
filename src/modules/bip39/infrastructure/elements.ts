@@ -29,6 +29,10 @@ export const elements = {
   get languageToggle() {
     return getElementById<HTMLButtonElement>('language-toggle');
   },
+  // Absent from the offline build: a downloaded copy cannot hand out copies
+  get downloadOffline(): HTMLAnchorElement | null {
+    return document.getElementById('download-offline') as HTMLAnchorElement | null;
+  },
   get indexBaseToggle() {
     return getElementById<HTMLButtonElement>('index-base-toggle');
   },

@@ -36,6 +36,36 @@ describe('Wordlist Service', () => {
       expect(state.wordlist).toEqual([]);
     });
 
+    it('should read an embedded wordlist without the network', async () => {
+      const embedded = globalThis as { __BIP39_WORDLISTS__?: Record<string, string> };
+      embedded.__BIP39_WORDLISTS__ = { english: 'abandon\nability\nable' };
+
+      try {
+        await loadWordlist('english');
+
+        expect(fetch).not.toHaveBeenCalled();
+        expect(state.wordlist).toEqual(['abandon', 'ability', 'able']);
+        expect(state.error).toBeNull();
+      } finally {
+        delete embedded.__BIP39_WORDLISTS__;
+      }
+    });
+
+    it('should fall back to the network for a language not embedded', async () => {
+      const embedded = globalThis as { __BIP39_WORDLISTS__?: Record<string, string> };
+      embedded.__BIP39_WORDLISTS__ = { english: 'abandon' };
+      (fetch as any).mockResolvedValueOnce({ ok: true, ...(await mockWordlistResponse(['hola'])) });
+
+      try {
+        await loadWordlist('spanish');
+
+        expect(fetch).toHaveBeenCalledWith('/doc/spanish.txt');
+        expect(state.wordlist).toEqual(['hola']);
+      } finally {
+        delete embedded.__BIP39_WORDLISTS__;
+      }
+    });
+
     it('should update current language', async () => {
       (fetch as any).mockResolvedValueOnce(mockWordlistResponse(['test']));
 

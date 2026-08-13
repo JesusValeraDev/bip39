@@ -9,6 +9,7 @@ export interface Translations {
   privacyTooltip: string;
   toggleTheme: string;
   indexBaseToggle: string;
+  downloadOffline: string;
   helpIconLabel: string;
   disabledBoxMessage: string;
   invalidWordMessage: string;
@@ -72,6 +73,7 @@ export const translations: Record<string, Translations> = {
     privacyTooltip: 'This application runs entirely in your browser. No data is transmitted, stored, or tracked.',
     toggleTheme: 'Toggle dark/light mode',
     indexBaseToggle: 'Word index starts at {current}. Switch to {next}.',
+    downloadOffline: 'Download to use offline',
     helpIconLabel: 'Help',
     disabledBoxMessage: 'Cannot select this number with the current pattern - it would exceed {max}',
     invalidWordMessage: 'This word is not in the BIP39 wordlist',
@@ -140,6 +142,7 @@ export const translations: Record<string, Translations> = {
       'Esta aplicación se ejecuta completamente en tu navegador. No se transmite, almacena ni rastrea ningún dato.',
     toggleTheme: 'Cambiar modo oscuro/claro',
     indexBaseToggle: 'El índice de palabras empieza en {current}. Cambiar a {next}.',
+    downloadOffline: 'Descargar para usar sin conexión',
     helpIconLabel: 'Ayuda',
     disabledBoxMessage: 'No se puede seleccionar este número con el patrón actual - excedería {max}',
     invalidWordMessage: 'Esta palabra no está en la lista BIP39',
@@ -208,6 +211,7 @@ export const translations: Record<string, Translations> = {
       "Cette application s'exécute entièrement dans votre navigateur. Aucune donnée n'est transmise, stockée ou suivie.",
     toggleTheme: 'Basculer le mode sombre/clair',
     indexBaseToggle: "L'index des mots commence à {current}. Passer à {next}.",
+    downloadOffline: 'Télécharger pour une utilisation hors ligne',
     helpIconLabel: 'Aide',
     disabledBoxMessage: 'Impossible de sélectionner ce nombre avec le motif actuel - il dépasserait {max}',
     invalidWordMessage: "Ce mot n'est pas dans la liste BIP39",
@@ -275,6 +279,7 @@ export const translations: Record<string, Translations> = {
       'Tato aplikace běží zcela ve vašem prohlížeči. Žádná data nejsou přenášena, ukládána ani sledována.',
     toggleTheme: 'Přepnout tmavý/světlý režim',
     indexBaseToggle: 'Index slov začíná na {current}. Přepnout na {next}.',
+    downloadOffline: 'Stáhnout pro použití offline',
     helpIconLabel: 'Pomoc',
     disabledBoxMessage: 'Nelze vybrat toto číslo s aktuálním vzorem - překročilo by {max}',
     invalidWordMessage: 'Toto slovo není v seznamu BIP39',
@@ -343,6 +348,7 @@ export const translations: Record<string, Translations> = {
       'Questa applicazione viene eseguita interamente nel tuo browser. Nessun dato viene trasmesso, memorizzato o tracciato.',
     toggleTheme: 'Attiva/disattiva modalità scura/chiara',
     indexBaseToggle: "L'indice delle parole parte da {current}. Passa a {next}.",
+    downloadOffline: 'Scarica per usarlo offline',
     helpIconLabel: 'Aiuto',
     disabledBoxMessage: 'Impossibile selezionare questo numero con il pattern corrente - supererebbe {max}',
     invalidWordMessage: 'Questa parola non è nella lista BIP39',
@@ -411,6 +417,7 @@ export const translations: Record<string, Translations> = {
       'Este aplicativo é executado inteiramente no seu navegador. Nenhum dado é transmitido, armazenado ou rastreado.',
     toggleTheme: 'Alternar modo escuro/claro',
     indexBaseToggle: 'O índice das palavras começa em {current}. Mudar para {next}.',
+    downloadOffline: 'Baixar para usar offline',
     helpIconLabel: 'Ajuda',
     disabledBoxMessage: 'Não é possível selecionar este número com o padrão atual - excederia {max}',
     invalidWordMessage: 'Esta palavra não está na lista BIP39',
@@ -477,6 +484,7 @@ export const translations: Record<string, Translations> = {
     privacyTooltip: 'このアプリケーションはブラウザ内で完全に動作します。データの送信、保存、追跡は一切行われません。',
     toggleTheme: 'ダークモード/ライトモードを切り替え',
     indexBaseToggle: '単語のインデックスは{current}から始まります。{next}に切り替えます。',
+    downloadOffline: 'オフラインで使うためにダウンロード',
     helpIconLabel: 'ヘルプ',
     disabledBoxMessage: '現在のパターンではこの数値を選択できません - {max}を超えます',
     invalidWordMessage: 'この単語はBIP39リストにありません',
@@ -543,6 +551,7 @@ export const translations: Record<string, Translations> = {
     privacyTooltip: '이 애플리케이션은 브라우저에서 완전히 실행됩니다. 데이터 전송, 저장 또는 추적이 없습니다.',
     toggleTheme: '다크 모드/라이트 모드 전환',
     indexBaseToggle: '단어 인덱스는 {current}부터 시작합니다. {next}(으)로 전환합니다.',
+    downloadOffline: '오프라인으로 사용하려면 다운로드',
     helpIconLabel: '도움말',
     disabledBoxMessage: '현재 패턴에서는 이 숫자를 선택할 수 없습니다 - {max}을 초과합니다',
     invalidWordMessage: '이 단어는 BIP39 목록에 없습니다',
@@ -609,6 +618,7 @@ export const translations: Record<string, Translations> = {
     privacyTooltip: '此应用程序完全在您的浏览器中运行。不会传输、存储或跟踪任何数据。',
     toggleTheme: '切换深色/浅色模式',
     indexBaseToggle: '单词索引从 {current} 开始。切换为 {next}。',
+    downloadOffline: '下载以离线使用',
     helpIconLabel: '帮助',
     disabledBoxMessage: '无法选择此数字与当前模式 - 会超过{max}',
     invalidWordMessage: '此单词不在 BIP39 列表中',
@@ -661,6 +671,7 @@ export const translations: Record<string, Translations> = {
     privacyTooltip: '此應用程序完全在您的瀏覽器中運行。不會傳輸、存儲或跟蹤任何數據。',
     toggleTheme: '切換深色/淺色模式',
     indexBaseToggle: '單詞索引從 {current} 開始。切換為 {next}。',
+    downloadOffline: '下載以離線使用',
     helpIconLabel: '幫助',
     disabledBoxMessage: '無法選擇此數字與當前模式 - 會超過{max}',
     invalidWordMessage: '此單詞不在 BIP39 列表中',

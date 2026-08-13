@@ -10,7 +10,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build && node scripts/build-offline.mjs",
     "preview": "vite preview",
     "deploy": "vite build && gh-pages -d dist",
     "test": "vitest run",

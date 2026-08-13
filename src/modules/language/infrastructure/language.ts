@@ -175,6 +175,12 @@ function updateBasicUITranslations(): void {
   elements.languageToggle.title = currentTranslations.languageLabel;
   elements.helpIconTitle.textContent = currentTranslations.helpIconLabel;
 
+  const downloadOffline = elements.downloadOffline;
+  if (downloadOffline) {
+    downloadOffline.title = currentTranslations.downloadOffline;
+    downloadOffline.setAttribute('aria-label', currentTranslations.downloadOffline);
+  }
+
   updateIndexBaseTranslations(indexBase);
 }
 

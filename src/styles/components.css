@@ -125,6 +125,36 @@
   display: block;
 }
 
+/* Offline Download Button */
+.download-offline {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--surface-light);
+  border: 2px solid var(--border);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.download-offline:hover {
+  border-color: var(--primary-color);
+}
+
+.download-offline:active {
+  transform: scale(0.95);
+}
+
+.download-offline svg {
+  color: var(--text-primary);
+  fill: none;
+}
+
 /* Index Base Toggle Button */
 .index-base-toggle {
   width: 44px;

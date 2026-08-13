@@ -34,6 +34,25 @@ export default tseslint.config(
     },
   },
   {
+    // Plain Node build scripts, outside the TypeScript projects
+    files: ['scripts/**/*.mjs'],
+    ...tseslint.configs.disableTypeChecked,
+    languageOptions: {
+      globals: {
+        Buffer: 'readonly',
+        console: 'readonly',
+        process: 'readonly',
+      },
+      parserOptions: {
+        project: false,
+      },
+    },
+    rules: {
+      ...tseslint.configs.disableTypeChecked.rules,
+      'no-console': 'off',
+    },
+  },
+  {
     files: ['test/**/*.ts'],
     rules: {
       // Relax rules for test files
