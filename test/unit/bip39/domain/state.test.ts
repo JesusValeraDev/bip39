@@ -78,27 +78,27 @@ describe('State Management', () => {
 
   describe('getBinaryString', () => {
     it('should return all empty dots for no boxes selected', () => {
-      expect(getBinaryString()).toBe('○○○○○○○○○○○○');
+      expect(getBinaryString()).toBe('0000 0000 0000');
     });
 
     it('should return correct binary string for single box', () => {
       state.boxes[11] = true;
-      expect(getBinaryString()).toBe('○○○○○○○○○○○●');
+      expect(getBinaryString()).toBe('0000 0000 0001');
 
       state.boxes[11] = false;
       state.boxes[0] = true;
-      expect(getBinaryString()).toBe('●○○○○○○○○○○○');
+      expect(getBinaryString()).toBe('1000 0000 0000');
     });
 
     it('should return correct binary string for multiple boxes', () => {
       state.boxes[0] = true; // 2^11
       state.boxes[11] = true; // 2^0
-      expect(getBinaryString()).toBe('●○○○○○○○○○○●');
+      expect(getBinaryString()).toBe('1000 0000 0001');
     });
 
     it('should return all filled dots for all boxes selected', () => {
       state.boxes.fill(true);
-      expect(getBinaryString()).toBe('●●●●●●●●●●●●');
+      expect(getBinaryString()).toBe('1111 1111 1111');
     });
   });
 });

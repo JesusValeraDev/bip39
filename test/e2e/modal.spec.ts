@@ -156,9 +156,9 @@ test.describe('Modal - Binary example follows the index base', () => {
     await openModal(page);
 
     await expect(page.locator('#modal-step2-word1')).toHaveText('abandon');
-    await expect(page.locator('#modal-step2-binary1')).toHaveText('00000000001');
+    await expect(page.locator('#modal-step2-binary1')).toHaveText('000 0000 0001');
     await expect(page.locator('#modal-step2-word2')).toHaveText('ability');
-    await expect(page.locator('#modal-step2-binary2')).toHaveText('00000000010');
+    await expect(page.locator('#modal-step2-binary2')).toHaveText('000 0000 0010');
   });
 
   test('should start the first word at all zeros when 0-based', async ({ page }) => {
@@ -166,21 +166,21 @@ test.describe('Modal - Binary example follows the index base', () => {
     await page.locator('#index-base-toggle').click();
     await openModal(page);
 
-    await expect(page.locator('#modal-step2-binary1')).toHaveText('00000000000');
-    await expect(page.locator('#modal-step2-binary2')).toHaveText('00000000001');
+    await expect(page.locator('#modal-step2-binary1')).toHaveText('000 0000 0000');
+    await expect(page.locator('#modal-step2-binary2')).toHaveText('000 0000 0001');
   });
 
   test('should follow a toggle made while the modal was closed', async ({ page }) => {
     await page.goto('/');
     await openModal(page);
-    await expect(page.locator('#modal-step2-binary1')).toHaveText('00000000001');
+    await expect(page.locator('#modal-step2-binary1')).toHaveText('000 0000 0001');
 
     await page.keyboard.press('Escape');
     await page.waitForTimeout(400);
     await page.locator('#index-base-toggle').click();
     await openModal(page);
 
-    await expect(page.locator('#modal-step2-binary1')).toHaveText('00000000000');
+    await expect(page.locator('#modal-step2-binary1')).toHaveText('000 0000 0000');
   });
 
   test('should keep the numbering after a language change', async ({ page }) => {
@@ -195,7 +195,7 @@ test.describe('Modal - Binary example follows the index base', () => {
     const word = await page.locator('#modal-step2-word1').textContent();
     expect(word?.normalize('NFC')).toBe('ábaco'.normalize('NFC'));
 
-    await expect(page.locator('#modal-step2-binary1')).toHaveText('00000000000');
+    await expect(page.locator('#modal-step2-binary1')).toHaveText('000 0000 0000');
   });
 
   test('should keep eleven bits, as a BIP39 word carries', async ({ page }) => {
@@ -203,6 +203,7 @@ test.describe('Modal - Binary example follows the index base', () => {
     await openModal(page);
 
     const bits = await page.locator('#modal-step2-binary1').textContent();
-    expect(bits).toHaveLength(11);
+    // Grouped for reading, so count the digits rather than the characters
+    expect(bits?.replace(/\s/g, '')).toHaveLength(11);
   });
 });

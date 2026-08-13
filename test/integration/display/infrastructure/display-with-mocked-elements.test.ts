@@ -27,7 +27,7 @@ vi.mock('../../../../src/modules/bip39/infrastructure/elements', () => ({
 vi.mock('../../../../src/modules/bip39/domain/state', () => ({
   state: mockState,
   calculateBinaryValue: vi.fn(() => 100),
-  getBinaryString: vi.fn(() => '○●●○○●○○'),
+  getBinaryString: vi.fn(() => '0110 0100'),
 }));
 
 vi.mock('../../../../src/modules/bip39/infrastructure/wordlist', () => ({
@@ -56,7 +56,7 @@ describe('Display - With Mocked Elements', () => {
 
     updateDisplay();
 
-    expect(mockElements.binary.textContent).toBe('○●●○○●○○');
+    expect(mockElements.binary.textContent).toBe('0110 0100');
   });
 
   it('should update word index', async () => {

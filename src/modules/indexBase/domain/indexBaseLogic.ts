@@ -44,6 +44,14 @@ export function getMaxDisplayIndex(base: IndexBase): number {
 }
 
 /**
+ * 0-based numbering tops out at 2047, so the leading 2048 bit can never be
+ * set. It is still shown, but out of play, like the box above it.
+ */
+export function hasUnusedLeadingBit(base: IndexBase): boolean {
+  return base === 0;
+}
+
+/**
  * Only 1-based numbering leaves the empty pattern spare to mean "nothing
  * selected"; 0-based numbering spends it on the first word.
  */
@@ -58,8 +66,25 @@ export function isSelectableDisplayIndex(displayIndex: number, base: IndexBase):
 /** A BIP39 word carries eleven bits of entropy. */
 export const WORD_BITS = 11;
 
+export const BINARY_GROUP_SIZE = 4;
+
 export function toBinaryString(displayIndex: number, bits: number = WORD_BITS): string {
   return displayIndex.toString(2).padStart(bits, '0');
+}
+
+/**
+ * Splits bits into groups so a long pattern can be read and counted at a
+ * glance. Grouped from the right, like any other number, which leaves the
+ * short group at the front when the width is not a multiple of the group.
+ */
+export function groupBits(bits: string, size: number = BINARY_GROUP_SIZE): string {
+  const groups: string[] = [];
+
+  for (let end = bits.length; end > 0; end -= size) {
+    groups.unshift(bits.slice(Math.max(0, end - size), end));
+  }
+
+  return groups.join(' ');
 }
 
 export function getIndexRangeLabel(base: IndexBase): string {

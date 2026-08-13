@@ -171,9 +171,9 @@
   }
 
   .binary-display code {
-    font-size: 1.2rem;
-    padding: 0.85rem 1rem 0.85rem calc(1rem + 0.5em);
-    letter-spacing: 0.5em;
+    font-size: 1.15rem;
+    padding: 0.7rem 0.9rem 0.7rem calc(0.9rem + 0.2em);
+    letter-spacing: 0.2em;
   }
 
   .word-input {
@@ -228,8 +228,8 @@
 
   .binary-display code {
     font-size: 1rem;
-    padding: 0.75rem 0.875rem 0.75rem calc(0.875rem + 0.4em);
-    letter-spacing: 0.4em;
+    padding: 0.65rem 0.8rem 0.65rem calc(0.8rem + 0.18em);
+    letter-spacing: 0.18em;
   }
 
   .word-input {
@@ -360,9 +360,9 @@
   }
 
   .binary-display code {
-    font-size: 0.8rem;
-    padding: 0.65rem 0.75rem 0.65rem calc(0.75rem + 0.3em);
-    letter-spacing: 0.3em;
+    font-size: 0.85rem;
+    padding: 0.6rem 0.7rem 0.6rem calc(0.7rem + 0.15em);
+    letter-spacing: 0.15em;
   }
 
   .reset-button {

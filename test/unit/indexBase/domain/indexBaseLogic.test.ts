@@ -6,7 +6,10 @@ import {
   WORD_BITS,
   getMinDisplayIndex,
   toBinaryString,
+  groupBits,
+  BINARY_GROUP_SIZE,
   hasEmptyPatternState,
+  hasUnusedLeadingBit,
   isSelectableDisplayIndex,
   toWordlistIndex,
   formatIndexBaseToggleLabel,
@@ -199,6 +202,40 @@ describe('Index Base Logic - Pure Functions', () => {
 
     it('should accept a different width', () => {
       expect(toBinaryString(1, 4)).toBe('0001');
+    });
+  });
+
+  describe('groupBits', () => {
+    it('should split a full pattern into nibbles', () => {
+      expect(BINARY_GROUP_SIZE).toBe(4);
+      expect(groupBits('000000000001')).toBe('0000 0000 0001');
+      expect(groupBits('100000000000')).toBe('1000 0000 0000');
+    });
+
+    it('should group from the right, leaving the short group at the front', () => {
+      expect(groupBits('00000000001')).toBe('000 0000 0001');
+    });
+
+    it('should leave a pattern shorter than one group alone', () => {
+      expect(groupBits('101')).toBe('101');
+    });
+
+    it('should accept a different group size', () => {
+      expect(groupBits('11111111', 2)).toBe('11 11 11 11');
+    });
+
+    it('should handle an empty pattern', () => {
+      expect(groupBits('')).toBe('');
+    });
+  });
+
+  describe('hasUnusedLeadingBit', () => {
+    it('should put the 2048 bit out of play when 0-based', () => {
+      expect(hasUnusedLeadingBit(0)).toBe(true);
+    });
+
+    it('should keep every bit in play when 1-based', () => {
+      expect(hasUnusedLeadingBit(1)).toBe(false);
     });
   });
 });

@@ -43,8 +43,21 @@ function updateBoxStates(boxesData: Array<{ isActive: boolean; isDisabled: boole
   });
 }
 
-function updateBinaryDisplay(binaryData: { binaryString: string }): void {
-  elements.binary.textContent = binaryData.binaryString;
+function updateBinaryDisplay(binaryData: { binaryString: string; hasUnusedLeadingBit: boolean }): void {
+  const { binaryString, hasUnusedLeadingBit } = binaryData;
+
+  if (!hasUnusedLeadingBit) {
+    elements.binary.textContent = binaryString;
+    return;
+  }
+
+  // The leading bit cannot be set under 0-based numbering, so it is dimmed to
+  // match the box above it rather than reading as a bit you could still flip
+  const unusedBit = document.createElement('span');
+  unusedBit.className = 'binary-bit-unused';
+  unusedBit.textContent = binaryString.slice(0, 1);
+
+  elements.binary.replaceChildren(unusedBit, document.createTextNode(binaryString.slice(1)));
 }
 
 function updateWordDisplay(wordData: { indexText: string; announcement: string }): void {

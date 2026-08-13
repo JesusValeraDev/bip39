@@ -1,4 +1,4 @@
-import { getIndexBase, toDisplayIndex, type IndexBase } from '../../indexBase';
+import { getIndexBase, groupBits, toDisplayIndex, type IndexBase } from '../../indexBase';
 
 export const state = {
   boxes: new Array(12).fill(false) as boolean[],
@@ -25,8 +25,12 @@ export function calculateBinaryValue(): number {
   return value;
 }
 
+/**
+ * The pattern as digits, which is the notation BIP39 itself uses and the one
+ * the help modal teaches. The boxes above it already carry the shape.
+ */
 export function getBinaryString(): string {
-  return state.boxes.map(b => (b ? '●' : '○')).join('');
+  return groupBits(state.boxes.map(box => (box ? '1' : '0')).join(''));
 }
 
 export function setStateFromIndex(wordIndex: number, base: IndexBase = getIndexBase()): void {

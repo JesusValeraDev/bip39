@@ -13,27 +13,27 @@ describe('Box Encoding Across Index Bases', () => {
     it('should leave the pattern empty for the first word', () => {
       setStateFromIndex(0, 0);
 
-      expect(getBinaryString()).toBe('○○○○○○○○○○○○');
+      expect(getBinaryString()).toBe('0000 0000 0000');
       expect(calculateBinaryValue()).toBe(0);
     });
 
     it('should put the second word on pattern 1', () => {
       setStateFromIndex(1, 0);
 
-      expect(getBinaryString()).toBe('○○○○○○○○○○○●');
+      expect(getBinaryString()).toBe('0000 0000 0001');
     });
 
     it('should put the third word on pattern 2', () => {
       setStateFromIndex(2, 0);
 
-      expect(getBinaryString()).toBe('○○○○○○○○○○●○');
+      expect(getBinaryString()).toBe('0000 0000 0010');
     });
 
     it('should put the last word on 2047, without the 2048 bit', () => {
       setStateFromIndex(2047, 0);
 
       expect(calculateBinaryValue()).toBe(2047);
-      expect(getBinaryString()).toBe('○●●●●●●●●●●●');
+      expect(getBinaryString()).toBe('0111 1111 1111');
     });
   });
 
@@ -41,14 +41,14 @@ describe('Box Encoding Across Index Bases', () => {
     it('should put the first word on pattern 1', () => {
       setStateFromIndex(0, 1);
 
-      expect(getBinaryString()).toBe('○○○○○○○○○○○●');
+      expect(getBinaryString()).toBe('0000 0000 0001');
     });
 
     it('should put the last word on 2048', () => {
       setStateFromIndex(2047, 1);
 
       expect(calculateBinaryValue()).toBe(2048);
-      expect(getBinaryString()).toBe('●○○○○○○○○○○○');
+      expect(getBinaryString()).toBe('1000 0000 0000');
     });
   });
 

@@ -15,7 +15,7 @@ test.describe('BIP39 Word Selector', () => {
     await expect(boxes).toHaveCount(12);
 
     const binary = page.locator('#binary');
-    await expect(binary).toHaveText('○○○○○○○○○○○○');
+    await expect(binary).toHaveText('0000 0000 0000');
 
     const wordInput = page.locator('#word-input');
     await expect(wordInput).toBeVisible();
@@ -37,7 +37,7 @@ test.describe('BIP39 Word Selector', () => {
     await page.locator('.box').last().click(); // 1
 
     const binary = page.locator('#binary');
-    await expect(binary).toHaveText('○○○○○○○○○○○●');
+    await expect(binary).toHaveText('0000 0000 0001');
 
     const wordInput = page.locator('#word-input');
     await expect(wordInput).toHaveValue('abandon');
@@ -54,7 +54,7 @@ test.describe('BIP39 Word Selector', () => {
     await expect(box1).toHaveClass(/disabled/);
 
     const binary = page.locator('#binary');
-    await expect(binary).toHaveText('●○○○○○○○○○○○');
+    await expect(binary).toHaveText('1000 0000 0000');
 
     const wordInput = page.locator('#word-input');
     await expect(wordInput).not.toHaveClass(/error/);
@@ -75,6 +75,6 @@ test.describe('BIP39 Word Selector', () => {
     await expect(page.locator('.box.active')).toHaveCount(0);
 
     const binary = page.locator('#binary');
-    await expect(binary).toHaveText('○○○○○○○○○○○○');
+    await expect(binary).toHaveText('0000 0000 0000');
   });
 });

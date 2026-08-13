@@ -314,9 +314,6 @@
   min-height: 80px;
 }
 
-/* The pattern spelled out: the grid's value, not a second instrument.
-   Kept tight and close to the grid so it reads as a string of bits rather
-   than as a row of pagination dots. */
 /* The pattern as one readable string, which is what the boxes cannot be */
 .binary-display {
   display: flex;
@@ -329,8 +326,10 @@
   font-size: 1.25rem;
   font-weight: 700;
   color: var(--primary-color);
-  letter-spacing: 0.6em;
-  padding: 0.6rem 0.3rem 0.6rem calc(0.3rem + 0.6em);
+  /* The group spaces do the separating, so the tracking stays modest */
+  letter-spacing: 0.22em;
+  font-variant-numeric: tabular-nums;
+  padding: 0.6rem 1rem 0.6rem calc(1rem + 0.22em);
   background: var(--surface-light);
   border-radius: 16px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -339,6 +338,12 @@
 
 [data-theme='dark'] .binary-display code {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* A bit that is out of play, dimmed like the disabled box it belongs to */
+.binary-bit-unused {
+  color: var(--text-secondary);
+  opacity: 0.5;
 }
 
 .grid {

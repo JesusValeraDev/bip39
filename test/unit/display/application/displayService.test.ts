@@ -10,7 +10,7 @@ import { setIndexBase } from '../../../../src/modules/indexBase';
 
 vi.mock('../../../src/modules/bip39/domain/state', () => ({
   calculateBinaryValue: vi.fn(() => 100),
-  getBinaryString: vi.fn(() => '○●●○○●○○'),
+  getBinaryString: vi.fn(() => '0110 0100'),
 }));
 
 vi.mock('../../../src/modules/bip39/infrastructure/wordlist', () => ({
@@ -112,7 +112,20 @@ describe('Application - Display Service', () => {
     it('should return binary string', () => {
       const data = getBinaryDisplayData();
 
-      expect(data.binaryString).toBe('○○○○○○○○○○○○');
+      expect(data.binaryString).toBe('0000 0000 0000');
+    });
+
+    it('should flag the leading bit as out of play when 0-based', () => {
+      expect(getBinaryDisplayData(0).hasUnusedLeadingBit).toBe(true);
+      expect(getBinaryDisplayData(1).hasUnusedLeadingBit).toBe(false);
+    });
+
+    it('should follow the base in effect when none is passed', () => {
+      setIndexBase(0);
+      expect(getBinaryDisplayData().hasUnusedLeadingBit).toBe(true);
+
+      setIndexBase(1);
+      expect(getBinaryDisplayData().hasUnusedLeadingBit).toBe(false);
     });
   });
 

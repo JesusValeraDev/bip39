@@ -79,7 +79,7 @@ test.describe('Word Input - Autocomplete', () => {
 
     await expect(page.locator('#word-input')).toHaveValue('about');
     await expect(page.locator('#index')).toHaveText('4');
-    await expect(page.locator('#binary')).toHaveText('○○○○○○○○○●○○');
+    await expect(page.locator('#binary')).toHaveText('0000 0000 0100');
   });
 });
 
@@ -126,7 +126,7 @@ test.describe('Word Input - Enter and Escape', () => {
 
     await expect(page.locator('#word-input')).toHaveValue('');
     await expect(page.locator('#index')).toHaveText('-');
-    await expect(page.locator('#binary')).toHaveText('○○○○○○○○○○○○');
+    await expect(page.locator('#binary')).toHaveText('0000 0000 0000');
   });
 
   test('should keep the focus after Escape', async ({ page }) => {
@@ -174,7 +174,7 @@ test.describe('Word Input - Invalid input clears the selection', () => {
     await page.keyboard.type('x');
 
     await expect(page.locator('#index')).toHaveText('-');
-    await expect(page.locator('#binary')).toHaveText('○○○○○○○○○○○○');
+    await expect(page.locator('#binary')).toHaveText('0000 0000 0000');
     await expect(page.locator('#word-input')).toHaveValue('abanx');
   });
 

@@ -16,7 +16,7 @@ test.describe('Index Base Toggle', () => {
   test('should make the empty pattern the first word when 0-based', async ({ page }) => {
     await page.locator('#index-base-toggle').click();
 
-    await expect(page.locator('#binary')).toHaveText('○○○○○○○○○○○○');
+    await expect(page.locator('#binary')).toHaveText('0000 0000 0000');
     await expect(page.locator('#index')).toHaveText('0');
     await expect(page.locator('#word-input')).toHaveValue('abandon');
   });
@@ -32,7 +32,7 @@ test.describe('Index Base Toggle', () => {
     // 0010 -> able
     await page.locator('.box').last().click();
     await page.locator('.box').nth(10).click();
-    await expect(page.locator('#binary')).toHaveText('○○○○○○○○○○●○');
+    await expect(page.locator('#binary')).toHaveText('0000 0000 0010');
     await expect(page.locator('#index')).toHaveText('2');
     await expect(page.locator('#word-input')).toHaveValue('able');
   });
@@ -54,7 +54,7 @@ test.describe('Index Base Toggle', () => {
       await boxes.nth(index).click();
     }
 
-    await expect(page.locator('#binary')).toHaveText('○●●●●●●●●●●●');
+    await expect(page.locator('#binary')).toHaveText('0111 1111 1111');
     await expect(page.locator('#index')).toHaveText('2047');
     await expect(page.locator('#word-input')).toHaveValue('zoo');
   });
@@ -75,13 +75,13 @@ test.describe('Index Base Toggle', () => {
     await page.locator('#word-input').blur();
 
     await expect(page.locator('#index')).toHaveText('3');
-    await expect(page.locator('#binary')).toHaveText('○○○○○○○○○○●●');
+    await expect(page.locator('#binary')).toHaveText('0000 0000 0011');
 
     await page.locator('#index-base-toggle').click();
 
     await expect(page.locator('#word-input')).toHaveValue('able');
     await expect(page.locator('#index')).toHaveText('2');
-    await expect(page.locator('#binary')).toHaveText('○○○○○○○○○○●○');
+    await expect(page.locator('#binary')).toHaveText('0000 0000 0010');
   });
 
   test('should carry the last word across the toggle', async ({ page }) => {
@@ -201,5 +201,54 @@ test.describe('Index Base Toggle - Typing over the first word', () => {
 
     await expect(page.locator('#word-input')).toHaveValue('');
     await expect(page.locator('#index')).toHaveText('-');
+  });
+});
+
+test.describe('Index Base Toggle - The bit that cannot be set', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/');
+  });
+
+  test('should dim the leading bit when 0-based', async ({ page }) => {
+    await page.locator('#index-base-toggle').click();
+
+    const unused = page.locator('.binary-bit-unused');
+    await expect(unused).toHaveCount(1);
+    await expect(unused).toHaveText('0');
+  });
+
+  test('should leave every bit in play when 1-based', async ({ page }) => {
+    await expect(page.locator('.binary-bit-unused')).toHaveCount(0);
+  });
+
+  test('should dim it whatever the rest of the pattern is', async ({ page }) => {
+    await page.locator('#index-base-toggle').click();
+
+    // 2047: every usable bit set, the leading one still out of play
+    const boxes = page.locator('.box');
+    for (let index = 1; index < 12; index++) {
+      await boxes.nth(index).click();
+    }
+
+    await expect(page.locator('#binary')).toHaveText('0111 1111 1111');
+    await expect(page.locator('.binary-bit-unused')).toHaveText('0');
+  });
+
+  test('should read the same as the box above it', async ({ page }) => {
+    await page.locator('#index-base-toggle').click();
+
+    // The 2048 box is permanently disabled here, and the bit says so too
+    await expect(page.locator('.box').first()).toHaveClass(/disabled/);
+    await expect(page.locator('.binary-bit-unused')).toHaveCount(1);
+  });
+
+  test('should drop the dimming when switched back', async ({ page }) => {
+    await page.locator('#index-base-toggle').click();
+    await expect(page.locator('.binary-bit-unused')).toHaveCount(1);
+
+    await page.locator('#index-base-toggle').click();
+
+    await expect(page.locator('.binary-bit-unused')).toHaveCount(0);
+    await expect(page.locator('#binary')).toHaveText('0000 0000 0001');
   });
 });

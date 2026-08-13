@@ -2,7 +2,7 @@ import { calculateBinaryValue, getBinaryString } from '../../bip39';
 import { getWord } from '../../bip39';
 import { calculateDisplayState, generateWordAnnouncement } from '../domain/displayHelpers';
 import { shouldBoxBeDisabled } from '../../bip39';
-import { getIndexBase, toWordlistIndex, type IndexBase } from '../../indexBase';
+import { getIndexBase, hasUnusedLeadingBit, toWordlistIndex, type IndexBase } from '../../indexBase';
 
 export interface BoxDisplayData {
   isActive: boolean;
@@ -17,6 +17,7 @@ export interface WordDisplayData {
 
 export interface BinaryDisplayData {
   binaryString: string;
+  hasUnusedLeadingBit: boolean;
 }
 
 export function getBoxDisplayData(index: number, boxes: boolean[], base: IndexBase = getIndexBase()): BoxDisplayData {
@@ -50,9 +51,10 @@ export function getWordDisplayData(binaryValue: number, base: IndexBase = getInd
   };
 }
 
-export function getBinaryDisplayData(): BinaryDisplayData {
+export function getBinaryDisplayData(base: IndexBase = getIndexBase()): BinaryDisplayData {
   return {
     binaryString: getBinaryString(),
+    hasUnusedLeadingBit: hasUnusedLeadingBit(base),
   };
 }
 
@@ -67,6 +69,6 @@ export function getAllDisplayData(boxes: boolean[]): {
   return {
     boxes: getAllBoxesDisplayData(boxes, base),
     word: getWordDisplayData(binaryValue, base),
-    binary: getBinaryDisplayData(),
+    binary: getBinaryDisplayData(base),
   };
 }

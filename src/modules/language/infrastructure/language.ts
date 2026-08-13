@@ -8,6 +8,7 @@ import {
   formatIndexBaseToggleLabel,
   getIndexBase,
   getMaxDisplayIndex,
+  groupBits,
   toBinaryString,
   toDisplayIndex,
   type IndexBase,
@@ -234,8 +235,8 @@ function updateModalStep2Translations(): void {
 
   // The worked example follows the numbering in effect, so the first word reads
   // as all zeros when the index starts at 0
-  elements.modalStep2Binary1.textContent = toBinaryString(toDisplayIndex(0, indexBase));
-  elements.modalStep2Binary2.textContent = toBinaryString(toDisplayIndex(1, indexBase));
+  elements.modalStep2Binary1.textContent = groupBits(toBinaryString(toDisplayIndex(0, indexBase)));
+  elements.modalStep2Binary2.textContent = groupBits(toBinaryString(toDisplayIndex(1, indexBase)));
 
   elements.modalStep2Entropy.textContent = currentTranslations.modalStep2Entropy;
 }
