@@ -15,8 +15,19 @@ import { validateWordInput } from './validation';
 import { showSuggestions, hideSuggestions, clearSuggestions } from './suggestions';
 import { handleKeydown as handleKeyboardNavigation } from './keyboard';
 
-// Guards the input against being rewritten from the state mid-keystroke
-let isTyping = false;
+// Guards the input against being rewritten from the state while its content is
+// the user's to control
+let suppressInputSync = false;
+
+function withoutInputSync(action: () => void): void {
+  suppressInputSync = true;
+
+  try {
+    action();
+  } finally {
+    suppressInputSync = false;
+  }
+}
 
 export function setupWordInput(): void {
   setSyncWordInputCallback(syncWordInputFromState);
@@ -47,8 +58,14 @@ export function setupWordInput(): void {
 function handleClearInput(): void {
   elements.wordInput.value = '';
   elements.wordInput.classList.remove('error');
-  resetBoxes();
-  updateDisplay();
+
+  // Left empty on purpose: under 0-based numbering the emptied boxes still name
+  // the first word, and writing it straight back would leave nowhere to type.
+  withoutInputSync(() => {
+    resetBoxes();
+    updateDisplay();
+  });
+
   clearSuggestions();
   toggleClearButton(false);
   elements.wordInput.focus();
@@ -74,6 +91,12 @@ function handleAcceptInput(): void {
 function handleWordInputBlur(): void {
   hideSuggestions();
   validateWordInput();
+
+  // The field is only allowed to stay empty while it is being typed in; once
+  // focus leaves it shows whatever the boxes name.
+  if (!elements.wordInput.value) {
+    syncWordInputFromState();
+  }
 }
 
 function handleWordInput(event?: Event): void {
@@ -148,10 +171,10 @@ function autocompleteWordInput(typed: string, matches: string[], event?: Event):
  * being typed.
  */
 function clearSelectionWhileTyping(): void {
-  isTyping = true;
-  resetBoxes();
-  updateDisplay();
-  isTyping = false;
+  withoutInputSync(() => {
+    resetBoxes();
+    updateDisplay();
+  });
 }
 
 function selectWord(word: string, keepFocus: boolean = false): void {
@@ -195,7 +218,7 @@ function toggleClearButton(show: boolean): void {
 }
 
 export function syncWordInputFromState(): void {
-  if (isTyping) return;
+  if (suppressInputSync) return;
 
   const index = state.boxes.reduce((acc, val, i) => acc + (val ? Math.pow(2, 11 - i) : 0), 0);
   const base = getIndexBase();
@@ -205,6 +228,8 @@ export function syncWordInputFromState(): void {
     const word = getWordByIndex(wordIndex, state.wordlist);
     if (word && elements.wordInput.value !== word) {
       elements.wordInput.value = word;
+      // What is shown is a real word now, whatever was typed before
+      elements.wordInput.classList.remove('error');
       toggleClearButton(true);
     }
   } else {

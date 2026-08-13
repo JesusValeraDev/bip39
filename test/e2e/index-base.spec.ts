@@ -135,3 +135,71 @@ test.describe('Index Base Toggle', () => {
     await expect(page.locator('#index-base-value')).toHaveText('#0');
   });
 });
+
+test.describe('Index Base Toggle - Typing over the first word', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/');
+    await page.locator('#index-base-toggle').click();
+    await page.locator('#word-input').click();
+  });
+
+  test('should empty the input on Escape so a word can be typed', async ({ page }) => {
+    await expect(page.locator('#word-input')).toHaveValue('abandon');
+
+    await page.keyboard.press('Escape');
+
+    await expect(page.locator('#word-input')).toHaveValue('');
+    // The boxes still name the first word; only the field is free
+    await expect(page.locator('#index')).toHaveText('0');
+  });
+
+  test('should take a typed word rather than appending to the first one', async ({ page }) => {
+    await page.keyboard.press('Escape');
+    await page.keyboard.type('able');
+
+    await expect(page.locator('#word-input')).toHaveValue('able');
+    await expect(page.locator('#index')).toHaveText('2');
+  });
+
+  test('should fill the first word back in when focus leaves', async ({ page }) => {
+    await page.keyboard.press('Escape');
+    await expect(page.locator('#word-input')).toHaveValue('');
+
+    await page.locator('#word-input').blur();
+
+    await expect(page.locator('#word-input')).toHaveValue('abandon');
+    await expect(page.locator('#index')).toHaveText('0');
+  });
+
+  test('should fill the first word back in when the typed word does not exist', async ({ page }) => {
+    await page.keyboard.press('Escape');
+    await page.keyboard.type('zzz');
+    await expect(page.locator('#word-input')).toHaveValue('zzz');
+
+    await page.locator('#word-input').blur();
+    await page.waitForTimeout(300);
+
+    await expect(page.locator('#word-input')).toHaveValue('abandon');
+    await expect(page.locator('#word-input')).not.toHaveClass(/error/);
+  });
+
+  test('should still follow the boxes after the input was emptied', async ({ page }) => {
+    await page.keyboard.press('Escape');
+
+    await page.locator('.box').last().click();
+
+    await expect(page.locator('#word-input')).toHaveValue('ability');
+    await expect(page.locator('#index')).toHaveText('1');
+  });
+
+  test('should leave 1-based numbering empty on Escape', async ({ page }) => {
+    await page.locator('#index-base-toggle').click();
+    await page.locator('#word-input').click();
+
+    await page.keyboard.press('Escape');
+    await page.locator('#word-input').blur();
+
+    await expect(page.locator('#word-input')).toHaveValue('');
+    await expect(page.locator('#index')).toHaveText('-');
+  });
+});
