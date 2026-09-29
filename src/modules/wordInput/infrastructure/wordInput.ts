@@ -8,6 +8,7 @@ import {
   isCaretAtEnd,
   isForwardTyping,
   isWordInWordlist,
+  isIndex,
   normalizeForMatching,
 } from '../domain/wordInputHelpers';
 import { getIndexBase, isSelectableDisplayIndex, toWordlistIndex } from '../../indexBase';
@@ -73,11 +74,22 @@ function handleClearInput(): void {
 }
 
 /**
- * Enter on a word that exists settles the caret behind it; on anything else
+ * Enter on a word or index that exists settles the caret behind it; on anything else
  * there is nothing to settle on, so the input goes back to empty.
  */
 function handleAcceptInput(): void {
-  const value = elements.wordInput.value;
+  let value = elements.wordInput.value;
+
+  if (isIndex(value)) {
+    const index = Number(value) - 1;
+
+    value = getWordByIndex(index, state.wordlist) as string;
+
+    if (value) {
+      selectWord(value, true);
+      return;
+    }
+  }
 
   if (!normalizeForMatching(value)) return;
 

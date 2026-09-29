@@ -150,3 +150,11 @@ export function isForwardTyping(inputType: string | null | undefined): boolean {
 export function isCaretAtEnd(selectionStart: number | null, selectionEnd: number | null, length: number): boolean {
   return selectionStart === length && selectionEnd === length;
 }
+
+export function isIndex(input: string) {
+  if (typeof input !== 'string' || input.trim() === '') return false;
+
+  const index = Number(input);
+
+  return Number.isFinite(index) && index > 0;
+}

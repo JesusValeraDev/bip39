@@ -2,16 +2,22 @@ import { elements, resetBoxes, setStateFromIndex, state } from '../../bip39';
 import { updateDisplay } from '../../display';
 import { showToast } from '../../display';
 import { currentTranslations } from '../../language';
-import { getWordIndex, isWordInWordlist } from '../domain/wordInputHelpers';
+import { getWordIndex, getWordByIndex, isWordInWordlist, isIndex } from '../domain/wordInputHelpers';
 
 let errorClearTimeout: NodeJS.Timeout | null = null;
 
 export function validateWordInput(): void {
-  const value = elements.wordInput.value.trim().toLowerCase();
+  let value = elements.wordInput.value.trim().toLowerCase();
 
   if (!value) {
     clearInputError();
     return;
+  }
+
+  if (isIndex(value)) {
+    const index = Number(value) - 1;
+
+    value = getWordByIndex(index, state.wordlist) as string;
   }
 
   const wordExists = isWordInWordlist(value, state.wordlist);

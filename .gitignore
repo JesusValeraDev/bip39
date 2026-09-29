@@ -9,3 +9,71 @@ node_modules/
 test-results/
 playwright-report/
 playwright/.cache/
+
+# ============================================================
+# Android / Gradle
+# ============================================================
+
+# Gradle
+.gradle/
+**/.gradle/
+
+# Build artifacts
+build/
+**/build/
+
+# APK / AAB
+*.apk
+*.aab
+*.apks
+*.idsig
+
+# Android generated files
+.externalNativeBuild/
+.cxx/
+
+# ============================================================
+# Android Studio / IntelliJ
+# ============================================================
+
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Local Android Studio configuration
+local.properties
+
+# ============================================================
+# Signing keys
+# ============================================================
+
+# Keystores
+*.jks
+*.keystore
+*.p12
+*.pfx
+
+# Signing configuration
+keystore.properties
+
+# ============================================================
+# Generated / temporary files
+# ============================================================
+
+*.log
+*.tmp
+*.bak
+.DS_Store
+
+# ============================================================
+# Kotlin
+# ============================================================
+
+.kotlin/
+
+# ============================================================
+# OS
+# ============================================================
+
+Thumbs.db
